@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +31,7 @@
             <div class="messages_main">
               <div class="messages_block">
                 <div class="messages_headline">
+                  <div class="bar">Sent Time</div>
                   <div class="bar">Name</div>
                   <div class="bar">Email</div>
                   <div class="bar">Phone #</div>
@@ -36,25 +40,23 @@
                 </div>
 
                 <div class="messages">
-                  <div class="message">
-                    <div class="bar">Jon Doe</div>
-                    <div class="bar">jondoe@gmail.com</div>
-                    <div class="bar">99 989 76 54</div>
-                    <div class="bar">Message starts here...</div>
-                    <div class="bar">
-                      <a class="check_btn view_btn" href="">View</a>
+
+                <c:forEach items="${messageList}" var="message">
+                    <div class="message">
+                        <div class="bar">${message.getSentAt()}</div>
+                        <div class="bar">${message.getName()}</div>
+                        <div class="bar">${message.getEmail()}</div>
+                        <div class="bar">${message.getPhoneNumber()}</div>
+                        <div class="bar">${message.getText()}</div>
+                        <div class="bar">
+                            <a class="check_btn view_btn" href="">View</a>
+                        </div>
                     </div>
-                  </div>
+                </c:forEach>
+
+
                   <div class="message">
-                    <div class="bar">Jon Doe</div>
-                    <div class="bar">jondoe@gmail.com</div>
-                    <div class="bar">99 989 76 54</div>
-                    <div class="bar">Message starts here...</div>
-                    <div class="bar">
-                      <a class="check_btn view_btn" href="">View</a>
-                    </div>
-                  </div>
-                  <div class="message">
+                  <div class="bar">12/12/2023</div>
                     <div class="bar">Jon Doe</div>
                     <div class="bar">jondoe@gmail.com</div>
                     <div class="bar">99 989 76 54</div>

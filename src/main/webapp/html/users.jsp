@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +33,7 @@
             <div class="add_room_main">
               <h3>Register a User</h3>
 
-              <form action="">
+              <form action="register" method="post">
                 <div class="add_room_form_main">
                   <label for="first_name_user">
                     <p>First Name</p>
@@ -76,29 +79,20 @@
                   <div class="bar"></div>
                 </div>
 
-                <div class="users">
-                  <div class="bar">Jon</div>
-                  <div class="bar">Doe</div>
-                  <div class="bar">jondoe11</div>
-                  <div class="bar">jondoe@gmail.com</div>
-                  <div class="bar">20031221</div>
-                  <div class="bar">04/12/2023</div>
-                  <div class="bar delete_btn_bar">
-                    <a class="check_btn delete_btn" href="">Delete</a>
-                  </div>
-                </div>
+                   <c:forEach items="${userList}" var="user">
 
-                <div class="users">
-                  <div class="bar">Sue</div>
-                  <div class="bar">Allen</div>
-                  <div class="bar">sueallen</div>
-                  <div class="bar">sueallen@gmail.com</div>
-                  <div class="bar">2321312</div>
-                  <div class="bar">03/07/2023</div>
-                  <div class="bar delete_btn_bar">
-                    <a class="check_btn delete_btn" href="">Delete</a>
-                  </div>
-                </div>
+                          <div class="users">
+                                  <div class="bar">${user.getFirstName()}</div>
+                                  <div class="bar">${user.getLastName()}</div>
+                                  <div class="bar">${user.getUsername()}</div>
+                                  <div class="bar">${user.getEmail()}</div>
+                                  <div class="bar">${user.getPassword()}</div>
+                                  <div class="bar">${user.getJoinedTime()}</div>
+                                  <div class="bar delete_btn_bar">
+                                    <a class="check_btn delete_btn" href="">Delete</a>
+                                  </div>
+                          </div>
+                   </c:forEach>
 
               </div>
             </div>

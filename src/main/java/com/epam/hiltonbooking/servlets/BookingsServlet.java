@@ -29,7 +29,7 @@ public class BookingsServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("login");
         } else if (user.isAdmin()) {
             BookingService bookingService = ServiceFactory.getInstance().getBookingService();
 

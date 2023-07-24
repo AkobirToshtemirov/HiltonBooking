@@ -20,7 +20,39 @@
 
 <body>
 
-  <jsp:include page="header.jsp" />
+  <header>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <a href="">
+            <!-- <h2>Booking</h2> -->
+            <h1><span class="text_logo">Hilton</span>Tashkent</h1>
+          </a>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="manager_btns">
+          <a class="login_btn btn" href="login">Log in</a>
+          <a class="register_btn btn" href="register">Sign Up</a>
+          <form action="">
+            <select name="locale" id="lan">
+              <option value="en" selected>EN</option>
+              <option value="uz">UZ</option>
+              <option value="ru">RU</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <section id="home">
     <div class="container">

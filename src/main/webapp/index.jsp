@@ -137,24 +137,24 @@
             </div>
           </div>
           <div class="user_info_block">
-            <form action="message" method="post">
+            <form action="sendMessage" method="post">
               <div class="basic_info">
                 <label for="contact_name">
                   <p>Your name</p>
-                  <input class="top" type="text" name="name" id="contact_name">
+                  <input class="top" type="text" name="messanger_name" id="contact_name">
                 </label>
                 <label for="contact_email">
                   <p>Your email</p>
-                  <input id="contact_email" class="top" type="email">
+                  <input name="messanger_email" id="contact_email" class="top" type="email">
                 </label>
               </div>
               <label for="contact_phone">
                 <p>Phone number</p>
-                <input id="contact_phone" class="top" type="number">
+                <input name="messanger_phone" id="contact_phone" class="top" type="text">
               </label>
               <label for="contact_message">
                 <p>Message</p>
-                <textarea class="top" name="message" id="contact_message" cols="30" rows="10"></textarea>
+                <textarea class="top" name="message_text" id="contact_message" cols="30" rows="10"></textarea>
               </label>
               <label for="contact_submit_btn">
                 <input id="contact_submit_btn" class="contact_submit_btn" type="submit" value="Send Message">
