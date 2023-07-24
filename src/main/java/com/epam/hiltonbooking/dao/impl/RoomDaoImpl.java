@@ -31,12 +31,12 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
     }
 
     @Override
-    public Optional<Room> findById(int id) throws DaoException {
+    public Optional<Room> findById(Integer id) throws DaoException {
         return executeQueryForSingleResult(FIND_ROOM_BY_ID_QUERY, id);
     }
 
     @Override
-    public int save(Room room) throws DaoException {
+    public Integer save(Room room) throws DaoException {
         return executeInsertQuery(SAVE_ROOM_QUERY, room.getRoomNumber(), room.getRoomClass(),
                 room.getBedsAmount(), room.getRoomCost());
     }

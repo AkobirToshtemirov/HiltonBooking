@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Room implements Identifiable, Serializable {
-    private int roomId;
+    private Integer roomId;
     private int roomNumber;
     private String roomClass;
     private int bedsAmount;
@@ -24,7 +24,7 @@ public class Room implements Identifiable, Serializable {
     }
 
     @Override
-    public int getId() {
+    public Integer getId() {
         return roomId;
     }
 
@@ -73,7 +73,7 @@ public class Room implements Identifiable, Serializable {
         if (this == o) return true;
         if (!(o instanceof Room)) return false;
         Room room = (Room) o;
-        return roomId == room.roomId &&
+        return Objects.equals(roomId, room.roomId) &&
                 getRoomNumber() == room.getRoomNumber() &&
                 getBedsAmount() == room.getBedsAmount() &&
                 isActive() == room.isActive() &&

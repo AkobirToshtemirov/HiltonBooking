@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class MessageMapper implements Mapper<Message> {
     @Override
     public Message map(ResultSet resultSet) throws SQLException {
-        int messageId = resultSet.getInt(Column.MESSAGE_ID);
+        Integer messageId = resultSet.getInt(Column.MESSAGE_ID);
         String name = resultSet.getString(Column.MESSANGER_NAME);
         String email = resultSet.getString(Column.MESSANGER_EMAIL);
         String phoneNumber = resultSet.getString(Column.MESSANGER_PHONE_NUMBER);

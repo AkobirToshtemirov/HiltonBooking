@@ -20,36 +20,7 @@
 
 <body>
 
-  <header>
-    <div class="container">
-      <div class="header">
-        <div class="logo">
-          <a href="">
-            <h1><span class="text_logo">Hilton</span>Tashkent</h1>
-          </a>
-        </div>
-
-        <nav>
-          <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../index.html#about">About</a></li>
-            <li><a href="../index.html#rooms">Rooms</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="manager_btns">
-          <a class="login_btn btn" href="#">Log in</a>
-          <a class="register_btn btn" href="./register.html">Sign Up</a>
-          <select name="locale" form="language_change" id="lan">
-            <option value="en" selected>EN</option>
-            <option value="uz">UZ</option>
-            <option value="ru">RU</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </header>
+  <jsp:include page="header.jsp" />
 
   <section id="home">
     <div class="container">
@@ -75,7 +46,7 @@
               <input class="submit_btn" type="submit" value="Log in" name="submit">
             </label>
 
-            <p class="no_accaunt">No accaunt yet? <a href="./register.html">Sign Up</a></p>
+            <p class="no_accaunt">No accaunt yet? <a href="register">Sign Up</a></p>
           </form>
         </div>
 
@@ -87,25 +58,7 @@
   </section>
 
 
-  <footer>
-    <div class="container">
-      <div class="footer_main">
-        <div class="copyright_block">
-          <h3><span class="highlight">HiltonTashkent</span> &copy; 2023. <span class="weight">All rights
-              reserved.</span>
-          </h3>
-          <br>
-          <h4><span class="epam">Epam Training.</span> Final Project</h4>
-        </div>
-        <div class="links_block">
-
-        </div>
-        <div class="social_media_block">
-
-        </div>
-      </div>
-    </div>
-  </footer>
+  <jsp:include page="footer.jsp" />
 
 </body>
 

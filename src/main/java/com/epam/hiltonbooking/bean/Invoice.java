@@ -6,7 +6,7 @@ public class Invoice implements Serializable, Identifiable {
 
 
     @Override
-    public int getId() {
+    public Integer getId() {
         return 0;
     }
 }

@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Booking implements Identifiable, Serializable {
-    private int bookingId;
+    private Integer bookingId;
     private User user;
     private Room room;
     private String status;
@@ -44,7 +44,7 @@ public class Booking implements Identifiable, Serializable {
     }
 
     @Override
-    public int getId() {
+    public Integer getId() {
         return bookingId;
     }
 

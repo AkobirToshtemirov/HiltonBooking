@@ -23,9 +23,9 @@ public class BookingMapper implements Mapper<Booking> {
 
     @Override
     public Booking map(ResultSet resultSet) throws SQLException {
-        int bookingId = resultSet.getInt(Column.BOOKING_ID);
-//        int userId = resultSet.getInt(Column.USER_ID.getColumnName());
-//        int roomId = resultSet.getInt(Column.ROOM_ID.getColumnName());
+        Integer bookingId = resultSet.getInt(Column.BOOKING_ID);
+        User user = userMapper.map(resultSet);
+        Room room = roomMapper.map(resultSet);
         String status = resultSet.getString(Column.BOOKING_STATUS);
         Date checkIn = resultSet.getDate(Column.BOOKING_CHECK_IN);
         Date checkOut = resultSet.getDate(Column.BOOKING_CHECK_OUT);
@@ -34,14 +34,6 @@ public class BookingMapper implements Mapper<Booking> {
         String roomClass = resultSet.getString(Column.BOOKING_ROOM_CLASS);
         Timestamp bookingTime = resultSet.getTimestamp(Column.BOOKING_TIME);
 
-        Booking booking = new Booking(bookingId, null, null, status, checkIn, checkOut, bedsAmount, roomClass, totalCost, bookingTime);
-
-        User user = userMapper.map(resultSet);
-        Room room = roomMapper.map(resultSet);
-
-        booking.setUser(user);
-        booking.setRoom(room);
-
-        return booking;
+        return new Booking(bookingId, user, room, status, checkIn, checkOut, bedsAmount, roomClass, totalCost, bookingTime);
     }
 }

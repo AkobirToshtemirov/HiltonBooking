@@ -13,7 +13,7 @@ public interface UserService {
 
     Optional<User> loginUser(String username, String password) throws ServiceException;
 
-    void deleteUserById(int id) throws ServiceException;
+    void deleteUserById(Integer id) throws ServiceException;
 
     List<User> getAllUsers() throws ServiceException;
     boolean isEmailInUse(String email) throws ServiceException;

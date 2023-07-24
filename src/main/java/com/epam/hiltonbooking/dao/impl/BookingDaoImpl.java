@@ -3,6 +3,7 @@ package com.epam.hiltonbooking.dao.impl;
 
 import com.epam.hiltonbooking.bean.Booking;
 import com.epam.hiltonbooking.bean.Invoice;
+import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.dao.Table;
 import com.epam.hiltonbooking.dao.api.AbstractDao;
 import com.epam.hiltonbooking.dao.api.BookingDao;
@@ -31,7 +32,7 @@ public class BookingDaoImpl extends AbstractDao<Booking> implements BookingDao {
     }
 
     @Override
-    public List<Booking> getBookingsByUserId(int userId) throws DaoException {
+    public List<Booking> getBookingsByUserId(Integer userId) throws DaoException {
         return executeQuery(GET_BOOKINGS_BY_USER_ID_QUERY, userId);
     }
 
@@ -42,13 +43,16 @@ public class BookingDaoImpl extends AbstractDao<Booking> implements BookingDao {
 
     // Implement generate Invoice
     @Override
-    public Invoice generateInvoice(int bookingId) throws DaoException {
+    public Invoice generateInvoice(Integer bookingId) throws DaoException {
         return null;
     }
 
     @Override
-    public int save(Booking booking) throws DaoException {
-        return executeInsertQuery(SAVE_BOOKING_QUERY, booking.getUser(), booking.getRoom(), booking.getStatus(),
-                booking.getCheckIn(), booking.getCheckOut(), booking.getBedsAmount(), booking.getTotalCost());
+    public Integer save(Booking booking) throws DaoException {
+        Room room = booking.getRoom();
+        Integer roomId = (room != null) ? room.getId() : null;
+
+        return executeInsertQuery(SAVE_BOOKING_QUERY, booking.getUser().getId(), roomId, booking.getStatus(),
+                booking.getCheckIn(), booking.getCheckOut(), booking.getBedsAmount(), booking.getRoomClass(), booking.getTotalCost());
     }
 }

@@ -20,7 +20,7 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
     }
 
     @Override
-    public int save(Message message) throws DaoException {
+    public Integer save(Message message) throws DaoException {
         return executeInsertQuery(SAVE_MESSAGE, message.getName(),
                 message.getEmail(), message.getPhoneNumber(), message.getText());
     }

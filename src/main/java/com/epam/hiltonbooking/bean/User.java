@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 public class User implements Identifiable {
-    private int userId;
+    private Integer userId;
     private String firstName;
     private String lastName;
     private String email;
@@ -32,7 +32,7 @@ public class User implements Identifiable {
     }
 
     @Override
-    public int getId() {
+    public Integer getId() {
         return userId;
     }
 

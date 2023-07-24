@@ -21,7 +21,7 @@ public class BookingServiceImpl implements BookingService {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public boolean addNewBooking(User user, Date checkIn, Date checkOut, int bedsAmount, String roomClass) throws ServiceException {
+    public boolean addNewBooking(User user, Room room, String status, Date checkIn, Date checkOut, int bedsAmount, String roomClass) throws ServiceException {
         if (checkIn == null || checkOut == null || roomClass == null || user == null || bedsAmount < 1) {
             return false;
         }
@@ -31,7 +31,7 @@ public class BookingServiceImpl implements BookingService {
 
         try {
             BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
-            Booking booking = buildBooking(user, checkIn, checkOut, bedsAmount, roomClass);
+            Booking booking = buildBooking(user, room, status, checkIn, checkOut, bedsAmount, roomClass);
             bookingDao.save(booking);
             return true;
         } catch (DaoException e) {
@@ -41,7 +41,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> getBookingsByUserId(int userId) throws ServiceException {
+    public List<Booking> getBookingsByUserId(Integer userId) throws ServiceException {
         List<Booking> userBookings;
         try {
             BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
@@ -54,7 +54,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Optional<Booking> getBookingById(int id) throws ServiceException {
+    public Optional<Booking> getBookingById(Integer id) throws ServiceException {
         try {
             BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
             return bookingDao.findById(id);
@@ -76,8 +76,9 @@ public class BookingServiceImpl implements BookingService {
         }
         return bookings;
     }
+
     @Override
-    public void approveBooking(int id, Room room, BigDecimal totalCost) throws ServiceException {
+    public void approveBooking(Integer id, Room room, BigDecimal totalCost) throws ServiceException {
         try {
             BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
             Booking booking = bookingDao.findById(id).
@@ -97,16 +98,16 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void cancelBooking(int id) throws ServiceException {
+    public void cancelBooking(Integer id) throws ServiceException {
         try {
             BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
             Optional<Booking> optional = bookingDao.findById(id);
-            if(!optional.isPresent()) {
+            if (!optional.isPresent()) {
                 throw new ServiceException("Booking is not found by id! ID = " + id);
             }
             Booking booking = optional.get();
             String status = booking.getStatus();
-            if(status.equals("CANCELLED")) {
+            if (status.equals("CANCELLED")) {
                 throw new ServiceException("Cannot cancel th booking which is " + status);
             }
             booking.setStatus("CANCELLED");
@@ -120,13 +121,15 @@ public class BookingServiceImpl implements BookingService {
 
     // Generate invoice is not written
     @Override
-    public Invoice generateInvoice(int bookingId) throws ServiceException {
+    public Invoice generateInvoice(Integer bookingId) throws ServiceException {
         return null;
     }
 
-    private Booking buildBooking(User user, Date checkIn, Date checkOut, int bedsAmount, String roomClass) {
+    private Booking buildBooking(User user, Room room, String status, Date checkIn, Date checkOut, int bedsAmount, String roomClass) {
         Booking booking = new Booking();
         booking.setUser(user);
+        booking.setRoom(room);
+        booking.setStatus(status);
         booking.setCheckIn(checkIn);
         booking.setCheckOut(checkOut);
         booking.setBedsAmount(bedsAmount);

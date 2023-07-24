@@ -1,250 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HotelBooking - Content</title>
+    <!DOCTYPE html>
+    <html lang="en">
 
-  <!-- general css -->
-  <link rel="stylesheet" href="/css/general.css">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>HotelBooking - Content</title>
 
-  <link rel="stylesheet" href="/css/style.css">
+      <!-- general css -->
+      <link rel="stylesheet" href="./css/general.css">
 
-  <!-- header css -->
-  <link rel="stylesheet" href="/css/header.css">
+      <link rel="stylesheet" href="./css/style.css">
 
-  <!-- footer css -->
-  <link rel="stylesheet" href="/css/footer.css">
-</head>
+      <!-- header css -->
+      <link rel="stylesheet" href="./css/header.css">
 
-<body>
+      <!-- footer css -->
+      <link rel="stylesheet" href="./css/footer.css">
+    </head>
 
-  <header>
-    <div class="container">
-      <div class="header">
-        <div class="logo">
-          <a href="">
-            <!-- <h2>Booking</h2> -->
-            <h1><span class="text_logo">Hilton</span>Tashkent</h1>
-          </a>
-        </div>
+    <body>
 
-        <nav>
-          <ul>
-            <li><a href="">Home</a></li>
-            <!-- <li><a href="">About</a></li>
-            <li><a href="">Rooms</a></li> -->
-            <li><a class="active" href="#">Book</a></li>
-            <li><a href="">Bookings</a></li>
-            <li><a href="">Contact</a></li>
-          </ul>
-        </nav>
+      <jsp:include page="header.jsp" />
 
-        <div class="manager_btns">
-          <a class="accaunt_btn btn" href="">My Profile</a>
-          <a class="logout_btn btn" href="">Log Out</a>
-          <select name="locale" form="language_change" id="lan">
-            <option value="en" selected>EN</option>
-            <option value="uz">UZ</option>
-            <option value="ru">RU</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </header>
+      <jsp:useBean id="user" scope="session" type="com.epam.hiltonbooking.bean.User"></jsp:useBean>
 
-  <section id="home">
-    <div class="container">
-      <div class="bookings_main">
-        <div class="overflow_content">
-          <div class="content_container">
-            <div class="headline_main">
-              <div class="bar header_bar">Client</div>
-              <div class="bar header_bar">Check In</div>
-              <div class="bar header_bar">Check Out</div>
-              <div class="bar header_bar">Number of beds</div>
-              <div class="bar header_bar">Room class</div>
-              <div class="bar header_bar">Status</div>
-              <div class="bar header_bar last_bar"></div>
-            </div>
+      <section id="home">
+        <div class="container">
+          <div class="bookings_main">
+            <div class="overflow_content">
+              <div class="content_container">
+                <div class="headline_main">
+                  <div class="bar header_bar">Client</div>
+                  <div class="bar header_bar">Check In</div>
+                  <div class="bar header_bar">Check Out</div>
+                  <div class="bar header_bar">Number of beds</div>
+                  <div class="bar header_bar">Room class</div>
+                  <div class="bar header_bar">Status</div>
+                  <div class="bar header_bar last_bar"></div>
+                </div>
 
-            <div class="booking_info_container">
-              <div class="booking_inormation">
-                <div class="bar info_bar">Jon Doe</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">5</div>
-                <div class="bar info_bar">Deluxe</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
+                <div class="booking_info_container">
+
+                  <c:forEach items="${userBookings}" var="element">
+
+                    <div class="booking_inormation">
+                      <div class="bar info_bar">
+                        <jsp:getProperty property="firstName" name="user" />
+                      </div>
+                      <div class="bar info_bar">element.getCheckIn()</div>
+                      <div class="bar info_bar">element.getCheckOut()</div>
+                      <div class="bar info_bar">element.getBedsAmount()</div>
+                      <div class="bar info_bar">element.getRoomClass()</div>
+                      <div class="bar info_bar">element.getStatus()</div>
+                      <div class="bar info_bar">
+                        <a class="check_btn" href="">Invoice</a>
+                      </div>
+                    </div>
+
+                  </c:forEach>
+
+                  <div class="booking_inormation">
+                    <div class="bar info_bar">Jon Doe</div>
+                    <div class="bar info_bar">03/12/2023</div>
+                    <div class="bar info_bar">04/12/2023</div>
+                    <div class="bar info_bar">5</div>
+                    <div class="bar info_bar">Deluxe</div>
+                    <div class="bar info_bar">Waiting</div>
+                    <div class="bar info_bar">
+                      <a class="check_btn" href="">Invoice</a>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-
-              <!-- infos -->
-
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-              <div class="booking_inormation">
-
-                <div class="bar info_bar">Sue Allen</div>
-                <div class="bar info_bar">03/12/2023</div>
-                <div class="bar info_bar">04/12/2023</div>
-                <div class="bar info_bar">3</div>
-                <div class="bar info_bar">Standard</div>
-                <div class="bar info_bar">Waiting</div>
-                <div class="bar info_bar">
-                  <a class="check_btn" href="">Invoice</a>
-                </div>
-              </div>
-
             </div>
           </div>
-        </div>
-      </div>
-  </section>
+      </section>
 
 
-  <footer>
-    <div class="container">
-      <div class="footer_main">
-        <div class="copyright_block">
-          <h3><span class="highlight">HiltonTashkent</span> &copy; 2023. <span class="weight">All rights
-              reserved.</span>
-          </h3>
-          <br>
-          <h4><span class="epam">Epam Training.</span> Final Project</h4>
-        </div>
-        <div class="links_block">
+      <jsp:include page="footer.jsp" />
 
-        </div>
-        <div class="social_media_block">
+    </body>
 
-        </div>
-      </div>
-    </div>
-  </footer>
-
-</body>
-
-</html>
+    </html>

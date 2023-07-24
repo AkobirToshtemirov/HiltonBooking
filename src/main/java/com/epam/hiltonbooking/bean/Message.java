@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Message implements Identifiable, Serializable {
-    private int messageId;
+    private Integer messageId;
     private String name;
     private String email;
     private String phoneNumber;
@@ -25,7 +25,7 @@ public class Message implements Identifiable, Serializable {
     }
 
     @Override
-    public int getId() {
+    public Integer getId() {
         return messageId;
     }
 

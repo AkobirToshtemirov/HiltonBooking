@@ -15,44 +15,12 @@
 
     <div class="dashborad_main">
 
-      <div class="dashborad_menu_main">
-        <div class="dashborad_menu">
-          <div class="admin_menu_bar">
-            <div class="admin_menu_profile">
-              <img src="../images/admin.png" alt="asdmin_img">
-              <h2>Admin</h2>
-            </div>
-
-            <ul>
-              <li><a href="./dashboard.html">Dashboard</a></li>
-              <li><a href="">Reservations</a></li>
-              <li><a href="./messages.html">Messages</a></li>
-              <li><a href="">Rooms</a></li>
-              <li><a href="">Users</a></li>
-              <li><a href="">Sign out</a></li>
-            </ul>
-          </div>
-
-          <p><span>HiltonTashkent</span> &copy; 2023. Admin Page</p>
-        </div>
-      </div>
+      <jsp:include page="adminMenu.jsp" />
 
       <div class="dashboard_workspace_main">
         <div class="dashborad_workspace">
-          <div class="dashboard_header">
-            <div class="logo">
-              <h1>HiltonTashkent</h1>
-            </div>
 
-            <div class="setting_manager_block">
-              <a class="settings_btn" href="">Admin Settings</a>
-              <select name="locale" form="language_change" id="lan">
-                <option value="en" selected>EN</option>
-                <option value="uz">UZ</option>
-                <option value="ru">RU</option>
-              </select>
-            </div>
-          </div>
+          <jsp:include page="dashboardHeader.jsp" />
 
           <div class="dashboard_tools">
             <div class="users_main_headline">
@@ -126,19 +94,19 @@
                   </div>
 
                   <div class="room">
-                      <div class="bar">4</div>
-                      <div class="bar">Deluxe</div>
-                      <div class="bar">2</div>
-                      <div class="bar">
-                        <form action="">
-                          <input type="checkbox" checked>
-                        </form>
-                      </div>
-                      <div class="bar">200$</div>
-                      <div class="bar delete_btn_bar">
-                        <a class="check_btn update_btn" href="">Update</a>
-                        <a class="check_btn delete_btn" href="">Delete</a>
-                      </div>
+                    <div class="bar">4</div>
+                    <div class="bar">Deluxe</div>
+                    <div class="bar">2</div>
+                    <div class="bar">
+                      <form action="">
+                        <input type="checkbox" checked>
+                      </form>
+                    </div>
+                    <div class="bar">200$</div>
+                    <div class="bar delete_btn_bar">
+                      <a class="check_btn update_btn" href="">Update</a>
+                      <a class="check_btn delete_btn" href="">Delete</a>
+                    </div>
                   </div>
 
                   <div class="room">
@@ -155,7 +123,7 @@
                       <a class="check_btn update_btn" href="">Update</a>
                       <a class="check_btn delete_btn" href="">Delete</a>
                     </div>
-                </div>
+                  </div>
 
                 </div>
 

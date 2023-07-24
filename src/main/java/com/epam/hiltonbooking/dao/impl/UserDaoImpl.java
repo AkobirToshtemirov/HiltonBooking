@@ -25,18 +25,27 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             "SELECT * FROM " + Table.USERS.getTableName() + " WHERE email = ?";
     private static final String FIND_USER_BY_USERNAME_QUERY =
             "SELECT * FROM " + Table.USERS.getTableName() + " WHERE username = ?";
+    private static final String UPDATE_USER_INFORMATION_QUERY = "UPDATE " + Table.USERS.getTableName() + " SET first_name = ?, last_name = ?, email = ?, username = ?, password = ? WHERE user_id = ?";
+
 
     public UserDaoImpl(Mapper<User> mapper, Connection connection) {
         super(mapper, String.valueOf(connection));
     }
+
     public UserDaoImpl() {
         super(MapperFactory.getInstance().getUserMapper(), Table.USERS.getTableName());
     }
 
     @Override
-    public int save(User user) throws DaoException {
+    public Integer save(User user) throws DaoException {
         return executeInsertQuery(SAVE_USER_QUERY, user.getFirstName(), user.getLastName(),
                 user.getEmail(), user.getUsername(), user.getPassword());
+    }
+
+    @Override
+    public void updateUserInformation(User user) throws DaoException {
+        executeUpdateQuery(UPDATE_USER_INFORMATION_QUERY, user.getFirstName(), user.getLastName(),
+                user.getEmail(), user.getUsername(), user.getPassword(), user.getId());
     }
 
     @Override

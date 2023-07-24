@@ -12,17 +12,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookingService {
-    boolean addNewBooking(User user, Date checkIn, Date checkOut, int bedsAmount, String roomClass) throws ServiceException;
+    boolean addNewBooking(User user, Room room, String status, Date checkIn, Date checkOut, int bedsAmount, String roomClass) throws ServiceException;
 
-    List<Booking> getBookingsByUserId(int userId) throws ServiceException;
+    List<Booking> getBookingsByUserId(Integer userId) throws ServiceException;
 
-    Optional<Booking> getBookingById(int id) throws ServiceException;
+    Optional<Booking> getBookingById(Integer id) throws ServiceException;
 
     List<Booking> getAllBookings() throws ServiceException;
 
-    void approveBooking(int id, Room room, BigDecimal totalCost) throws ServiceException;
+    void approveBooking(Integer id, Room room, BigDecimal totalCost) throws ServiceException;
 
-    void cancelBooking(int id) throws ServiceException;
+    void cancelBooking(Integer id) throws ServiceException;
 
-    Invoice generateInvoice(int bookingId) throws ServiceException;
+    Invoice generateInvoice(Integer bookingId) throws ServiceException;
 }

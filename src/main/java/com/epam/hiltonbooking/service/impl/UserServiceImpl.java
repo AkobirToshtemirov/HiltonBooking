@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserById(int id) throws ServiceException {
+    public void deleteUserById(Integer id) throws ServiceException {
         try {
             UserDao userDao = DaoFactory.getInstance().getUserDao();
             userDao.deleteById(id);
@@ -118,33 +119,20 @@ public class UserServiceImpl implements UserService {
                 updatedUser.getEmail() == null || updatedUser.getUsername() == null || updatedUser.getPassword() == null) {
             return false;
         }
-
-        // Validation code here:
-
-        // if (!(isEmailValid(updatedUser.getEmail()) && isUserInformationValid(updatedUser.getFirstName(),
-        //     updatedUser.getLastName(), updatedUser.getPatronymic(), updatedUser.getPhoneString()))) {
-        //      return false;
-        //  }
-
         try {
             UserDao userDao = DaoFactory.getInstance().getUserDao();
 
-            // Check if the email is already in use by another user
             Optional<User> existingUserWithEmail = userDao.findUserByEmail(updatedUser.getEmail());
-            if (existingUserWithEmail.isPresent() && existingUserWithEmail.get().getId() != updatedUser.getId()) {
-                // Another user already has this email, and it is not the same user who is trying to update their information
+            if (existingUserWithEmail.isPresent() && !Objects.equals(existingUserWithEmail.get().getId(), updatedUser.getId())) {
                 return false;
             }
 
-            // Check if the username is already in use by another user
             Optional<User> existingUserWithUsername = userDao.findUserByUsername(updatedUser.getUsername());
-            if (existingUserWithUsername.isPresent() && existingUserWithUsername.get().getId() != updatedUser.getId()) {
-                // Another user already has this username, and it is not the same user who is trying to update their information
+            if (existingUserWithUsername.isPresent() && !Objects.equals(existingUserWithUsername.get().getId(), updatedUser.getId())) {
                 return false;
             }
 
-            // Update the user's information
-            userDao.save(updatedUser);
+            userDao.updateUserInformation(updatedUser);
             return true;
         } catch (DaoException e) {
             logger.error("Unable to update user!");

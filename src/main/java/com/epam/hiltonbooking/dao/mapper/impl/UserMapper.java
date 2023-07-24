@@ -12,7 +12,7 @@ public class UserMapper implements Mapper<User> {
 
     @Override
     public User map(ResultSet resultSet) throws SQLException {
-        int userId = resultSet.getInt(Column.USER_ID);
+        Integer userId = resultSet.getInt(Column.USER_ID);
         String firstName = resultSet.getString(Column.USER_FIRST_NAME);
         String lastName = resultSet.getString(Column.USER_LAST_NAME);
         String email = resultSet.getString(Column.USER_EMAIL);

@@ -49,7 +49,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Optional<Room> getRoomById(int id) throws ServiceException {
+    public Optional<Room> getRoomById(Integer id) throws ServiceException {
         try {
             RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
             return roomDao.findById(id);
@@ -60,7 +60,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void setRoomActiveById(int id, boolean isActive) throws ServiceException {
+    public void setRoomActiveById(Integer id, boolean isActive) throws ServiceException {
         try {
             RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
             Room room = roomDao.findById(id)
@@ -74,7 +74,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void deleteById(int id) throws ServiceException {
+    public void deleteById(Integer id) throws ServiceException {
         try {
             RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
             roomDao.deleteById(id);
@@ -84,7 +84,7 @@ public class RoomServiceImpl implements RoomService {
         }
     }
 
-    private Room buildRoom(int roomNumber, String roomClass, int bedsAmount, double roomCost) {
+    private Room buildRoom(Integer roomNumber, String roomClass, int bedsAmount, double roomCost) {
         Room room = new Room();
         room.setRoomNumber(roomNumber);
         room.setRoomClass(roomClass);

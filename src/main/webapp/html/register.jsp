@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HotelBooking - Content</title>
+  <title>HotelBooking - Register</title>
 
   <!-- general css -->
   <link rel="stylesheet" href="./css/general.css">
@@ -54,7 +54,7 @@
             <input class="sign_up_btn" type="submit" value="Sign Up" name="submit">
           </label>
 
-          <p>Already have accaunt? <a href="./login.html">Log in</a></p>
+          <p>Already have accaunt? <a href="login">Log in</a></p>
         </form>
       </div>
     </div>
