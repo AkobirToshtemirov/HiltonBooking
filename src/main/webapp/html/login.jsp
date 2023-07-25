@@ -64,14 +64,14 @@
               <button>
                 <img src="./images/user.png" alt="username">
               </button>
-              <input class="information" type="text" name="username" id="username" placeholder="Enter username...">
+              <input class="information" type="text" name="username" id="username" placeholder="Enter username..." required>
             </label>
             <br>
             <label for="password">
               <button>
                 <img src="./images/password.png" alt="password">
               </button>
-              <input class="information" type="password" name="password" id="password" placeholder="Enter password...">
+              <input class="information" type="password" name="password" id="password" placeholder="Enter password..." required>
             </label>
             <br>
             <label for="">

@@ -31,23 +31,23 @@
         <form class="register_form" action="register" method="post">
           <h2>Sign Up</h2>
           <label for="first_name">
-            <input class="info_input" type="text" name="firstname" id="first_name" placeholder="Enter firstname...">
+            <input class="info_input" type="text" name="firstname" id="first_name" placeholder="Enter firstname..." required>
           </label>
           <br>
           <label for="last_name">
-            <input class="info_input" type="text" name="lastname" id="last_name" placeholder="Enter lastname...">
+            <input class="info_input" type="text" name="lastname" id="last_name" placeholder="Enter lastname..." required>
           </label>
           <br>
           <label for="email">
-            <input class="info_input" type="email" name="email" id="email" placeholder="Enter email...">
+            <input class="info_input" type="email" name="email" id="email" placeholder="Enter email..." required>
           </label>
           <br>
           <label for="username">
-            <input class="info_input" type="text" name="username" id="username" placeholder="Enter username...">
+            <input class="info_input" type="text" name="username" id="username" placeholder="Enter username..." required>
           </label>
           <br>
           <label for="password">
-            <input class="info_input" type="password" name="password" id="password" placeholder="Enter password...">
+            <input class="info_input" type="password" name="password" id="password" placeholder="Enter password..." required>
           </label>
           <br>
           <label for="">

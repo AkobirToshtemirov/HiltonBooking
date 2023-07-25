@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +13,6 @@
 </head>
 
 <body>
-
-  <jsp:useBean id="user" scope="session" type="com.epam.hiltonbooking.bean.User"></jsp:useBean>
 
   <section id="dashboard">
 
@@ -34,30 +35,30 @@
                     <label for="first_name">
                       <h3>Firstname: </h3>
                       <input class="info_input" type="text" name="firstname" id="first_name"
-                        value="<jsp:getProperty property="firstName" name="user" />">
+                        value="${user.getFirstName()}" required>
                     </label>
                     <br>
                     <label for="last_name">
                       <h3>Lastname: </h3>
                       <input class="info_input" type="text" name="lastname" id="last_name"
-                        value="<jsp:getProperty property="lastName" name="user" />">
+                        value="${user.getLastName()}" required>
                     </label>
                     <br>
                     <label for="email">
                       <h3>Email: </h3>
-                      <input class="info_input" type="email" name="email" id="email" value="<jsp:getProperty property="email" name="user" />">
+                      <input class="info_input" type="email" name="email" id="email" value="${user.getEmail()}" required>
                     </label>
                     <br>
                     <label for="username">
                       <h3>Username: </h3>
                       <input class="info_input" type="text" name="username" id="username"
-                        value="<jsp:getProperty property="username" name="user" />"">
+                        value="${user.getUsername()}" required>
                     </label>
                     <br>
                     <label for=" password">
                       <h3>Password: </h3>
                       <input class="info_input" type="password" name="password" id="password"
-                        value="<jsp:getProperty property="password" name="user" />">
+                        value="${user.getPassword()}"required>
                     </label>
                     <br>
                     <label for="">

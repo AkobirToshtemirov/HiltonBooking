@@ -48,4 +48,9 @@ public class UsersServlet extends HttpServlet {
             resp.sendRedirect(contextPath);
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
 }

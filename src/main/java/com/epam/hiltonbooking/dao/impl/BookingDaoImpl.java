@@ -14,9 +14,15 @@ import java.util.List;
 
 public class BookingDaoImpl extends AbstractDao<Booking> implements BookingDao {
     private static final String GET_ALL_BOOKINGS_QUERY =
-            "SELECT * FROM " + Table.BOOKINGS.getTableName();
+            "SELECT b.*, u.*, r.* FROM " + Table.BOOKINGS.getTableName() + " b" +
+                    " JOIN " + Table.USERS.getTableName() + " u ON b.user_id = u.user_id" +
+                    " LEFT JOIN " + Table.ROOMS.getTableName() + " r ON b.room_id = r.room_id";
     private static final String GET_BOOKINGS_BY_USER_ID_QUERY =
-            "SELECT * FROM " + Table.BOOKINGS.getTableName() + " WHERE user_id = ?";
+            "SELECT b.*, u.*, r.* FROM " + Table.BOOKINGS.getTableName() + " b" +
+                    " JOIN " + Table.USERS.getTableName() + " u ON b.user_id = u.user_id" +
+                    " LEFT JOIN " + Table.ROOMS.getTableName() + " r ON b.room_id = r.room_id" +
+                    " WHERE b.user_id = ?";
+
     private static final String FIND_BY_STATUS_QUERY =
             "SELECT * FROM " + Table.BOOKINGS.getTableName() + " WHERE status = ?";
     private static final String SAVE_BOOKING_QUERY =

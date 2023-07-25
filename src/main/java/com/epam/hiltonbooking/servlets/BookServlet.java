@@ -69,7 +69,12 @@ public class BookServlet extends HttpServlet {
                 if (result) {
                     infoMessage = "Booking added Successfully";
                     session.setAttribute("info", infoMessage);
-                    req.getRequestDispatcher("/reservations").forward(req, resp);
+                    resp.sendRedirect(req.getContextPath() + "/reservations");
+                } else {
+                    // Handle the case when any of the required parameters are missing
+                    infoMessage = "Please fill in all the required fields.";
+                    session.setAttribute("info", infoMessage);
+                    resp.sendRedirect(req.getContextPath() + "/book");
                 }
             }
         } catch (ServiceException | ParseException e) {

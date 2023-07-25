@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -47,69 +47,27 @@
 
                     <div class="reservations">
 
-                      <c:forEach items="${allBookings}" var="element">
+                     <c:forEach items="${allBookings}" var="element">
+                         <div class="reservation">
+                             <div class="bar">${element.user.firstName}</div>
+                             <div class="bar">${element.checkIn}</div>
+                             <div class="bar">${element.checkOut}</div>
+                             <div class="bar">
+                                 <select name="room_number" id="room_number">
+                                     <option value="${element.room.roomNumber}" selected>${element.room.roomNumber}</option>
+                                     <!-- Add other options if needed -->
+                                 </select>
+                             </div>
+                             <div class="bar">${element.bedsAmount}</div>
+                             <div class="bar">${element.roomClass}</div>
+                             <div class="bar">${element.status}</div>
+                             <div class="bar">
+                                 <a class="check_btn approve_btn" href="">Approve</a>
+                                 <a class="check_btn cancel_btn" href="">Cancel</a>
+                             </div>
+                         </div>
+                     </c:forEach>
 
-                        <div class="reservation">
-                          <div class="bar">element.getUser().getFirstName()</div>
-                          <div class="bar">03/12/2023</div>
-                          <div class="bar">04/12/2023</div>
-                          <div class="bar">
-                            <select name="room_number" id="room_number">
-                              <option value="12" selected>12</option>
-                              <option value="3">3</option>
-                              <option value="5">5</option>
-                            </select>
-                          </div>
-                          <div class="bar">5</div>
-                          <div class="bar">Deluxe</div>
-                          <div class="bar">Waiting</div>
-                          <div class="bar">
-                            <a class="check_btn approve_btn" href="">Approve</a>
-                            <a class="check_btn cancel_btn" href="">Cancel</a>
-                          </div>
-                        </div>
-
-                      </c:forEach>
-
-                      <div class="reservation">
-                        <div class="bar">Sue Allen</div>
-                        <div class="bar">03/12/2023</div>
-                        <div class="bar">04/12/2023</div>
-                        <div class="bar">
-                          <select name="room_number" id="room_number">
-                            <option value="12" selected>12</option>
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                        <div class="bar">3</div>
-                        <div class="bar">Standard</div>
-                        <div class="bar">Waiting</div>
-                        <div class="bar">
-                          <a class="check_btn approve_btn" href="">Approve</a>
-                          <a class="check_btn cancel_btn" href="">Cancel</a>
-                        </div>
-                      </div>
-
-                      <div class="reservation">
-                        <div class="bar">Jon Doe</div>
-                        <div class="bar">03/12/2023</div>
-                        <div class="bar">04/12/2023</div>
-                        <div class="bar">
-                          <select name="room_number" id="room_number">
-                            <option value="12" selected>12</option>
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                        <div class="bar">5</div>
-                        <div class="bar">Deluxe</div>
-                        <div class="bar">Waiting</div>
-                        <div class="bar">
-                          <a class="check_btn approve_btn" href="">Approve</a>
-                          <a class="check_btn cancel_btn" href="">Cancel</a>
-                        </div>
-                      </div>
                     </div>
 
                   </div>
