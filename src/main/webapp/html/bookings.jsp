@@ -44,7 +44,7 @@
 
                   <c:forEach items="${userBookings}" var="element">
 
-                    <div class="booking_inormation">
+                    <div class="booking_information user_booking_info">
                       <div class="bar info_bar">${element.getUser().getFirstName()} ${element.getUser().getLastName()}</div>
                       <div class="bar info_bar">${element.getCheckIn()}</div>
                       <div class="bar info_bar">${element.getCheckOut()}</div>
@@ -52,7 +52,20 @@
                       <div class="bar info_bar">${element.getRoomClass()}</div>
                       <div class="bar info_bar">${element.getStatus()}</div>
                       <div class="bar info_bar">
-                        <a class="check_btn" href="">Invoice</a>
+                         <c:choose>
+                            <c:when test="${element.status.equals('APPROVED')}">
+                               <form action="booking-details" method="get">
+                                   <input type="hidden" name="booking-id" value="${element.id}" />
+                                   <button type="submit" class="check_btn take_action_btn">Invoice</button>
+                                </form>
+                            </c:when>
+                            <c:when test="${element.status.equals('CANCELLED')}">
+                                 <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
+                             </c:when>
+                            <c:otherwise>
+                                <button class="check_btn disabled_btn waiting_btn" disabled>WAITING</button>
+                            </c:otherwise>
+                         </c:choose>
                       </div>
                     </div>
 

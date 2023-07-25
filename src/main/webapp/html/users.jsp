@@ -33,6 +33,12 @@
             <div class="add_room_main">
               <h3>Register a User</h3>
 
+              <% String info = (String) request.getAttribute("info"); %>
+
+                <% if (info != null && !info.isEmpty()) { %>
+                    <p style="color: red; font-size: 16px;" class="error-message"><%= info %></p>
+               <% } %>
+
               <form action="users" method="post">
                 <div class="add_room_form_main">
                   <label for="first_name_user">
@@ -82,14 +88,17 @@
                    <c:forEach items="${userList}" var="user">
 
                           <div class="users">
-                                  <div class="bar">${user.getFirstName()}</div>
-                                  <div class="bar">${user.getLastName()}</div>
-                                  <div class="bar">${user.getUsername()}</div>
-                                  <div class="bar">${user.getEmail()}</div>
-                                  <div class="bar">${user.getPassword()}</div>
-                                  <div class="bar">${user.getJoinedTime()}</div>
+                                  <div class="bar">${user.firstName}</div>
+                                  <div class="bar">${user.lastName}</div>
+                                  <div class="bar">${user.username}</div>
+                                  <div class="bar">${user.email}</div>
+                                  <div class="bar">${user.password}</div>
+                                  <div class="bar">${user.joinedTime}</div>
                                   <div class="bar delete_btn_bar">
-                                    <a class="check_btn delete_btn" href="">Delete</a>
+                                     <form action="delete-user" method="post">
+                                        <input type="hidden" name="user-id" value="${user.id}" />
+                                        <button type="submit" class="check_btn delete_btn">Delete</button>
+                                     </form>
                                   </div>
                           </div>
                    </c:forEach>

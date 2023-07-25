@@ -96,6 +96,17 @@ public class RoomServiceImpl implements RoomService {
         }
     }
 
+    @Override
+    public boolean isRoomAdded(int roomNumber) throws ServiceException {
+        try {
+            RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
+            return roomDao.findByRoomNumber(roomNumber).isPresent();
+        } catch (DaoException e) {
+            logger.error("Unable to check if room is added!");
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     private Room buildRoom(Integer roomNumber, String roomClass, int bedsAmount, double roomCost) {
         Room room = new Room();
         room.setRoomNumber(roomNumber);

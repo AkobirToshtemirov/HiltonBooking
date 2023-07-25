@@ -8,12 +8,15 @@ import com.epam.hiltonbooking.dao.mapper.MapperFactory;
 import com.epam.hiltonbooking.exceptions.DaoException;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
     private static final String SAVE_MESSAGE =
             "INSERT INTO " + Table.MESSAGES.getTableName() + "(name, email, phone_number, text) VALUES(?, ?, ?, ?)";
     private static final String GET_ALL_MESSAGES =
             "SELECT * FROM " + Table.MESSAGES.getTableName();
+    private static final String GET_BOOKING_BY_ID_QUERY =
+            "SELECT * FROM " + Table.MESSAGES.getTableName() + " WHERE message_id = ?";
 
     public MessageDaoImpl() {
         super(MapperFactory.getInstance().getMessageMapper(), Table.MESSAGES.getTableName());
@@ -28,5 +31,10 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
     @Override
     public List<Message> findAll() throws DaoException {
         return executeQuery(GET_ALL_MESSAGES);
+    }
+
+    @Override
+    public Optional<Message> findById(Integer id) throws DaoException {
+        return executeQueryForSingleResult(GET_BOOKING_BY_ID_QUERY, id);
     }
 }

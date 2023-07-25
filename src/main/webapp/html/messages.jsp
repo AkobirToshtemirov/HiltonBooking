@@ -43,28 +43,20 @@
 
                 <c:forEach items="${messageList}" var="message">
                     <div class="message">
-                        <div class="bar">${message.getSentAt()}</div>
-                        <div class="bar">${message.getName()}</div>
-                        <div class="bar">${message.getEmail()}</div>
-                        <div class="bar">${message.getPhoneNumber()}</div>
-                        <div class="bar">${message.getText()}</div>
-                        <div class="bar">
-                            <a class="check_btn view_btn" href="">View</a>
+                        <div class="bar messageText">${message.sentAt}</div>
+                        <div class="bar messageText">${message.name}</div>
+                        <div class="bar messageText">${message.email}</div>
+                        <div class="bar messageText">${message.phoneNumber}</div>
+                        <div class="bar messageText">${message.text}</div>
+                        <div class="bar delete_btn_bar">
+                             <form action="view-message" method="get">
+                                <input type="hidden" name="message-id" value="${message.id}" />
+                                <button type="submit" class="check_btn view_btn">View</button>
+                             </form>
                         </div>
                     </div>
                 </c:forEach>
 
-
-                  <div class="message">
-                  <div class="bar">12/12/2023</div>
-                    <div class="bar">Jon Doe</div>
-                    <div class="bar">jondoe@gmail.com</div>
-                    <div class="bar">99 989 76 54</div>
-                    <div class="bar">Message starts here...</div>
-                    <div class="bar">
-                      <a class="check_btn view_btn" href="">View</a>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -75,6 +67,8 @@
     </div>
 
   </section>
+
+  <script src="./js/script.js"></script>
 
 </body>
 

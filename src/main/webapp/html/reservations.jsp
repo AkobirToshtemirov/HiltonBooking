@@ -56,7 +56,7 @@
                              <div class="bar">${element.roomClass}</div>
                              <div class="bar">${element.status}</div>
                              <div class="bar">${element.bookingTime}</div>
-                             <div class="bar">
+                             <div class="bar delete_btn_bar">
                                   <c:choose>
                                      <c:when test="${element.status.equals('WAITING')}">
                                         <form action="booking-details" method="get">

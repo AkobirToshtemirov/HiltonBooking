@@ -966,7 +966,7 @@ select {
 .reservation {
   display: flex;
   margin: 10px 0;
-  border-bottom: 2px solid #333;
+  border-bottom: 1px solid #333;
 }
 
 .reservation_headline {
@@ -991,8 +991,18 @@ select {
 }
 
 .approve_btn {
-  background-color: green;
-  margin-right: 5px;
+  border: 1px solid rgb(0, 208, 3);
+  background-color: rgb(0, 208, 3);
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: 0.4s linear;
+
+}
+
+.approve_btn:hover {
+  background-color: rgb(0, 156, 3);
+  cursor: pointer;
 }
 
 .cancel_btn {
@@ -1023,9 +1033,22 @@ select {
   padding: 20px 0;
 }
 
+.message {
+  width: 100%;
+  border-bottom: 1px solid grey;
+  margin-bottom: 5px;
+}
+
 .view_btn {
   color: #fff;
   background-color: #0042db;
+  font-weight: 700;
+  font-size: 16px;
+  border: 1px solid #0042;
+}
+
+.view_btn:hover {
+    cursor: pointer;
 }
 
 /* users.html */
@@ -1050,7 +1073,16 @@ select {
 }
 
 .delete_btn {
-  background-color: red;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: #DC143C;
+  border: 1px solid #DC143C;
+  transition: 0.4s linear;
+}
+
+.delete_btn:hover {
+  cursor: pointer;
+  background-color: #FF0000;
 }
 
 .users_main_headline {
@@ -1149,7 +1181,8 @@ select {
   border: 1px solid green !important;
 }
 
-.rooms_main .update_btn, .delete_btn {
+.rooms_main .update_btn,
+.delete_btn {
   width: 85px;
 }
 
@@ -1158,8 +1191,8 @@ select {
 }
 
 .disabled_btn {
-    font-weight: 900;
-    border: none;
+  font-weight: 900;
+  border: none;
 }
 
 .disabled_btn:hover {
@@ -1167,29 +1200,82 @@ select {
 }
 
 .approved_btn {
-    background-color: #7CFC00;
+  background-color: #7CFC00;
 }
 
 .cancelled_btn {
-    background-color: #DC143C;
+  background-color: #DC143C;
 }
 
 
 .take_action_btn {
-    background-color: #1E90FF;
-    font-size: 16px;
-    font-weight: 700;
-    border: 2px solid #1E90FF;
-    transition: 0.4s linear;
+  background-color: #1E90FF;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid #1E90FF;
+  transition: 0.4s linear;
 }
 
 .take_action_btn:hover {
-    cursor: pointer;
-    border-color: #00008B;
-    background-color: #00008B;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+  border-color: #00008B;
+  background-color: #00008B;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .booking_information_main {
-    display: flex;
+  display: flex;
+}
+
+.rooms {
+  padding-bottom: 100px;
+}
+
+.bar {
+  width: 100%;
+}
+
+
+.message .bar {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.bar.ellipsis::after {
+  content: '...';
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+}
+
+.booking_information_main .bar {
+  font-size: 20px;
+}
+
+.booking_info_header .bar {
+  font-weight: 700;
+}
+
+.booking_info_show {
+  margin-left: 30px;
+}
+
+.booking_info_show .bar select {
+  height: 35px;
+}
+
+.text_message {
+    margin-bottom: 30px;
+}
+
+.back_btn {
+    padding: 7px 15px;
+    border: 2px solid #333;
+    color: #333;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
 }

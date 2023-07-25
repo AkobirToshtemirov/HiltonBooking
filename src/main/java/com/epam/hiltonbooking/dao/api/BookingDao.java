@@ -12,4 +12,6 @@ public interface BookingDao extends Dao<Booking> {
     List<Booking> findByStatus(String status) throws DaoException;
 
     Invoice generateInvoice(Integer bookingId) throws DaoException;
+
+    void updateBooking(Booking booking) throws DaoException;
 }

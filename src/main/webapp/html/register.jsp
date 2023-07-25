@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +33,11 @@
       <div class="register_block">
         <form class="register_form" action="register" method="post">
           <h2>Sign Up</h2>
+            <% String info = (String) request.getAttribute("info"); %>
+
+              <% if (info != null && !info.isEmpty()) { %>
+                  <p style="color: red; font-size: 16px;" class="error-message"><%= info %></p>
+             <% } %>
           <label for="first_name">
             <input class="info_input" type="text" name="firstname" id="first_name" placeholder="Enter firstname..." required>
           </label>

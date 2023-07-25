@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 String errorMessage = "Invalid Credentials, please login again!";
                 req.setAttribute("error", errorMessage);
-                req.getRequestDispatcher("/login").forward(req, resp);
+                doGet(req, resp);
             }
 
         } catch (ServiceException e) {

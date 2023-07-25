@@ -27,6 +27,9 @@ public class UsersServlet extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 
+        String currentURL = req.getRequestURI();
+        session.setAttribute("lastURL", currentURL);
+
         if (user != null && user.isAdmin()) {
             UserService userService = ServiceFactory.getInstance().getUserService();
 
@@ -65,9 +68,9 @@ public class UsersServlet extends HttpServlet {
             String infoMessage = null;
             if (firstName.isPresent() && lastName.isPresent() && email.isPresent() && username.isPresent() && password.isPresent()) {
                 if (userService.isEmailInUse((email.get()))) {
-                    infoMessage = "Email is in use.!";
+                    infoMessage = "Email is already registered!";
                 } else if (userService.isUsernameInUse(username.get())) {
-                    infoMessage = "Username is in user. Please choose another username!";
+                    infoMessage = "Username is in use. Please choose another username!";
                 } else {
                     boolean result = userService.registerUser(firstName.get(), lastName.get(), email.get(), username.get(), password.get());
 
@@ -76,11 +79,12 @@ public class UsersServlet extends HttpServlet {
                     }
                 }
                 req.setAttribute("info", infoMessage);
-                resp.sendRedirect(req.getContextPath() + "/users");
+                doGet(req, resp);
             }
         } catch (ServiceException e) {
             logger.error("Unable to register user(admin)!");
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -90,7 +90,7 @@ public class BookingServiceImpl implements BookingService {
             booking.setRoom(room);
             booking.setTotalCost(totalCost);
             booking.setStatus("APPROVED");
-            bookingDao.save(booking);
+            bookingDao.updateBooking(booking);
         } catch (DaoException e) {
             logger.error("Unable to approve the booking!");
             throw new ServiceException(e.getMessage(), e);
@@ -111,7 +111,7 @@ public class BookingServiceImpl implements BookingService {
                 throw new ServiceException("Cannot cancel th booking which is " + status);
             }
             booking.setStatus("CANCELLED");
-            bookingDao.save(booking);
+            bookingDao.updateBooking(booking);
         } catch (DaoException e) {
             logger.error("Unable to cancel the booking!");
             throw new ServiceException(e.getMessage(), e);

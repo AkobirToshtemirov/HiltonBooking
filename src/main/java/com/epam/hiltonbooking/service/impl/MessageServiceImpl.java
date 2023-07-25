@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MessageServiceImpl implements MessageService {
     private static final Logger logger = LogManager.getLogger();
@@ -45,6 +46,17 @@ public class MessageServiceImpl implements MessageService {
             throw new ServiceException(e.getMessage(), e);
         }
         return messages;
+    }
+
+    @Override
+    public Optional<Message> getMessageById(Integer id) throws ServiceException {
+        try {
+            MessageDao messageDao = DaoFactory.getInstance().getMessageDao();
+            return messageDao.findById(id);
+        } catch (DaoException e) {
+            logger.error("Unable to get message by id!");
+            throw new ServiceException(e.getMessage(), e);
+        }
     }
 
     private Message buildMessage(String name, String email, String phoneNumber, String text) {

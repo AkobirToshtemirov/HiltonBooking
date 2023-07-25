@@ -47,19 +47,16 @@ public class RegisterUserServlet extends HttpServlet {
             if (firstName.isPresent() && lastName.isPresent() && email.isPresent() && username.isPresent() &&
                     password.isPresent()) {
                 if (userService.isEmailInUse((email.get()))) {
-                    infoMessage = "Email is in use.!";
+                    infoMessage = "Email is already registered!";
                     req.setAttribute("info", infoMessage);
-                    req.getRequestDispatcher("/register").forward(req, resp);
+                    doGet(req, resp);
                 } else if (userService.isUsernameInUse(username.get())) {
-                    infoMessage = "Username is in user. Please choose another username!";
+                    infoMessage = "Username is in use. Please choose another username!";
                     req.setAttribute("info", infoMessage);
-                    req.getRequestDispatcher("/register").forward(req, resp);
+                    doGet(req, resp);
                 } else {
                     boolean result = userService.registerUser(firstName.get(), lastName.get(), email.get(), username.get(), password.get());
-
                     if (result) {
-                        infoMessage = "Successfully registered! Please login to Book!";
-                        req.setAttribute("info", infoMessage);
                         req.getRequestDispatcher("/login").forward(req, resp);
                     }
                 }

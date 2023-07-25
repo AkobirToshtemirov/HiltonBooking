@@ -34,6 +34,12 @@
             <div class="add_room_main">
               <h3>Adding a Room</h3>
 
+               <% String info = (String) request.getAttribute("info"); %>
+
+                  <% if (info != null && !info.isEmpty()) { %>
+                      <p style="color: red; font-size: 16px;" class="error-message"><%= info %></p>
+                   <% } %>
+
               <form action="rooms" method="post">
                 <div class="add_room_form_main">
                   <label for="room_number">
@@ -96,8 +102,10 @@
                           </div>
                           <div class="bar">${room.roomCost}</div>
                           <div class="bar delete_btn_bar">
-                            <a class="check_btn update_btn" href="">Update</a>
-                            <a class="check_btn delete_btn" href="">Delete</a>
+                             <form action="delete-room" method="post">
+                                <input type="hidden" name="room-id" value="${room.id}" />
+                                <button type="submit" class="check_btn delete_btn">Delete</button>
+                             </form>
                           </div>
                         </div>
 

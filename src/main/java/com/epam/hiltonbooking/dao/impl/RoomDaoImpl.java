@@ -21,6 +21,8 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
             "SELECT * FROM " + Table.ROOMS.getTableName() + " WHERE beds_amount = ? AND room_class = ? AND is_active = true";
     private static final String DELETE_ROOM_QUERY =
             "DELETE FROM " + Table.ROOMS.getTableName() + " WHERE room_id = ?";
+    private static final String FIND_BY_ROOM_NUMBER_QUERY =
+            "SELECT * FROM " + Table.ROOMS.getTableName() + " WHERE room_number = ?";
 
     public RoomDaoImpl() {
         super(MapperFactory.getInstance().getRoomMapper(), Table.ROOMS.getTableName());
@@ -49,7 +51,13 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
     }
 
     @Override
+    public Optional<Room> findByRoomNumber(int roomNumber) throws DaoException {
+        return executeQueryForSingleResult(FIND_BY_ROOM_NUMBER_QUERY, roomNumber);
+    }
+
+    @Override
     public void deleteById(int id) throws DaoException {
         executeUpdateQuery(DELETE_ROOM_QUERY, id);
     }
+
 }

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,6 +63,13 @@
         <div class="login_block_main">
           <form action="login" method="post">
             <p>Log in to your profile</p>
+
+            <% String error = (String) request.getAttribute("error"); %>
+
+            <% if (error != null && !error.isEmpty()) { %>
+                <p style="color: red; font-size: 16px;" class="error-message"><%= error %></p>
+            <% } %>
+
             <label for="username">
               <button>
                 <img src="./images/user.png" alt="username">

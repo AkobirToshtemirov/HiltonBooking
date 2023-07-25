@@ -60,20 +60,24 @@ public class RoomsServlet extends HttpServlet {
         RoomService roomService = ServiceFactory.getInstance().getRoomService();
 
         try {
-            String infoMessage = null;
-
             if (roomNumber.isPresent() && roomClass.isPresent() && bedsAmount.isPresent() && roomCost.isPresent()) {
-                boolean result = roomService.addNewRoom(Integer.parseInt(roomNumber.get()), roomClass.get(),
-                        Integer.parseInt(bedsAmount.get()), Double.parseDouble(roomCost.get()));
+                String infoMessage = null;
 
-                if (result) {
-                    infoMessage = "Successfully add the new room!";
+                if (roomService.isRoomAdded(Integer.parseInt(roomNumber.get()))) {
+                    infoMessage = "Room is already added! You are trying to enter already entered room number!";
                 } else {
-                    infoMessage = "Error occurred. Room is not add! Try again!";
+                    boolean result = roomService.addNewRoom(Integer.parseInt(roomNumber.get()), roomClass.get(),
+                            Integer.parseInt(bedsAmount.get()), Double.parseDouble(roomCost.get()));
+
+                    if (result) {
+                        infoMessage = "Successfully add the new room!";
+                    } else {
+                        infoMessage = "Error occurred. Room is not add! Try again!";
+                    }
                 }
 
                 req.setAttribute("info", infoMessage);
-                resp.sendRedirect(req.getContextPath() + "/rooms");
+                doGet(req, resp);
             }
         } catch (ServiceException e) {
             logger.error("Unable to add new room(admin)!");
