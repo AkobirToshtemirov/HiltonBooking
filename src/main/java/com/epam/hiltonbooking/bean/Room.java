@@ -8,7 +8,7 @@ public class Room implements Identifiable, Serializable {
     private int roomNumber;
     private String roomClass;
     private int bedsAmount;
-    private boolean isActive;
+    private boolean active;
     private double roomCost;
 
     public Room() {
@@ -19,7 +19,7 @@ public class Room implements Identifiable, Serializable {
         this.roomNumber = roomNumber;
         this.roomClass = roomClass;
         this.bedsAmount = bedsAmount;
-        this.isActive = isActive;
+        this.active = isActive;
         this.roomCost = roomCost;
     }
 
@@ -53,11 +53,11 @@ public class Room implements Identifiable, Serializable {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public double getRoomCost() {

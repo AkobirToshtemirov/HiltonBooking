@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,53 +80,23 @@
 
                 <div class="rooms">
 
-                  <div class="room">
-                    <div class="bar">1</div>
-                    <div class="bar">Standard</div>
-                    <div class="bar">3</div>
-                    <div class="bar">
-                      <form action="">
-                        <input type="checkbox" checked>
-                      </form>
-                    </div>
-                    <div class="bar">100$</div>
-                    <div class="bar delete_btn_bar">
-                      <a class="check_btn update_btn" href="">Update</a>
-                      <a class="check_btn delete_btn" href="">Delete</a>
-                    </div>
-                  </div>
+                  <c:forEach items="${roomList}" var="room">
 
-                  <div class="room">
-                    <div class="bar">4</div>
-                    <div class="bar">Deluxe</div>
-                    <div class="bar">2</div>
-                    <div class="bar">
-                      <form action="">
-                        <input type="checkbox" checked>
-                      </form>
-                    </div>
-                    <div class="bar">200$</div>
-                    <div class="bar delete_btn_bar">
-                      <a class="check_btn update_btn" href="">Update</a>
-                      <a class="check_btn delete_btn" href="">Delete</a>
-                    </div>
-                  </div>
+                       <div class="room">
+                          <div class="bar">${room.roomNumber}</div>
+                          <div class="bar">${room.roomClass}</div>
+                          <div class="bar">${room.bedsAmount}</div>
+                          <div class="bar">
+                          <input type="checkbox" ${room.active ? 'checked' : ''} >
+                          </div>
+                          <div class="bar">${room.roomCost}</div>
+                          <div class="bar delete_btn_bar">
+                            <a class="check_btn update_btn" href="">Update</a>
+                            <a class="check_btn delete_btn" href="">Delete</a>
+                          </div>
+                        </div>
 
-                  <div class="room">
-                    <div class="bar">20</div>
-                    <div class="bar">Premium</div>
-                    <div class="bar">5</div>
-                    <div class="bar">
-                      <form action="">
-                        <input type="checkbox" checked>
-                      </form>
-                    </div>
-                    <div class="bar">300$</div>
-                    <div class="bar delete_btn_bar">
-                      <a class="check_btn update_btn" href="">Update</a>
-                      <a class="check_btn delete_btn" href="">Delete</a>
-                    </div>
-                  </div>
+                  </c:forEach>
 
                 </div>
 
