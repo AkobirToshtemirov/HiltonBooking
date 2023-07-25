@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet("/rooms")
 public class RoomsServlet extends HttpServlet {
@@ -47,5 +48,37 @@ public class RoomsServlet extends HttpServlet {
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Optional<String> roomNumber = Optional.ofNullable(req.getParameter("room-number"));
+        Optional<String> roomClass = Optional.ofNullable(req.getParameter("room-class"));
+        Optional<String> bedsAmount = Optional.ofNullable(req.getParameter("beds-amount"));
+        Optional<String> roomCost = Optional.ofNullable(req.getParameter("room-cost"));
+
+        RoomService roomService = ServiceFactory.getInstance().getRoomService();
+
+        try {
+            String infoMessage = null;
+
+            if (roomNumber.isPresent() && roomClass.isPresent() && bedsAmount.isPresent() && roomCost.isPresent()) {
+                boolean result = roomService.addNewRoom(Integer.parseInt(roomNumber.get()), roomClass.get(),
+                        Integer.parseInt(bedsAmount.get()), Double.parseDouble(roomCost.get()));
+
+                if (result) {
+                    infoMessage = "Successfully add the new room!";
+                } else {
+                    infoMessage = "Error occurred. Room is not add! Try again!";
+                }
+
+                req.setAttribute("info", infoMessage);
+                resp.sendRedirect(req.getContextPath() + "/rooms");
+            }
+        } catch (ServiceException e) {
+            logger.error("Unable to add new room(admin)!");
+            throw new RuntimeException(e);
+        }
+
     }
 }

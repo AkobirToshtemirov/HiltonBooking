@@ -16,7 +16,9 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
     private static final String FIND_ROOM_BY_ID_QUERY =
             "SELECT * FROM " + Table.ROOMS.getTableName() + " WHERE room_id = ?";
     private static final String SAVE_ROOM_QUERY =
-            "INSERT INTO" + Table.ROOMS.getTableName() + "(room_number, room_class, beds_amount, room_cost) VALUES (?, ?, ?, ?)";
+            "INSERT INTO " + Table.ROOMS.getTableName() + "(room_number, room_class, beds_amount, room_cost) VALUES (?, ?, ?, ?)";
+    private static final String GET_SUITABLE_ROOMS =
+            "SELECT * FROM " + Table.ROOMS.getTableName() + " WHERE beds_amount = ? AND room_class = ? AND is_active = true";
     private static final String DELETE_ROOM_QUERY =
             "DELETE FROM " + Table.ROOMS.getTableName() + " WHERE room_id = ?";
 
@@ -39,6 +41,11 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
     public Integer save(Room room) throws DaoException {
         return executeInsertQuery(SAVE_ROOM_QUERY, room.getRoomNumber(), room.getRoomClass(),
                 room.getBedsAmount(), room.getRoomCost());
+    }
+
+    @Override
+    public List<Room> getSuitableRooms(int bedsAmount, String roomClass) throws DaoException {
+        return executeQuery(GET_SUITABLE_ROOMS, bedsAmount, roomClass);
     }
 
     @Override

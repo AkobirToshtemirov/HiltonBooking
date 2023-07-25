@@ -1156,3 +1156,40 @@ select {
 .rooms_main .delete_btn {
   margin-left: 10px;
 }
+
+.disabled_btn {
+    font-weight: 900;
+    border: none;
+}
+
+.disabled_btn:hover {
+  cursor: not-allowed;
+}
+
+.approved_btn {
+    background-color: #7CFC00;
+}
+
+.cancelled_btn {
+    background-color: #DC143C;
+}
+
+
+.take_action_btn {
+    background-color: #1E90FF;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid #1E90FF;
+    transition: 0.4s linear;
+}
+
+.take_action_btn:hover {
+    cursor: pointer;
+    border-color: #00008B;
+    background-color: #00008B;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.booking_information_main {
+    display: flex;
+}

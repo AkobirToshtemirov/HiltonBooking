@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet("/reservations")
 public class BookingsServlet extends HttpServlet {
@@ -59,4 +60,5 @@ public class BookingsServlet extends HttpServlet {
             dispatcher.forward(req, resp);
         }
     }
+
 }

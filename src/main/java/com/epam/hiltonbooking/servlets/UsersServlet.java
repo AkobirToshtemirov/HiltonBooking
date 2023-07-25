@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet("/users")
 public class UsersServlet extends HttpServlet {
@@ -51,6 +52,35 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
+        Optional<String> firstName = Optional.ofNullable(req.getParameter("firstname-user"));
+        Optional<String> lastName = Optional.ofNullable(req.getParameter("lastname-user"));
+        Optional<String> email = Optional.ofNullable(req.getParameter("email-user"));
+        Optional<String> username = Optional.ofNullable(req.getParameter("username-user"));
+        Optional<String> password = Optional.ofNullable(req.getParameter("password-user"));
+
+        UserService userService = ServiceFactory.getInstance().getUserService();
+
+        try {
+            String infoMessage = null;
+            if (firstName.isPresent() && lastName.isPresent() && email.isPresent() && username.isPresent() && password.isPresent()) {
+                if (userService.isEmailInUse((email.get()))) {
+                    infoMessage = "Email is in use.!";
+                } else if (userService.isUsernameInUse(username.get())) {
+                    infoMessage = "Username is in user. Please choose another username!";
+                } else {
+                    boolean result = userService.registerUser(firstName.get(), lastName.get(), email.get(), username.get(), password.get());
+
+                    if (result) {
+                        infoMessage = "Successfully registered!";
+                    }
+                }
+                req.setAttribute("info", infoMessage);
+                resp.sendRedirect(req.getContextPath() + "/users");
+            }
+        } catch (ServiceException e) {
+            logger.error("Unable to register user(admin)!");
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -60,11 +60,7 @@ public class RegisterUserServlet extends HttpServlet {
                     if (result) {
                         infoMessage = "Successfully registered! Please login to Book!";
                         req.setAttribute("info", infoMessage);
-                        if (user != null && user.isAdmin()) {
-                            req.getRequestDispatcher("/users").forward(req, resp);
-                        } else {
-                            req.getRequestDispatcher("/login").forward(req, resp);
-                        }
+                        req.getRequestDispatcher("/login").forward(req, resp);
                     }
                 }
             }

@@ -1,0 +1,24 @@
+footer {
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background-color: #101010;
+}
+
+.copyright_block {
+  text-align: center;
+}
+
+.highlight {
+  color: #e87400;
+}
+
+.weight {
+  font-weight: 500;
+}
+
+.epam {
+  color: rgb(0, 200, 255);
+}

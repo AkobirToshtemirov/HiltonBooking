@@ -74,6 +74,18 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> getSuitableRooms(int bedsAmount, String roomClass) throws ServiceException {
+        try {
+            RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
+
+            return roomDao.getSuitableRooms(bedsAmount, roomClass);
+        } catch (DaoException e) {
+            logger.error("Unable to set room is active or not!");
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public void deleteById(Integer id) throws ServiceException {
         try {
             RoomDao roomDao = DaoFactory.getInstance().getRoomDao();

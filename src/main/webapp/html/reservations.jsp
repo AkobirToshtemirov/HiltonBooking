@@ -35,10 +35,10 @@
                       <div class="bar">Client</div>
                       <div class="bar">Check In</div>
                       <div class="bar">Check Out</div>
-                      <div class="bar">Room No</div>
                       <div class="bar">No of beds</div>
                       <div class="bar">Room class</div>
                       <div class="bar">Status</div>
+                      <div class="bar">Booking Time</div>
                       <div class="bar">
                         <a class="check_btn" href=""></a>
                         <a class="check_btn" href=""></a>
@@ -52,18 +52,25 @@
                              <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
                              <div class="bar">${element.checkIn}</div>
                              <div class="bar">${element.checkOut}</div>
-                             <div class="bar">
-                                 <select name="room_number" id="room_number">
-                                     <option value="${element.room.roomNumber}" selected>${element.room.roomNumber}</option>
-                                     <!-- Add other options if needed -->
-                                 </select>
-                             </div>
                              <div class="bar">${element.bedsAmount}</div>
                              <div class="bar">${element.roomClass}</div>
                              <div class="bar">${element.status}</div>
+                             <div class="bar">${element.bookingTime}</div>
                              <div class="bar">
-                                 <a class="check_btn approve_btn" href="">Approve</a>
-                                 <a class="check_btn cancel_btn" href="">Cancel</a>
+                                  <c:choose>
+                                     <c:when test="${element.status.equals('WAITING')}">
+                                        <form action="booking-details" method="get">
+                                            <input type="hidden" name="booking-id" value="${element.id}" />
+                                            <button type="submit" class="check_btn take_action_btn">Take Action</button>
+                                         </form>
+                                     </c:when>
+                                     <c:when test="${element.status.equals('APPROVED')}">
+                                          <button class="check_btn disabled_btn approved_btn" disabled>APPROVED</button>
+                                      </c:when>
+                                     <c:otherwise>
+                                         <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
+                                     </c:otherwise>
+                                  </c:choose>
                              </div>
                          </div>
                      </c:forEach>
