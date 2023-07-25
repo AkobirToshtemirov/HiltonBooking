@@ -137,7 +137,7 @@
             </div>
           </div>
           <div class="user_info_block">
-            <form action="sendMessage" method="post">
+            <form action="home" method="post">
               <div class="basic_info">
                 <label for="contact_name">
                   <p>Your name</p>

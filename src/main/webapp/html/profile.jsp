@@ -35,27 +35,27 @@
           <div class="profile_block">
             <label for="first_name">
               <h3>Firstname: </h3>
-              <input class="info_input" type="text" name="firstname" id="first_name" value="${user.getFirstName()}" required>
+              <input class="info_input" type="text" name="firstname" id="first_name" value="${user.firstName}" required>
             </label>
             <br>
             <label for="last_name">
               <h3>Lastname: </h3>
-              <input class="info_input" type="text" name="lastname" id="last_name" value="${user.getLastName()}" required>
+              <input class="info_input" type="text" name="lastname" id="last_name" value="${user.lastName}" required>
             </label>
             <br>
             <label for="email">
               <h3>Email: </h3>
-              <input class="info_input" type="email" name="email" id="email" value="${user.getEmail()}" required>
+              <input class="info_input" type="email" name="email" id="email" value="${user.email}" required>
             </label>
             <br>
             <label for="username">
               <h3>Username: </h3>
-              <input class="info_input" type="text" name="username" id="username" value="${user.getUsername()}" required>
+              <input class="info_input" type="text" name="username" id="username" value="${user.username}" required>
             </label>
             <br>
             <label for=" password">
               <h3>Password: </h3>
-              <input class="info_input" type="password" name="password" id="password" value="${user.getPassword()}" required>
+              <input class="info_input" type="password" name="password" id="password" value="${user.password}" required>
             </label>
             <br>
             <label for="">

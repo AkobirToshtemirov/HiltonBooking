@@ -25,8 +25,6 @@
 
       <jsp:include page="header.jsp" />
 
-      <jsp:useBean id="user" scope="session" type="com.epam.hiltonbooking.bean.User"></jsp:useBean>
-
       <section id="home">
         <div class="container">
           <div class="bookings_main">
@@ -47,7 +45,7 @@
                   <c:forEach items="${userBookings}" var="element">
 
                     <div class="booking_inormation">
-                      <div class="bar info_bar">${element.getUser().getFirstName()}</div>
+                      <div class="bar info_bar">${element.getUser().getFirstName()} ${element.getUser().getLastName()}</div>
                       <div class="bar info_bar">${element.getCheckIn()}</div>
                       <div class="bar info_bar">${element.getCheckOut()}</div>
                       <div class="bar info_bar">${element.getBedsAmount()}</div>

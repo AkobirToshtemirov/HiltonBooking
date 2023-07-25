@@ -10,10 +10,10 @@
 
       <nav>
         <ul>
-          <li><a href="">Home</a></li>
+          <li><a href="home">Home</a></li>
           <li><a href="book">Book</a></li>
           <li><a href="reservations">Bookings</a></li>
-          <li><a href="">Contact</a></li>
+          <li><a href="home#contact">Contact</a></li>
         </ul>
       </nav>
 

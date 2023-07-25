@@ -49,7 +49,7 @@
 
                      <c:forEach items="${allBookings}" var="element">
                          <div class="reservation">
-                             <div class="bar">${element.user.firstName}</div>
+                             <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
                              <div class="bar">${element.checkIn}</div>
                              <div class="bar">${element.checkOut}</div>
                              <div class="bar">
