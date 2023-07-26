@@ -1,7 +1,7 @@
 # HiltonBooking
 HitonBooking - Epam Training Final Project. Used technologies: Java, Servlet API, JSP and PostgreSQL
 
-HitonBooking is a hotel booking project. User can book a room from Hilton hotel in Tashkent. Admin can manages the users and the rooms, reviews the received reservations, selects the most suitable of the available rooms, issues an invoice to the client
+HitonBooking (HiltonTashkent) is a hotel booking project. User can book a room from Hilton hotel in Tashkent. Admin can manages the users and the rooms, reviews the received reservations, selects the most suitable of the available rooms, issues an invoice to the client
 
 Project requirenments:
 Hotel Booking. The Client fills in the Application, indicating the number of beds in the room, the class of apartments and the time of stay. 
