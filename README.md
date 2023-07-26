@@ -7,4 +7,6 @@ Project requirenments:
 Hotel Booking. The Client fills in the Application, indicating the number of beds in the room, the class of apartments and the time of stay. 
 The administrator manages the Clients and the Numbers, reviews the received Applications, selects the most suitable of the available Numbers, issues an Invoice to the Client.
 
+ERD diagram:
+
 ![image](https://github.com/AkobirToshtemirov/HiltonBooking/assets/88495573/2390406f-9b56-438c-98de-a6a4c8e306aa)
