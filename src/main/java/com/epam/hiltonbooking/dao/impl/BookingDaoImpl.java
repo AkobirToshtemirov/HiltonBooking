@@ -35,7 +35,7 @@ public class BookingDaoImpl extends AbstractDao<Booking> implements BookingDao {
     private static final String SAVE_BOOKING_QUERY =
             "INSERT INTO " + Table.BOOKINGS.getTableName() + "(user_id, room_id, status, check_in, check_out, beds_amount, room_class, total_cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String UPDATE_BOOKING_QUERY = "UPDATE " + Table.BOOKINGS.getTableName() + " SET status = ?, room_id = ? WHERE booking_id = ?";
+    private static final String UPDATE_BOOKING_QUERY = "UPDATE " + Table.BOOKINGS.getTableName() + " SET status = ?, room_id = ?, total_cost = ? WHERE booking_id = ?";
 
     public BookingDaoImpl() {
         super(MapperFactory.getInstance().getBookingMapper(), Table.BOOKINGS.getTableName());
@@ -63,11 +63,11 @@ public class BookingDaoImpl extends AbstractDao<Booking> implements BookingDao {
 
     @Override
     public void updateBooking(Booking booking) throws DaoException {
-        Integer bookingId = null;
+        Integer roomId = null;
         if (booking.getRoom() != null) {
-            bookingId = booking.getRoom().getId();
+            roomId = booking.getRoom().getId();
         }
-        executeUpdateQuery(UPDATE_BOOKING_QUERY, booking.getStatus(), bookingId, booking.getId());
+        executeUpdateQuery(UPDATE_BOOKING_QUERY, booking.getStatus(), roomId, booking.getTotalCost(), booking.getId());
     }
 
     @Override

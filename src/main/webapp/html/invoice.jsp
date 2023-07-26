@@ -96,7 +96,7 @@
                             <h4>Total Price: </h4>
                         </div>
                         <div class="invoice_text">
-                            <h4>${stayingDays * booking.room.roomCost}</h4>
+                            <h4>${booking.totalCost}</h4>
                         </div>
                     </div>
 
