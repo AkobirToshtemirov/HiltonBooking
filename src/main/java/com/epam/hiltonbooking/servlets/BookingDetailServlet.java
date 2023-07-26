@@ -78,19 +78,25 @@ public class BookingDetailServlet extends HttpServlet {
 
             try {
                 RoomService roomService = ServiceFactory.getInstance().getRoomService();
-                Optional<Room> room = roomService.getRoomById(Integer.parseInt(roomId));
+                Optional<Room> roomOptional = roomService.getRoomById(Integer.parseInt(roomId));
 
-                roomService.setRoomInActiveById(room.get());
+                Room room = roomOptional.get();
+
+                roomService.setRoomInActiveById(room);
 
 
                 BookingService bookingService = ServiceFactory.getInstance().getBookingService();
-                Optional<Booking> booking = bookingService.getBookingById(Integer.parseInt(bookingId));
+                Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId));
+                Booking booking = bookingOptional.get();
+                int stayingDays = calculateStayingDays(booking.getCheckIn(), booking.getCheckOut());
 
-                int stayingDays = calculateStayingDays(booking.get().getCheckIn(), booking.get().getCheckOut());
+                logger.info("staying days: ", stayingDays);
 
-                BigDecimal totalCost = BigDecimal.valueOf(room.get().getRoomCost() * stayingDays);
+                BigDecimal totalCost = BigDecimal.valueOf(room.getRoomCost() * stayingDays);
 
-                bookingService.approveBooking(Integer.parseInt(bookingId), room.get(), totalCost);
+                logger.info("total cost: " + totalCost);
+
+                bookingService.approveBooking(Integer.parseInt(bookingId), room, totalCost);
             } catch (ServiceException e) {
                 logger.error("Unable to approve booking");
                 throw new RuntimeException(e);

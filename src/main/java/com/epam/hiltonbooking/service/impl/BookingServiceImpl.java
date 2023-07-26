@@ -1,7 +1,6 @@
 package com.epam.hiltonbooking.service.impl;
 
 import com.epam.hiltonbooking.bean.Booking;
-import com.epam.hiltonbooking.bean.Invoice;
 import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.dao.api.BookingDao;
@@ -113,13 +112,6 @@ public class BookingServiceImpl implements BookingService {
             logger.error("Unable to cancel the booking!");
             throw new ServiceException(e.getMessage(), e);
         }
-    }
-
-
-    // Generate invoice is not written
-    @Override
-    public Invoice generateInvoice(Integer bookingId) throws ServiceException {
-        return null;
     }
 
     private Booking buildBooking(User user, Room room, String status, Date checkIn, Date checkOut, int bedsAmount, String roomClass) {

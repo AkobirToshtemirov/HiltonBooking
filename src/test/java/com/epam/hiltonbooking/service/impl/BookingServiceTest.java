@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 import com.epam.hiltonbooking.bean.Booking;
-import com.epam.hiltonbooking.bean.Invoice;
 import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;
@@ -118,18 +117,4 @@ public class BookingServiceTest {
         verify(bookingService, times(1)).cancelBooking(bookingId);
     }
 
-    @Test
-    public void testGenerateInvoice() throws ServiceException {
-        // Given
-        Integer bookingId = 456;
-        Invoice expectedInvoice = new Invoice();
-        // Assuming some setup of expectedInvoice
-
-        // When
-        when(bookingService.generateInvoice(bookingId)).thenReturn(expectedInvoice);
-
-        // Then
-        Invoice actualInvoice = bookingService.generateInvoice(bookingId);
-        assertEquals(expectedInvoice, actualInvoice);
-    }
 }

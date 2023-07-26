@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 import com.epam.hiltonbooking.bean.Booking;
-import com.epam.hiltonbooking.bean.Invoice;
 import com.epam.hiltonbooking.exceptions.DaoException;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,22 +51,6 @@ public class BookingDaoTest {
         List<Booking> actualBookings = bookingDao.findByStatus(status);
         assertEquals(expectedBookings, actualBookings);
     }
-
-    @Test
-    public void testGenerateInvoice() throws DaoException {
-        // Given
-        Integer bookingId = 456;
-        Invoice expectedInvoice = new Invoice();
-        // Assuming some setup of expectedInvoice
-
-        // When
-        when(bookingDao.generateInvoice(bookingId)).thenReturn(expectedInvoice);
-
-        // Then
-        Invoice actualInvoice = bookingDao.generateInvoice(bookingId);
-        assertEquals(expectedInvoice, actualInvoice);
-    }
-
     @Test
     public void testUpdateBooking() throws DaoException {
         // Given

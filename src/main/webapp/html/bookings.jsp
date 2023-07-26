@@ -55,7 +55,7 @@
                       <div class="bar info_bar">
                         <c:choose>
                           <c:when test="${element.status.equals('APPROVED')}">
-                            <form action="booking-details" method="get">
+                            <form action="invoice" method="get">
                               <input type="hidden" name="booking-id" value="${element.id}" />
                               <button type="submit" class="check_btn take_action_btn">Invoice</button>
                             </form>

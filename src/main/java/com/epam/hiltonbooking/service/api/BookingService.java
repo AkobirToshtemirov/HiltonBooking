@@ -1,7 +1,6 @@
 package com.epam.hiltonbooking.service.api;
 
 import com.epam.hiltonbooking.bean.Booking;
-import com.epam.hiltonbooking.bean.Invoice;
 import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;
@@ -24,5 +23,4 @@ public interface BookingService {
 
     void cancelBooking(Integer id) throws ServiceException;
 
-    Invoice generateInvoice(Integer bookingId) throws ServiceException;
 }
