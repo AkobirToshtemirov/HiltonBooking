@@ -16,6 +16,7 @@
 
   <!-- footer css -->
   <link rel="stylesheet" href="./css/footer.css">
+
 </head>
 
 <body>
@@ -29,11 +30,11 @@
           <div class="book_block">
             <div class="check_in_block">
               <label for="checkin">Check in</label>
-              <input class="input_date" type="date" name="check-in" id="checkin">
+              <input minimumDate="today" class="input_date" type="date" name="check-in" id="checkin">
             </div>
             <div class="check_out_block">
               <label for="checkout">Check out</label>
-              <input class="input_date" type="date" name="check-out" id="checkout">
+              <input minimumDate="tomorrow" class="input_date" type="date" name="check-out" id="checkout">
             </div>
             <div class="number_of_beds_block">
               <label for="beds">Number of beds</label>
@@ -67,6 +68,8 @@
 
 
   <jsp:include page="footer.jsp" />
+
+  <script src="./js/script.js"></script>
 
 </body>
 
