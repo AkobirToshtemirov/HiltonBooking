@@ -80,6 +80,14 @@
                         </form>
                 </div>
 
+                <% String error=(String) request.getAttribute("error"); %>
+
+                <% if (error !=null && !error.isEmpty()) { %>
+                  <p style="color: red; font-size: 16px;" class="error-message">
+                    <%= error %>
+                  </p>
+                  <% } %>
+
                 <div class="rooms_main">
                   <div class="rooms_block">
                     <div class="rooms_headline">

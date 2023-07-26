@@ -1,5 +1,6 @@
 package com.epam.hiltonbooking.servlets;
 
+import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.exceptions.ServiceException;
 import com.epam.hiltonbooking.service.api.RoomService;
 import com.epam.hiltonbooking.service.api.ServiceFactory;
@@ -27,8 +28,16 @@ public class DeleteRoomServlet extends HttpServlet {
         RoomService roomService = ServiceFactory.getInstance().getRoomService();
 
         try {
-            if(roomId.isPresent()) {
-                roomService.deleteById(Integer.valueOf(roomId.get()));
+            if (roomId.isPresent()) {
+                Optional<Room> roomOptional = roomService.getRoomById(Integer.valueOf(roomId.get()));
+                String infoMessage;
+                if (roomOptional.get().isActive()) {
+                    roomService.deleteById(Integer.valueOf(roomId.get()));
+                    infoMessage = "Room is deleted successfully!";
+                } else {
+                    infoMessage = "Room is not deleted. Room is booked!";
+                }
+                req.setAttribute("error", infoMessage);
                 resp.sendRedirect(req.getContextPath() + "/rooms");
             }
         } catch (ServiceException e) {
