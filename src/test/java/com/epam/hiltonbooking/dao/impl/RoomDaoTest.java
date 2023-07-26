@@ -2,6 +2,7 @@ package com.epam.hiltonbooking.dao.impl;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 import com.epam.hiltonbooking.bean.Room;
@@ -53,5 +54,24 @@ public class RoomDaoTest {
         // Then
         Optional<Room> actualRoom = roomDao.findByRoomNumber(roomNumber);
         assertEquals(expectedRoom, actualRoom.orElse(null));
+    }
+
+    @Test
+    public void testSetRoomInActive() {
+        try {
+            // Create a Room object to set inactive (replace with actual Room object data)
+            Room roomToSetInactive = new Room();
+            roomToSetInactive.setRoomNumber(101); // Replace with an existing room number in your database
+
+            // Call the method to set the room inactive
+            roomDao.setRoomInActive(roomToSetInactive);
+
+            // Perform assertions to check that the room is set inactive as expected
+            // You may want to retrieve the room from the database and check its "active" status
+            // Or, if the Room object has a field to track its active status, you can check it directly
+            // Add more specific assertions based on your test case requirements
+        } catch (DaoException e) {
+            fail("An unexpected DaoException occurred during testSetRoomInActive: " + e.getMessage());
+        }
     }
 }

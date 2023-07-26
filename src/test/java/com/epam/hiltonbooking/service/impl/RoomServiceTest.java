@@ -1,6 +1,6 @@
 package com.epam.hiltonbooking.service.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import com.epam.hiltonbooking.bean.Room;
@@ -36,7 +36,7 @@ public class RoomServiceTest {
 
         // Then
         boolean isRoomAdded = roomService.addNewRoom(roomNumber, roomClass, bedsAmount, roomCost);
-        assertEquals(true, isRoomAdded);
+        assertTrue(isRoomAdded);
     }
 
     @Test
@@ -85,16 +85,16 @@ public class RoomServiceTest {
     }
 
     @Test
-    public void testSetRoomActiveById() throws ServiceException {
+    public void testSetRoomInActiveById() throws ServiceException {
         // Given
-        Integer roomId = 456;
-        boolean isActive = true;
+        Room room = new Room();
+        // Assuming some setup of room
 
         // When - No need to use 'when' for void methods
 
         // Then - Verify that the method was called once
-        roomService.setRoomActiveById(roomId, isActive);
-        verify(roomService, times(1)).setRoomActiveById(roomId, isActive);
+        roomService.setRoomInActiveById(room);
+        verify(roomService, times(1)).setRoomInActiveById(room);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class RoomServiceTest {
 
         // Then
         boolean isRoomAdded = roomService.isRoomAdded(roomNumber);
-        assertEquals(true, isRoomAdded);
+        assertTrue(isRoomAdded);
     }
 
     @Test

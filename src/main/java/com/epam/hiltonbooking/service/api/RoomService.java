@@ -14,7 +14,7 @@ public interface RoomService {
     Optional<Room> getRoomById(Integer id) throws ServiceException;
     List<Room> getSuitableRooms(int bedsAmount, String roomClass) throws ServiceException;
 
-    void setRoomActiveById(Integer id, boolean isActive) throws ServiceException;
+    void setRoomInActiveById(Room room) throws ServiceException;
     boolean isRoomAdded(int roomNumber) throws ServiceException;
     void deleteById(Integer id) throws ServiceException;
 

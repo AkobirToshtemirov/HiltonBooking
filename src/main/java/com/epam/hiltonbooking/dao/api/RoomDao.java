@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface RoomDao extends Dao<Room> {
    List<Room> getSuitableRooms(int bedsAmount, String roomClass) throws DaoException;
    Optional<Room> findByRoomNumber(int roomNumber) throws DaoException;
+   void setRoomInActive(Room room) throws DaoException;
 }

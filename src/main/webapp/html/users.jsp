@@ -89,6 +89,8 @@
 
                     <c:forEach items="${userList}" var="user">
 
+                    <c:if test="${!user.isAdmin()}">
+
                       <div class="users">
                         <div class="bar">${user.firstName}</div>
                         <div class="bar">${user.lastName}</div>
@@ -103,6 +105,9 @@
                           </form>
                         </div>
                       </div>
+
+                    </c:if>
+
                     </c:forEach>
 
                   </div>

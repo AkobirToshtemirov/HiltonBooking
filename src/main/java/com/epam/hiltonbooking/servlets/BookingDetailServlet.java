@@ -72,8 +72,7 @@ public class BookingDetailServlet extends HttpServlet {
 
         if ("APPROVE".equals(action)) {
             if (roomId == null || roomId.isEmpty() || bookingId == null || bookingId.isEmpty()) {
-                // Handle the case when roomId or bookingId is missing or empty
-                resp.sendRedirect(req.getContextPath() + "/error.jsp"); // Replace with your error page URL
+                resp.sendRedirect(req.getContextPath() + "/error.jsp");
                 return;
             }
 
@@ -81,7 +80,8 @@ public class BookingDetailServlet extends HttpServlet {
                 RoomService roomService = ServiceFactory.getInstance().getRoomService();
                 Optional<Room> room = roomService.getRoomById(Integer.parseInt(roomId));
 
-                roomService.setRoomActiveById(room.get().getId(), false);
+                roomService.setRoomInActiveById(room.get());
+
 
                 BookingService bookingService = ServiceFactory.getInstance().getBookingService();
                 Optional<Booking> booking = bookingService.getBookingById(Integer.parseInt(bookingId));
