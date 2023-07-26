@@ -21,9 +21,6 @@ public class MessageServiceImpl implements MessageService {
             return false;
         }
 
-        //Validation code here:
-        // code...
-
         try {
             MessageDao messageDao = DaoFactory.getInstance().getMessageDao();
             Message message = buildMessage(name, email, phoneNumber, text);

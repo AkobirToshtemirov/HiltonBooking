@@ -21,9 +21,6 @@ public class RoomServiceImpl implements RoomService {
             return false;
         }
 
-        // Validation code here:
-        // code...
-
         try {
             RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
             Room room = buildRoom(roomNumber, roomClass, bedsAmount, roomCost);

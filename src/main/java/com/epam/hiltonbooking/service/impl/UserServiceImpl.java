@@ -22,12 +22,6 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        // Validation code here:
-
-        // if (!(isEmailValid(email) && isUserInformationValid(name, surname, patronymic, phoneString))) {
-        //      return false;
-        //  }
-
         try {
             UserDao userDao = DaoFactory.getInstance().getUserDao();
             if (userDao.findUserByEmail(email).isPresent()) {

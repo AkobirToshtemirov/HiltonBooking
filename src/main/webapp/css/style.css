@@ -32,8 +32,7 @@ option {
 }
 
 #home {
-  /* background-image: url("/images/room.jpg"); */
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f0/Hilton_Tashkent_at_night_2.jpg");
+  background-image: url("../images/hilton_sign_up_img.jpg");
   background-size: cover;
   position: relative;
   z-index: 10;
@@ -651,7 +650,6 @@ select {
 }
 
 .bar {
-  width: 180px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -1048,7 +1046,7 @@ select {
 }
 
 .view_btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* users.html */
@@ -1267,15 +1265,19 @@ select {
 }
 
 .text_message {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .back_btn {
-    padding: 7px 15px;
-    border: 2px solid #333;
-    color: #333;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 700;
+  padding: 7px 15px;
+  border: 2px solid #333;
+  color: #333;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bookings_main .bar {
+  width: 180px !important;
 }

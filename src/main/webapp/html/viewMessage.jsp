@@ -47,13 +47,13 @@
                         <a class="back_btn" href="messages">Back</a>
                       </div>
 
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        </div>
+          </div>
 
       </section>
 

@@ -16,6 +16,6 @@
       </ul>
     </div>
 
-    <p><span>HiltonTashkent</span> &copy; 2023. <br/> Admin Panel</p>
+    <p><span>HiltonTashkent</span> &copy; 2023. <br /> Admin Panel</p>
   </div>
 </div>

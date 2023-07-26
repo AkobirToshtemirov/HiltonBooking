@@ -40,7 +40,7 @@
                         <div class="bar">Beds amount: </div>
                         <div class="bar">Room class: </div>
                         <div class="bar">Room Number: </div>
-                       <!-- <div class="bar">Total cost: </div> -->
+                        <!-- <div class="bar">Total cost: </div> -->
                         <div class="bar">Booking time: </div>
                       </div>
 

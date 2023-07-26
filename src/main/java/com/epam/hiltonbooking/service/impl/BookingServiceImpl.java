@@ -26,9 +26,6 @@ public class BookingServiceImpl implements BookingService {
             return false;
         }
 
-        // Validation code here:
-        // code...
-
         try {
             BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
             Booking booking = buildBooking(user, room, status, checkIn, checkOut, bedsAmount, roomClass);

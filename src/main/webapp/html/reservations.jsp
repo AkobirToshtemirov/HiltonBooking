@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -47,33 +47,33 @@
 
                     <div class="reservations">
 
-                     <c:forEach items="${allBookings}" var="element">
-                         <div class="reservation">
-                             <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
-                             <div class="bar">${element.checkIn}</div>
-                             <div class="bar">${element.checkOut}</div>
-                             <div class="bar">${element.bedsAmount}</div>
-                             <div class="bar">${element.roomClass}</div>
-                             <div class="bar">${element.status}</div>
-                             <div class="bar">${element.bookingTime}</div>
-                             <div class="bar delete_btn_bar">
-                                  <c:choose>
-                                     <c:when test="${element.status.equals('WAITING')}">
-                                        <form action="booking-details" method="get">
-                                            <input type="hidden" name="booking-id" value="${element.id}" />
-                                            <button type="submit" class="check_btn take_action_btn">Take Action</button>
-                                         </form>
-                                     </c:when>
-                                     <c:when test="${element.status.equals('APPROVED')}">
-                                          <button class="check_btn disabled_btn approved_btn" disabled>APPROVED</button>
-                                      </c:when>
-                                     <c:otherwise>
-                                         <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
-                                     </c:otherwise>
-                                  </c:choose>
-                             </div>
-                         </div>
-                     </c:forEach>
+                      <c:forEach items="${allBookings}" var="element">
+                        <div class="reservation">
+                          <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
+                          <div class="bar">${element.checkIn}</div>
+                          <div class="bar">${element.checkOut}</div>
+                          <div class="bar">${element.bedsAmount}</div>
+                          <div class="bar">${element.roomClass}</div>
+                          <div class="bar">${element.status}</div>
+                          <div class="bar">${element.bookingTime}</div>
+                          <div class="bar delete_btn_bar">
+                            <c:choose>
+                              <c:when test="${element.status.equals('WAITING')}">
+                                <form action="booking-details" method="get">
+                                  <input type="hidden" name="booking-id" value="${element.id}" />
+                                  <button type="submit" class="check_btn take_action_btn">Take Action</button>
+                                </form>
+                              </c:when>
+                              <c:when test="${element.status.equals('APPROVED')}">
+                                <button class="check_btn disabled_btn approved_btn" disabled>APPROVED</button>
+                              </c:when>
+                              <c:otherwise>
+                                <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
+                              </c:otherwise>
+                            </c:choose>
+                          </div>
+                        </div>
+                      </c:forEach>
 
                     </div>
 

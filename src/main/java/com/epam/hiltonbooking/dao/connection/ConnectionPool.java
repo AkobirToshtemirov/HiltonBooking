@@ -81,22 +81,6 @@ public class ConnectionPool {
         logger.info("Connection pool closed");
     }
 
-//    public void destroy() throws ConnectionException {
-//        try {
-//            for (ProxyConnection connection : availableConnections) {
-//                connection.closeConnection();
-//            }
-//            for (ProxyConnection connection : usedConnections) {
-//                connection.closeConnection();
-//            }
-//        } catch (SQLException e) {
-//            logger.error("Unable to close all connections!", e);
-//            throw new ConnectionException(e.getMessage(), e);
-//        }
-//
-//        logger.info("Connection pool closed");
-//    }
-
     private static class Holder {
         static final ConnectionPool INSTANCE = new ConnectionPool();
     }

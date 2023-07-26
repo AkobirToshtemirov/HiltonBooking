@@ -6,9 +6,5 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <display-name>Archetype Created Web Application</display-name>
-<!--    <context-param>-->
-<!--        <param-name>org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH</param-name>-->
-<!--        <param-value>true</param-value>-->
-<!--    </context-param>-->
 
 </web-app>
