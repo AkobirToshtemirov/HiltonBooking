@@ -12,7 +12,11 @@ import java.io.IOException;
 public class ErrorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendError(HttpServletResponse.SC_NOT_FOUND, "The requested page is not available.");
+        req.getRequestDispatcher("/WEB-INF/error.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect(req.getContextPath() + "/home");
     }
 }
-

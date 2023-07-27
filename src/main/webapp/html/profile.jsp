@@ -29,7 +29,15 @@
           <div class="profile_main">
             <form action="profile" method="post">
               <h1>Profile Infromation</h1>
+
               <div class="profile_block">
+               <% String info=(String) request.getAttribute("info"); %>
+
+                              <% if (info !=null && !info.isEmpty()) { %>
+                                <p style="color: red; font-size: 16px; text-align: center;" class="error-message">
+                                  <%= info %>
+                                </p>
+                                <% } %>
                 <label for="first_name">
                   <h3>Firstname: </h3>
                   <input class="info_input" type="text" name="firstname" id="first_name" value="${user.firstName}"

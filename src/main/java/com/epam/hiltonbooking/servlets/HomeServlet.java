@@ -38,16 +38,17 @@ public class HomeServlet extends HttpServlet {
             boolean result = false;
             if (messangerName.isPresent() && messangerEmail.isPresent() && messangerPhone.isPresent() && messageText.isPresent()) {
                 result = messageService.addNewMessage(messangerName.get(), messangerEmail.get(), messangerPhone.get(), messageText.get());
-            }
-            if (result) {
-                infoMessage = "Message is sent!";
-            } else {
-                infoMessage = "Message is not sent! Try again! Please make sure you filled all inputs!";
-            }
-            req.setAttribute("messageStatus", infoMessage);
+                if (result) {
+                    infoMessage = "Message is sent!";
+                } else {
+                    infoMessage = "Message is not sent! Try again! Please make sure you filled all inputs!";
+                }
+                req.setAttribute("infoMessage", infoMessage);
 
-            String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath);
+                doGet(req, resp);
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/error");
+            }
         } catch (ServiceException e) {
             logger.error("Unable to send message!");
             throw new RuntimeException(e);

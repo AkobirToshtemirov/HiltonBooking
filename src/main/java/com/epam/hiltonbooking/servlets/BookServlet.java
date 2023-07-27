@@ -83,6 +83,8 @@ public class BookServlet extends HttpServlet {
                         resp.sendRedirect(req.getContextPath() + "/book");
                     }
                 }
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/error");
             }
         } catch (ServiceException | ParseException e) {
             throw new RuntimeException(e);

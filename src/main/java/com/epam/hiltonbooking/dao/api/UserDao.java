@@ -12,5 +12,4 @@ public interface UserDao extends Dao<User>{
     Optional<User> findUserByUsername(String username) throws DaoException;
 
     void updateUserInformation(User user) throws DaoException;
-
 }

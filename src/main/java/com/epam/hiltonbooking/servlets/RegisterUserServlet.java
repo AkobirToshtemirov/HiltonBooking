@@ -60,6 +60,8 @@ public class RegisterUserServlet extends HttpServlet {
                         req.getRequestDispatcher("/login").forward(req, resp);
                     }
                 }
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/error");
             }
 
         } catch (ServiceException e) {

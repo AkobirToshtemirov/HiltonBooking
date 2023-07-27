@@ -4,12 +4,12 @@ import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.exceptions.ServiceException;
 import com.epam.hiltonbooking.service.api.RoomService;
 import com.epam.hiltonbooking.service.api.ServiceFactory;
-import com.epam.hiltonbooking.service.api.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,6 +23,7 @@ public class DeleteRoomServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         Optional<String> roomId = Optional.ofNullable(req.getParameter("room-id"));
 
         RoomService roomService = ServiceFactory.getInstance().getRoomService();
@@ -30,15 +31,22 @@ public class DeleteRoomServlet extends HttpServlet {
         try {
             if (roomId.isPresent()) {
                 Optional<Room> roomOptional = roomService.getRoomById(Integer.valueOf(roomId.get()));
-                String infoMessage;
-                if (roomOptional.get().isActive()) {
-                    roomService.deleteById(Integer.valueOf(roomId.get()));
-                    infoMessage = "Room is deleted successfully!";
+
+                if(roomOptional.isPresent()) {
+                    String deleteMessage;
+                    if (roomOptional.get().isActive()) {
+                        roomService.deleteById(Integer.valueOf(roomId.get()));
+                        deleteMessage = "Room is deleted successfully!";
+                    } else {
+                        deleteMessage = "Room is not deleted. Room is booked!";
+                    }
+                    session.setAttribute("deleteMessage", deleteMessage);
+                    resp.sendRedirect(req.getContextPath() + "/rooms");
                 } else {
-                    infoMessage = "Room is not deleted. Room is booked!";
+                    resp.sendRedirect(req.getContextPath() + "/error");
                 }
-                req.setAttribute("error", infoMessage);
-                resp.sendRedirect(req.getContextPath() + "/rooms");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/error");
             }
         } catch (ServiceException e) {
             logger.error("Unable to delete room!");

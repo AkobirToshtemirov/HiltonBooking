@@ -75,6 +75,8 @@
                         </form>
                 </div>
 
+                <p style="color: red; font-size: 16px;" class="error-message">${infoMessage}</p>
+
                 <div class="users_main">
                   <div class="users_block">
                     <div class="users_headline">

@@ -76,9 +76,9 @@ public class RoomsServlet extends HttpServlet {
                         infoMessage = "Error occurred. Room is not added! Try again!";
                     }
                 }
-
                 req.setAttribute("info", infoMessage);
                 doGet(req, resp);
+
             }
         } catch (ServiceException e) {
             logger.error("Unable to add new room(admin)!");

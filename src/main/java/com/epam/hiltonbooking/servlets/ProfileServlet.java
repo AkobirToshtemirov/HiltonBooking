@@ -54,32 +54,43 @@ public class ProfileServlet extends HttpServlet {
             String infoMessage = null;
             if (firstName.isPresent() && lastName.isPresent() && email.isPresent() && username.isPresent() &&
                     password.isPresent()) {
-                if (!user.getEmail().equals(email.get()) && userService.isEmailInUse((email.get()))) {
-                    infoMessage = "Email is in user. You already registered!";
-                    req.setAttribute("info", infoMessage);
-                    req.getRequestDispatcher("/register").forward(req, resp);
-                } else if (!user.getUsername().equals(username.get()) && userService.isUsernameInUse(username.get())) {
-                    infoMessage = "Username is in user. Please choose another username!";
-                    req.setAttribute("info", infoMessage);
-                    req.getRequestDispatcher("/register").forward(req, resp);
-                } else {
-                    user.setFirstName(firstName.get());
-                    user.setLastName(lastName.get());
-                    user.setEmail(email.get());
-                    user.setUsername(username.get());
-                    user.setPassword(password.get());
-
-                    boolean result = userService.updateUser(user);
-
-                    if (result) {
-                        infoMessage = "Successfully updated!";
+                if (!user.getEmail().equals(email.get())) {
+                    // Check if the email is in use by other users
+                    if (userService.isEmailInUse(email.get())) {
+                        infoMessage = "Email is already in use by another user. Please choose another email!";
                         req.setAttribute("info", infoMessage);
-
-                        session.setAttribute("user", user);
-
-                        resp.sendRedirect(req.getContextPath() + "/profile");
+                        doGet(req, resp);
+                    } else {
+                        user.setEmail(email.get());
                     }
                 }
+
+                if (!user.getUsername().equals(username.get())) {
+                    // Check if the username is in use by other users
+                    if (userService.isUsernameInUse(username.get())) {
+                        infoMessage = "Username is already in use by another user. Please choose another username!";
+                        req.setAttribute("info", infoMessage);
+                        doGet(req, resp);
+                    } else {
+                        user.setUsername(username.get());
+                    }
+                }
+
+                user.setFirstName(firstName.get());
+                user.setLastName(lastName.get());
+                user.setPassword(password.get());
+
+                boolean result = userService.updateUser(user);
+
+                if (result) {
+                    infoMessage = "Successfully updated!";
+                    session.setAttribute("user", user);
+                    req.setAttribute("info", infoMessage);
+                    doGet(req, resp);
+                }
+
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/error");
             }
         } catch (ServiceException e) {
             e.printStackTrace();
@@ -87,4 +98,5 @@ public class ProfileServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
 }

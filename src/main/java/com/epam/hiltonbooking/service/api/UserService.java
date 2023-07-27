@@ -22,4 +22,5 @@ public interface UserService {
     boolean updateUser(User updatedUser) throws ServiceException;
 
     boolean validateUser(String username, String password) throws ServiceException;
+    boolean hasBookings(Integer id) throws ServiceException;
 }

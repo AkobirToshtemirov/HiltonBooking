@@ -72,7 +72,7 @@ public class BookingDetailServlet extends HttpServlet {
 
         if ("APPROVE".equals(action)) {
             if (roomId == null || roomId.isEmpty() || bookingId == null || bookingId.isEmpty()) {
-                resp.sendRedirect(req.getContextPath() + "/error.jsp");
+                resp.sendRedirect(req.getContextPath() + "/error");
                 return;
             }
 
@@ -80,23 +80,29 @@ public class BookingDetailServlet extends HttpServlet {
                 RoomService roomService = ServiceFactory.getInstance().getRoomService();
                 Optional<Room> roomOptional = roomService.getRoomById(Integer.parseInt(roomId));
 
-                Room room = roomOptional.get();
+                if (roomOptional.isPresent()) {
+                    Room room = roomOptional.get();
 
-                roomService.setRoomInActiveById(room);
+                    roomService.setRoomInActiveById(room);
 
 
-                BookingService bookingService = ServiceFactory.getInstance().getBookingService();
-                Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId));
-                Booking booking = bookingOptional.get();
-                int stayingDays = calculateStayingDays(booking.getCheckIn(), booking.getCheckOut());
+                    BookingService bookingService = ServiceFactory.getInstance().getBookingService();
+                    Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId));
 
-                logger.info("staying days: ", stayingDays);
+                    if (bookingOptional.isPresent()) {
+                        Booking booking = bookingOptional.get();
+                        int stayingDays = calculateStayingDays(booking.getCheckIn(), booking.getCheckOut());
 
-                BigDecimal totalCost = BigDecimal.valueOf(room.getRoomCost() * stayingDays);
+                        BigDecimal totalCost = BigDecimal.valueOf(room.getRoomCost() * stayingDays);
 
-                logger.info("total cost: " + totalCost);
+                        bookingService.approveBooking(Integer.parseInt(bookingId), room, totalCost);
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + "/error");
+                    }
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/error");
+                }
 
-                bookingService.approveBooking(Integer.parseInt(bookingId), room, totalCost);
             } catch (ServiceException e) {
                 logger.error("Unable to approve booking");
                 throw new RuntimeException(e);

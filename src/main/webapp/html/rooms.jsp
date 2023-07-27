@@ -37,7 +37,7 @@
                   <% String info=(String) request.getAttribute("info"); %>
 
                     <% if (info !=null && !info.isEmpty()) { %>
-                      <p style="color: red; font-size: 16px;" class="error-message">
+                      <p style="color: red; font-size: 18px;" class="error-message">
                         <%= info %>
                       </p>
                       <% } %>
@@ -80,13 +80,9 @@
                         </form>
                 </div>
 
-                <% String error=(String) request.getAttribute("error"); %>
 
-                <% if (error !=null && !error.isEmpty()) { %>
-                  <p style="color: red; font-size: 16px;" class="error-message">
-                    <%= error %>
-                  </p>
-                  <% } %>
+
+              <p style="color: red; font-size: 16px;" class="error-message">${deleteMessage}</p>
 
                 <div class="rooms_main">
                   <div class="rooms_block">

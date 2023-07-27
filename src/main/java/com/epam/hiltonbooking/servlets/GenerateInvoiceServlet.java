@@ -34,9 +34,14 @@ public class GenerateInvoiceServlet extends HttpServlet {
             BookingService bookingService = ServiceFactory.getInstance().getBookingService();
             try {
                 Optional<Booking> booking = bookingService.getBookingById(Integer.valueOf(bookingId.get()));
-                req.setAttribute("booking", booking.get());
-                int stayingDays = calculateStayingDays(booking.get().getCheckIn(), booking.get().getCheckOut());
-                req.setAttribute("stayingDays", stayingDays);
+
+                if(booking.isPresent()) {
+                    req.setAttribute("booking", booking.get());
+                    int stayingDays = calculateStayingDays(booking.get().getCheckIn(), booking.get().getCheckOut());
+                    req.setAttribute("stayingDays", stayingDays);
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/error");
+                }
             } catch (ServiceException e) {
                 logger.error("unable to get invoice!");
                 throw new RuntimeException(e);

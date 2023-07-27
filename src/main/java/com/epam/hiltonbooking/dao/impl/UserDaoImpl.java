@@ -1,8 +1,11 @@
 package com.epam.hiltonbooking.dao.impl;
 
+import com.epam.hiltonbooking.bean.Booking;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.dao.Table;
 import com.epam.hiltonbooking.dao.api.AbstractDao;
+import com.epam.hiltonbooking.dao.api.BookingDao;
+import com.epam.hiltonbooking.dao.api.DaoFactory;
 import com.epam.hiltonbooking.dao.api.UserDao;
 import com.epam.hiltonbooking.dao.mapper.Mapper;
 import com.epam.hiltonbooking.dao.mapper.MapperFactory;

@@ -141,15 +141,18 @@
           </div>
           <div class="user_info_block">
             <form action="home" method="post">
-              <div class="basic_info">
-                <label for="contact_name">
-                  <p>Your name</p>
-                  <input class="top" type="text" name="messanger_name" id="contact_name" required>
-                </label>
-                <label for="contact_email">
-                  <p>Your email</p>
-                  <input name="messanger_email" id="contact_email" class="top" type="email" required>
-                </label>
+              <div>
+              <p style="color: red; font-size: 18px;" class="error-message">${infoMessage}</p>
+                <div class="basic_info">
+                    <label for="contact_name">
+                      <p>Your name</p>
+                      <input class="top" type="text" name="messanger_name" id="contact_name" required>
+                    </label>
+                    <label for="contact_email">
+                      <p>Your email</p>
+                      <input name="messanger_email" id="contact_email" class="top" type="email" required>
+                    </label>
+                  </div>
               </div>
               <label for="contact_phone">
                 <p>Phone number</p>

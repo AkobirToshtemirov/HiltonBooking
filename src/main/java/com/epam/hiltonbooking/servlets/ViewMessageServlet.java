@@ -1,13 +1,9 @@
 package com.epam.hiltonbooking.servlets;
 
-import com.epam.hiltonbooking.bean.Booking;
 import com.epam.hiltonbooking.bean.Message;
-import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;
-import com.epam.hiltonbooking.service.api.BookingService;
 import com.epam.hiltonbooking.service.api.MessageService;
-import com.epam.hiltonbooking.service.api.RoomService;
 import com.epam.hiltonbooking.service.api.ServiceFactory;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -20,7 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 @WebServlet("/view-message")
@@ -39,12 +34,17 @@ public class ViewMessageServlet extends HttpServlet {
 
             try {
                 Optional<Message> messageOptional = messageService.getMessageById(Integer.parseInt(messageId.get()));
-                Message message = messageOptional.get();
 
-                req.setAttribute("message", message);
+                if(messageOptional.isPresent()) {
+                    Message message = messageOptional.get();
 
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/html/viewMessage.jsp");
-                dispatcher.forward(req, resp);
+                    req.setAttribute("message", message);
+
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("/html/viewMessage.jsp");
+                    dispatcher.forward(req, resp);
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/error");
+                }
 
             } catch (ServiceException e) {
                 logger.error("Unable to get Message by message id!");

@@ -81,6 +81,8 @@ public class UsersServlet extends HttpServlet {
                 }
                 req.setAttribute("info", infoMessage);
                 doGet(req, resp);
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/error");
             }
         } catch (ServiceException e) {
             logger.error("Unable to register user(admin)!");

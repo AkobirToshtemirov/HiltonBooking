@@ -1,6 +1,8 @@
 package com.epam.hiltonbooking.service.impl;
 
+import com.epam.hiltonbooking.bean.Booking;
 import com.epam.hiltonbooking.bean.User;
+import com.epam.hiltonbooking.dao.api.BookingDao;
 import com.epam.hiltonbooking.dao.api.DaoFactory;
 import com.epam.hiltonbooking.dao.api.UserDao;
 import com.epam.hiltonbooking.exceptions.DaoException;
@@ -151,5 +153,17 @@ public class UserServiceImpl implements UserService {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean hasBookings(Integer id) throws ServiceException {
+    BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
+    List<Booking> bookings = null;
+        try {
+            bookings = bookingDao.getBookingsByUserId(id);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+        return !bookings.isEmpty();
     }
 }
