@@ -1302,6 +1302,12 @@ p {
   font-size: 18px;
 }
 
-.error_main a {
-  font-size: 20px;
+.error_main input {
+    background-color: transparent;
+    border: none;
+    color: blue;
+    text-decoration: 2px underline;
+    font-size: 20px;
+    cursor: pointer;
 }
+

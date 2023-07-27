@@ -14,9 +14,9 @@
     <div class="error_main">
         <h1>Error 404 - Page Not Found</h1>
         <p>The requested page is not available.</p>
-        <form action="${pageContext.request.contextPath}/home" method="post">
-            <input type="submit" value="Back to home page" />
-        </form>
+       <form action="${pageContext.request.contextPath}/error" method="post">
+           <input type="submit" value="Back to home page" />
+       </form>
     </div>
 </body>
 
