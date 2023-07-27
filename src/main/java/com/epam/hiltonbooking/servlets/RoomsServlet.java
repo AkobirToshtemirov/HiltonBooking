@@ -1,6 +1,5 @@
 package com.epam.hiltonbooking.servlets;
 
-import com.epam.hiltonbooking.bean.Booking;
 import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;

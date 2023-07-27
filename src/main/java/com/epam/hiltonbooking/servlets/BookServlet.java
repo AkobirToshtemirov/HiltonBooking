@@ -40,11 +40,11 @@ public class BookServlet extends HttpServlet {
         }
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-
 
         Optional<String> checkIn = Optional.ofNullable(req.getParameter("check-in"));
         Optional<String> checkOut = Optional.ofNullable(req.getParameter("check-out"));
@@ -61,25 +61,32 @@ public class BookServlet extends HttpServlet {
                 java.util.Date checkInDate = dateFormat.parse(checkIn.get());
                 java.util.Date checkOutDate = dateFormat.parse(checkOut.get());
 
-                Date sqlCheckInDate = new Date(checkInDate.getTime());
-                Date sqlCheckOutDate = new Date(checkOutDate.getTime());
-
-                boolean result = bookingService.addNewBooking(user, null, "WAITING", sqlCheckInDate, sqlCheckOutDate, Integer.parseInt(bedsAmount.get()), roomClass.get());
-
-                if (result) {
-                    infoMessage = "Booking added Successfully";
-                    session.setAttribute("info", infoMessage);
-                    resp.sendRedirect(req.getContextPath() + "/reservations");
+                if (checkOutDate.before(checkInDate)) {
+                    infoMessage = "Check-in date cannot be after the checkout date.";
+                    req.setAttribute("error", infoMessage);
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("/html/book.jsp");
+                    dispatcher.forward(req, resp);
                 } else {
-                    // Handle the case when any of the required parameters are missing
-                    infoMessage = "Please fill in all the required fields.";
-                    session.setAttribute("info", infoMessage);
-                    resp.sendRedirect(req.getContextPath() + "/book");
+                    Date sqlCheckInDate = new Date(checkInDate.getTime());
+                    Date sqlCheckOutDate = new Date(checkOutDate.getTime());
+
+                    boolean result = bookingService.addNewBooking(user, null, "WAITING", sqlCheckInDate, sqlCheckOutDate, Integer.parseInt(bedsAmount.get()), roomClass.get());
+
+                    if (result) {
+                        infoMessage = "Booking added Successfully";
+                        session.setAttribute("info", infoMessage);
+                        resp.sendRedirect(req.getContextPath() + "/reservations");
+                    } else {
+                        // Handle the case when any of the required parameters are missing
+                        infoMessage = "Please fill in all the required fields.";
+                        session.setAttribute("info", infoMessage);
+                        resp.sendRedirect(req.getContextPath() + "/book");
+                    }
                 }
             }
         } catch (ServiceException | ParseException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 }
