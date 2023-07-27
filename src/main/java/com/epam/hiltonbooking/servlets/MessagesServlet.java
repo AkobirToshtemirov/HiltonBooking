@@ -33,7 +33,7 @@ public class MessagesServlet extends HttpServlet {
 
             try {
                 List<Message> messageList = messageService.getAllMessages();
-                session.setAttribute("messageList", sortMessagesInDesc(messageList));
+                req.setAttribute("messageList", sortMessagesInDesc(messageList));
             } catch (ServiceException e) {
                 logger.error("Unable to get messages!");
                 throw new RuntimeException(e);

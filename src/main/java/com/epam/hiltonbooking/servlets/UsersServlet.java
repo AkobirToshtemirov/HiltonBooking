@@ -36,7 +36,7 @@ public class UsersServlet extends HttpServlet {
 
             try {
                 List<User> userList = userService.getAllUsers();
-                session.setAttribute("userList", sortUsersInDesc(userList));
+                req.setAttribute("userList", sortUsersInDesc(userList));
             } catch (ServiceException e) {
                 logger.error("Unable to get users!");
                 throw new RuntimeException(e);

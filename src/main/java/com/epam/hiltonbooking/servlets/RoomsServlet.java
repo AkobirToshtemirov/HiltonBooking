@@ -34,7 +34,7 @@ public class RoomsServlet extends HttpServlet {
 
             try {
                 List<Room> roomList = roomService.getAllRooms();
-                session.setAttribute("roomList", sortRooms(roomList));
+                req.setAttribute("roomList", sortRooms(roomList));
             } catch (ServiceException e) {
                 logger.error("Unable to get users!");
                 throw new RuntimeException(e);

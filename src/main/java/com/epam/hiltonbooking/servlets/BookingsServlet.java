@@ -38,7 +38,7 @@ public class BookingsServlet extends HttpServlet {
 
             try {
                 List<Booking> allBookings = bookingService.getAllBookings();
-                session.setAttribute("allBookings", sortBookingsInDesc(allBookings));
+                req.setAttribute("allBookings", sortBookingsInDesc(allBookings));
             } catch (ServiceException e) {
                 logger.error("Unable to get list of bookings!");
                 throw new RuntimeException(e);
@@ -51,7 +51,7 @@ public class BookingsServlet extends HttpServlet {
 
             try {
                 List<Booking> userBookings = bookingService.getBookingsByUserId(user.getId());
-                session.setAttribute("userBookings", sortBookingsInDesc(userBookings));
+                req.setAttribute("userBookings", sortBookingsInDesc(userBookings));
             } catch (ServiceException e) {
                 logger.error("Unable to get list of bookings by userID!");
                 throw new RuntimeException(e);

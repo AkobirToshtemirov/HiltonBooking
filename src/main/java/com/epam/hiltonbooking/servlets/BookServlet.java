@@ -61,8 +61,8 @@ public class BookServlet extends HttpServlet {
                 java.util.Date checkInDate = dateFormat.parse(checkIn.get());
                 java.util.Date checkOutDate = dateFormat.parse(checkOut.get());
 
-                if (checkOutDate.before(checkInDate)) {
-                    infoMessage = "Check-in date cannot be after the checkout date.";
+                if (checkOutDate.before(checkInDate) || checkOutDate.equals(checkInDate)) {
+                    infoMessage = "Check-in date cannot be after the checkout date. Or same either!";
                     req.setAttribute("error", infoMessage);
                     RequestDispatcher dispatcher = req.getRequestDispatcher("/html/book.jsp");
                     dispatcher.forward(req, resp);
@@ -74,12 +74,12 @@ public class BookServlet extends HttpServlet {
 
                     if (result) {
                         infoMessage = "Booking added Successfully";
-                        session.setAttribute("info", infoMessage);
+                        req.setAttribute("info", infoMessage);
                         resp.sendRedirect(req.getContextPath() + "/reservations");
                     } else {
                         // Handle the case when any of the required parameters are missing
                         infoMessage = "Please fill in all the required fields.";
-                        session.setAttribute("info", infoMessage);
+                        req.setAttribute("info", infoMessage);
                         resp.sendRedirect(req.getContextPath() + "/book");
                     }
                 }
