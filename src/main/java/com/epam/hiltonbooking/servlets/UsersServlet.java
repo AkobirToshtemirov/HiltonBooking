@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class UsersServlet extends HttpServlet {
 
             try {
                 List<User> userList = userService.getAllUsers();
-                session.setAttribute("userList", userList);
+                session.setAttribute("userList", sortUsersInDesc(userList));
             } catch (ServiceException e) {
                 logger.error("Unable to get users!");
                 throw new RuntimeException(e);
@@ -85,6 +86,11 @@ public class UsersServlet extends HttpServlet {
             logger.error("Unable to register user(admin)!");
             throw new RuntimeException(e);
         }
+    }
+
+    List<User> sortUsersInDesc(List<User> userList) {
+        userList.sort(Comparator.comparing(User::getId).reversed());
+        return userList;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.epam.hiltonbooking.servlets;
 
+import com.epam.hiltonbooking.bean.Booking;
 import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;
@@ -16,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +35,7 @@ public class RoomsServlet extends HttpServlet {
 
             try {
                 List<Room> roomList = roomService.getAllRooms();
-                session.setAttribute("roomList", roomList);
+                session.setAttribute("roomList", sortRooms(roomList));
             } catch (ServiceException e) {
                 logger.error("Unable to get users!");
                 throw new RuntimeException(e);
@@ -70,9 +72,9 @@ public class RoomsServlet extends HttpServlet {
                             Integer.parseInt(bedsAmount.get()), Double.parseDouble(roomCost.get()));
 
                     if (result) {
-                        infoMessage = "Successfully add the new room!";
+                        infoMessage = "Successfully added the new room!";
                     } else {
-                        infoMessage = "Error occurred. Room is not add! Try again!";
+                        infoMessage = "Error occurred. Room is not added! Try again!";
                     }
                 }
 
@@ -85,4 +87,10 @@ public class RoomsServlet extends HttpServlet {
         }
 
     }
+
+    List<Room> sortRooms(List<Room> roomList) {
+        roomList.sort(Comparator.comparing(Room::getRoomNumber));
+        return roomList;
+    }
+
 }

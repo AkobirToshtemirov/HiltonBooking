@@ -20,11 +20,13 @@
       <div class="manager_btns">
         <a class="accaunt_btn btn" href="profile">My Profile</a>
         <a class="logout_btn btn" href="logout">Log Out</a>
-        <select name="locale" form="language_change" id="lan">
-          <option value="en" selected>EN</option>
-          <option value="uz">UZ</option>
-          <option value="ru">RU</option>
-        </select>
+        <form action="" id="localeForm">
+            <select name="locale" id="lan">
+                      <option value="en" ${pageContext.request.locale.language eq 'en' ? 'selected' : '' }>EN</option>
+                      <option value="uz" ${pageContext.request.locale.language eq 'uz' ? 'selected' : '' }>UZ</option>
+                      <option value="ru" ${pageContext.request.locale.language eq 'ru' ? 'selected' : '' }>RU</option>
+            </select>
+          </form>
       </div>
     </div>
   </div>

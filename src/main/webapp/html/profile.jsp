@@ -73,6 +73,8 @@
 
       <jsp:include page="footer.jsp" />
 
+      <script src="./js/script.js"></script>
+
     </body>
 
     </html>

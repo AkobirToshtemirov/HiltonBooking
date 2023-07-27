@@ -911,6 +911,11 @@ select {
   margin-bottom: 10px;
 }
 
+.setting_manager_block {
+  display: flex;
+  align-items: center;
+}
+
 .setting_manager_block select {
   height: 25px;
   padding: 0 5px;
@@ -1280,4 +1285,22 @@ select {
 
 .bookings_main .bar {
   width: 180px !important;
+}
+
+.error_main {
+  text-align: center;
+  padding: 40px;
+}
+
+.error_main h1,
+p {
+  margin-bottom: 20px;
+}
+
+.error_main p {
+  font-size: 18px;
+}
+
+.error_main a {
+  font-size: 20px;
 }

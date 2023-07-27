@@ -16,6 +16,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +38,7 @@ public class BookingsServlet extends HttpServlet {
 
             try {
                 List<Booking> allBookings = bookingService.getAllBookings();
-                session.setAttribute("allBookings", allBookings);
+                session.setAttribute("allBookings", sortBookingsInDesc(allBookings));
             } catch (ServiceException e) {
                 logger.error("Unable to get list of bookings!");
                 throw new RuntimeException(e);
@@ -49,7 +51,7 @@ public class BookingsServlet extends HttpServlet {
 
             try {
                 List<Booking> userBookings = bookingService.getBookingsByUserId(user.getId());
-                session.setAttribute("userBookings", userBookings);
+                session.setAttribute("userBookings", sortBookingsInDesc(userBookings));
             } catch (ServiceException e) {
                 logger.error("Unable to get list of bookings by userID!");
                 throw new RuntimeException(e);
@@ -59,6 +61,11 @@ public class BookingsServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/html/bookings.jsp");
             dispatcher.forward(req, resp);
         }
+    }
+
+    List<Booking> sortBookingsInDesc(List<Booking> bookingList) {
+        bookingList.sort(Comparator.comparing(Booking::getId).reversed());
+        return bookingList;
     }
 
 }

@@ -24,3 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
   checkinInput.value = today;
   checkoutInput.value = tomorrow;
 });
+
+const localeForm = document.getElementById('localeForm');
+const lanSelect = document.getElementById('lan');
+
+lanSelect.addEventListener('change', () => {
+    localeForm.submit();
+});

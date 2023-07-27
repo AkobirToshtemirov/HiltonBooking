@@ -106,6 +106,7 @@ public class BookingServiceImpl implements BookingService {
             if (status.equals("CANCELLED")) {
                 throw new ServiceException("Cannot cancel th booking which is " + status);
             }
+            booking.setRoom(null);
             booking.setStatus("CANCELLED");
             bookingDao.updateBooking(booking);
         } catch (DaoException e) {

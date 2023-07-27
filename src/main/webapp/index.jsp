@@ -1,5 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${pageContext.request.locale.language}">
 
 <head>
   <meta charset="UTF-8">
@@ -39,11 +44,11 @@
         <div class="manager_btns">
           <a class="login_btn btn" href="login">Log in</a>
           <a class="register_btn btn" href="register">Sign Up</a>
-          <form action="">
+          <form action="" id="localeForm">
             <select name="locale" id="lan">
-              <option value="en" selected>EN</option>
-              <option value="uz">UZ</option>
-              <option value="ru">RU</option>
+                      <option value="en" ${pageContext.request.locale.language eq 'en' ? 'selected' : '' }>EN</option>
+                      <option value="uz" ${pageContext.request.locale.language eq 'uz' ? 'selected' : '' }>UZ</option>
+                      <option value="ru" ${pageContext.request.locale.language eq 'ru' ? 'selected' : '' }>RU</option>
             </select>
           </form>
         </div>
@@ -51,14 +56,16 @@
     </div>
   </header>
 
-  <section id="home">
+ <section id="home">
     <div class="container">
       <div class="overview_main">
         <div class="overview">
+          <!-- <h1><fmt:message key="welcome" /></h1> -->
           <h1>Welcome to Hilton in Tashkent - Where Timeless Elegance Meets Modern Comfort!</h1>
         </div>
         <div class="login_block">
-          <a class="overview_login_btn" href="login">Log in to book a room</a>
+         <!-- <a class="overview_login_btn" href="login"><fmt:message key="login.button" /></a> -->
+         <a class="overview_login_btn" href="login">Log in to book a room</a>
         </div>
       </div>
     </div>
@@ -163,6 +170,8 @@
   </section>
 
   <jsp:include page="/html/footer.jsp" />
+
+  <script src="./js/script.js"></script>
 
 </body>
 

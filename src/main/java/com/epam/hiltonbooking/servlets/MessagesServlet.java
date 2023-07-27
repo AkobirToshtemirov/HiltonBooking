@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 @WebServlet("/messages")
@@ -32,7 +33,7 @@ public class MessagesServlet extends HttpServlet {
 
             try {
                 List<Message> messageList = messageService.getAllMessages();
-                session.setAttribute("messageList", messageList);
+                session.setAttribute("messageList", sortMessagesInDesc(messageList));
             } catch (ServiceException e) {
                 logger.error("Unable to get messages!");
                 throw new RuntimeException(e);
@@ -47,5 +48,11 @@ public class MessagesServlet extends HttpServlet {
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath);
         }
+    }
+
+
+    List<Message> sortMessagesInDesc(List<Message> messageList) {
+        messageList.sort(Comparator.comparing(Message::getId).reversed());
+        return messageList;
     }
 }
