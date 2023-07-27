@@ -12,4 +12,5 @@ Used technologies:
 
 ERD diagram:
 
-![image](https://github.com/AkobirToshtemirov/HiltonBooking/assets/88495573/2390406f-9b56-438c-98de-a6a4c8e306aa)
+![image](https://github.com/AkobirToshtemirov/HiltonBooking/assets/88495573/316284d8-0771-4b88-acea-7c05f88b28ba)
+
