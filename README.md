@@ -8,7 +8,7 @@ Hotel Booking. The Client fills in the Application, indicating the number of bed
 The administrator manages the Clients and the Numbers, reviews the received Applications, selects the most suitable of the available Numbers, issues an Invoice to the Client.
 
 Used technologies:
-  Java, Servlet API, JSP, HTML, CSS, JavaScript, Apache Tomcat version - 10.1.10
+  Java, Servlet API, JSP, PostgreSQL, HTML, CSS, JavaScript, Apache Tomcat version - 10.1.10
 
 ERD diagram:
 
