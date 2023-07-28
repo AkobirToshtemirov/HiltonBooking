@@ -73,7 +73,7 @@ public class ToolServlet extends HttpServlet {
     }
 
     List<Booking> sortList(List<Booking> list) {
-        list.sort(Comparator.comparing(Booking::getId));
+        list.sort(Comparator.comparing(Booking::getId).reversed());
         return list;
     }
 }
