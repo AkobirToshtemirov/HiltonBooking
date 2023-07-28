@@ -118,7 +118,7 @@
 
                                </div>
                          </c:when>
-
+                        <%--
                          <c:when test="${tool.equals('newMessages')}">
                             <div class="messages">
 
@@ -140,6 +140,7 @@
 
                                 </div>
                          </c:when>
+                         --%>
                       </c:choose>
 
                   </div>

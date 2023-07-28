@@ -29,9 +29,9 @@
               <input type="hidden" id="actionInput" name="action" value="" />
                <div class="tools">
                  <button class="tool_link" data-action="newBookings">New Bookings</button>
-                 <button class="tool_link" data-action="newMessages">New Messages</button>
                  <button class="tool_link" data-action="approvedBookings">Approved Bookings</button>
                  <button class="tool_link" data-action="cancelledBookings">Cancelled Bookings</button>
+                 <button class="tool_link" data-action="messages">Messages</button>
                  <button class="tool_link" data-action="rooms">Add Rooms</button>
                  <button class="tool_link" data-action="users">Add Users</button>
                </div>

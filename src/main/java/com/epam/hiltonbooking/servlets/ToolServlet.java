@@ -1,7 +1,6 @@
 package com.epam.hiltonbooking.servlets;
 
 import com.epam.hiltonbooking.bean.Booking;
-import com.epam.hiltonbooking.bean.Room;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;
 import com.epam.hiltonbooking.service.api.BookingService;
@@ -51,6 +50,9 @@ public class ToolServlet extends HttpServlet {
                     return;
                 } else if (action.equals("users")) {
                     resp.sendRedirect(req.getContextPath() + "/users");
+                    return;
+                } else if(action.equals("newMessages")) {
+                    resp.sendRedirect(req.getContextPath() + "/messages");
                     return;
                 }
 
