@@ -25,14 +25,17 @@
           <div class="dashboard_tools">
             <h2>Dashboard</h2>
 
-            <div class="tools">
-              <a class="tool_link" href="reservations">Bookings</a>
-              <a class="tool_link" href="messages">Messages</a>
-              <!-- <a class="tool_link" href="">Approved Bookings</a>
-              <a class="tool_link" href="">Cancelled Bookings</a> -->
-              <a class="tool_link" href="rooms">Rooms</a>
-              <a class="tool_link" href="users">Users</a>
-            </div>
+            <form action="tool" method="get" id="toolForm">
+              <input type="hidden" id="actionInput" name="action" value="" />
+               <div class="tools">
+                 <button class="tool_link" data-action="newBookings">New Bookings</button>
+                 <button class="tool_link" data-action="newMessages">New Messages</button>
+                 <button class="tool_link" data-action="approvedBookings">Approved Bookings</button>
+                 <button class="tool_link" data-action="cancelledBookings">Cancelled Bookings</button>
+                 <button class="tool_link" data-action="rooms">Add Rooms</button>
+                 <button class="tool_link" data-action="users">Add Users</button>
+               </div>
+            <form>
           </div>
         </div>
       </div>

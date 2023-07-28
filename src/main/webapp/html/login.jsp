@@ -43,7 +43,7 @@
               <a class="login_btn btn" href="login">Log in</a>
               <a class="register_btn btn" href="register">Sign Up</a>
               <form action="">
-                <select name="locale" id="lan">
+                <select name="language" id="lan">
                   <option value="en" selected>EN</option>
                   <option value="uz">UZ</option>
                   <option value="ru">RU</option>

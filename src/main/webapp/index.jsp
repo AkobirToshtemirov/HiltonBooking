@@ -45,7 +45,7 @@
           <a class="login_btn btn" href="login">Log in</a>
           <a class="register_btn btn" href="register">Sign Up</a>
           <form action="" id="localeForm">
-            <select name="locale" id="lan">
+            <select name="language" id="lan">
                       <option value="en" ${pageContext.request.locale.language eq 'en' ? 'selected' : '' }>EN</option>
                       <option value="uz" ${pageContext.request.locale.language eq 'uz' ? 'selected' : '' }>UZ</option>
                       <option value="ru" ${pageContext.request.locale.language eq 'ru' ? 'selected' : '' }>RU</option>
