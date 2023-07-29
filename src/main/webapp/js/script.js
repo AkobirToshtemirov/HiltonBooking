@@ -34,33 +34,33 @@ const localeForm = document.getElementById('localeForm');
 const lanSelect = document.getElementById('lan');
 
 lanSelect.addEventListener('change', () => {
-    localeForm.submit();
+  localeForm.submit();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-const buttons = document.querySelectorAll('.tool_link');
-const actionInput = document.getElementById('actionInput');
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.tool_link');
+  const actionInput = document.getElementById('actionInput');
 
-buttons.forEach(button => {
-button.addEventListener('click', function(event) {
-  event.preventDefault();
-  const action = button.dataset.action;
-  actionInput.value = action;
-  console.log("actionInput.value");
-  document.getElementById('toolForm').submit();
-});
-});
+  buttons.forEach(button => {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      const action = button.dataset.action;
+      actionInput.value = action;
+      console.log("actionInput.value");
+      document.getElementById('toolForm').submit();
+    });
+  });
 });
 
 function generatePDF() {
-    const invoiceBlock = document.getElementById('invoiceBlock');
-    const opt = {
-        margin: 10,
-        filename: 'invoice.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+  const invoiceBlock = document.getElementById('invoiceBlock');
+  const opt = {
+    margin: 10,
+    filename: 'invoice.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
 
-    html2pdf().from(invoiceBlock).set(opt).save();
+  html2pdf().from(invoiceBlock).set(opt).save();
 }

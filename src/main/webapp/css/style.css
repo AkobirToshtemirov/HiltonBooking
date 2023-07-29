@@ -748,6 +748,7 @@ select {
   justify-content: center;
 }
 
+
 .invoice_block {
   border-radius: 10px;
   padding: 20px;
@@ -758,6 +759,12 @@ select {
   text-align: center;
   color: #f06101;
   margin-bottom: 15px;
+}
+
+#invoiceBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .invoice_table div {
@@ -806,7 +813,7 @@ select {
     0 4px 4px hsl(0deg 0% 0% / 0.075),
     0 8px 8px hsl(0deg 0% 0% / 0.075),
     0 16px 16px hsl(0deg 0% 0% / 0.075);
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* dashboard.html */
@@ -964,7 +971,7 @@ select {
 .tools .tool_link:hover {
   transform: translateY(-10px);
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-   cursor: pointer;
+  cursor: pointer;
 }
 
 /* reservations.html */
@@ -1305,11 +1312,10 @@ p {
 }
 
 .error_main input {
-    background-color: transparent;
-    border: none;
-    color: blue;
-    text-decoration: 2px underline;
-    font-size: 20px;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: blue;
+  text-decoration: 2px underline;
+  font-size: 20px;
+  cursor: pointer;
 }
-
