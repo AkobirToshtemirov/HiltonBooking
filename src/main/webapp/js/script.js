@@ -51,3 +51,16 @@ button.addEventListener('click', function(event) {
 });
 });
 });
+
+function generatePDF() {
+    const invoiceBlock = document.getElementById('invoiceBlock');
+    const opt = {
+        margin: 10,
+        filename: 'invoice.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().from(invoiceBlock).set(opt).save();
+}

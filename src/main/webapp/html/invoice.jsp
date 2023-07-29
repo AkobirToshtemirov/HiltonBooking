@@ -16,6 +16,9 @@
 
     <!-- footer css -->
     <link rel="stylesheet" href="./css/footer.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -28,7 +31,7 @@
             <div class="invoice_block">
                 <h1>Invoice Details</h1>
 
-                <div class="invoice_table">
+                <div class="invoice_table" id="invoiceBlock">
                     <div>
                         <div class="invoice_highlight_text">
                             <h4>Booking No: </h4>
@@ -100,7 +103,7 @@
                 </div>
 
                 <div class="print_btn_container">
-                    <a class="print_btn" href="">Print</a>
+                    <a class="print_btn" onclick="generatePDF()">Print</a>
                 </div>
             </div>
         </div>
