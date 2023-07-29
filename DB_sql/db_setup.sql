@@ -13,7 +13,7 @@ CREATE TABLE users (
 
 CREATE TABLE rooms (
   room_id SERIAL PRIMARY KEY,
-  room_number INT NOT NULL,
+  room_number INT NOT NULL UNIQUE,
   room_class VARCHAR(50) NOT NULL,
   beds_amount SMALLINT NOT NULL,
   is_active BOOLEAN NOT NULL DEFAULT true,

@@ -35,12 +35,14 @@
                       <div class="bar">Client</div>
                       <div class="bar">Check In</div>
                       <div class="bar">Check Out</div>
+                      <c:if test="${tool.equals('approvedBookings')}">
+                         <div class="bar">Room No</div>
+                      </c:if>
                       <div class="bar">No of beds</div>
                       <div class="bar">Room class</div>
                       <div class="bar">Status</div>
                       <div class="bar">Booking Time</div>
                       <div class="bar">
-                        <a class="check_btn" href=""></a>
                         <a class="check_btn" href=""></a>
                       </div>
                     </div>
@@ -82,6 +84,7 @@
                                 <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
                                 <div class="bar">${element.checkIn}</div>
                                 <div class="bar">${element.checkOut}</div>
+                                <div class="bar">${element.room.roomNumber}</div>
                                 <div class="bar">${element.bedsAmount}</div>
                                 <div class="bar">${element.roomClass}</div>
                                 <div class="bar">${element.status}</div>

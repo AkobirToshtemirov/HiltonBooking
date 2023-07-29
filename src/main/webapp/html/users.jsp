@@ -84,7 +84,6 @@
                       <div class="bar">Last Name</div>
                       <div class="bar">Username</div>
                       <div class="bar">Email</div>
-                      <div class="bar">Password</div>
                       <div class="bar">Date of registration</div>
                       <div class="bar"></div>
                     </div>
@@ -98,7 +97,6 @@
                         <div class="bar">${user.lastName}</div>
                         <div class="bar">${user.username}</div>
                         <div class="bar">${user.email}</div>
-                        <div class="bar">${user.password}</div>
                         <div class="bar">${user.joinedTime}</div>
                         <div class="bar delete_btn_bar">
                           <form action="delete-user" method="post">
