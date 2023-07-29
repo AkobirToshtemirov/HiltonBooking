@@ -51,7 +51,7 @@ public class ToolServlet extends HttpServlet {
                 } else if (action.equals("users")) {
                     resp.sendRedirect(req.getContextPath() + "/users");
                     return;
-                } else if(action.equals("newMessages")) {
+                } else if (action.equals("newMessages")) {
                     resp.sendRedirect(req.getContextPath() + "/messages");
                     return;
                 }

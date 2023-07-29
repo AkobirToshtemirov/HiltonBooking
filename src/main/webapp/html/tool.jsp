@@ -45,103 +45,102 @@
                       </div>
                     </div>
 
-                     <c:choose>
+                    <c:choose>
 
-                        <c:when test="${tool.equals('newBookings')}">
-                            <div class="reservations">
+                      <c:when test="${tool.equals('newBookings')}">
+                        <div class="reservations">
 
-                              <c:forEach items="${bookings}" var="element">
-                                <c:if test="${element.status.equals('WAITING')}">
-                                    <div class="reservation">
-                                          <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
-                                          <div class="bar">${element.checkIn}</div>
-                                          <div class="bar">${element.checkOut}</div>
-                                          <div class="bar">${element.bedsAmount}</div>
-                                          <div class="bar">${element.roomClass}</div>
-                                          <div class="bar">${element.status}</div>
-                                          <div class="bar">${element.bookingTime}</div>
-                                          <div class="bar delete_btn_bar">
-                                              <form action="booking-details" method="get">
-                                                <input type="hidden" name="booking-id" value="${element.id}" />
-                                                <button type="submit" class="check_btn take_action_btn">Take Action</button>
-                                              </form>
-                                          </div>
-                                        </div>
-                                </c:if>
-                              </c:forEach>
-
-                            </div>
-                        </c:when>
-
-                         <c:when test="${tool.equals('approvedBookings')}">
-                            <div class="reservations">
-
-                              <c:forEach items="${bookings}" var="element">
-                                <c:if test="${element.status.equals('APPROVED')}">
-                                    <div class="reservation">
-                                          <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
-                                          <div class="bar">${element.checkIn}</div>
-                                          <div class="bar">${element.checkOut}</div>
-                                          <div class="bar">${element.bedsAmount}</div>
-                                          <div class="bar">${element.roomClass}</div>
-                                          <div class="bar">${element.status}</div>
-                                          <div class="bar">${element.bookingTime}</div>
-                                          <div class="bar delete_btn_bar">
-                                              <button class="check_btn disabled_btn approved_btn" disabled>APPROVED</button>
-                                          </div>
-                                        </div>
-                                </c:if>
-                              </c:forEach>
-
-                            </div>
-                         </c:when>
-
-                         <c:when test="${tool.equals('cancelledBookings')}">
-                               <div class="reservations">
-
-                                 <c:forEach items="${bookings}" var="element">
-                                   <c:if test="${element.status.equals('CANCELLED')}">
-                                       <div class="reservation">
-                                             <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
-                                             <div class="bar">${element.checkIn}</div>
-                                             <div class="bar">${element.checkOut}</div>
-                                             <div class="bar">${element.bedsAmount}</div>
-                                             <div class="bar">${element.roomClass}</div>
-                                             <div class="bar">${element.status}</div>
-                                             <div class="bar">${element.bookingTime}</div>
-                                             <div class="bar delete_btn_bar">
-                                                 <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
-                                             </div>
-                                           </div>
-                                   </c:if>
-                                 </c:forEach>
-
-                               </div>
-                         </c:when>
-                        <%--
-                         <c:when test="${tool.equals('newMessages')}">
-                            <div class="messages">
-
-                                  <c:forEach items="${messages}" var="message">
-                                    <div class="message">
-                                      <div class="bar messageText">${message.sentAt}</div>
-                                      <div class="bar messageText">${message.name}</div>
-                                      <div class="bar messageText">${message.email}</div>
-                                      <div class="bar messageText">${message.phoneNumber}</div>
-                                      <div class="bar messageText">${message.text}</div>
-                                      <div class="bar delete_btn_bar">
-                                        <form action="view-message" method="get">
-                                          <input type="hidden" name="message-id" value="${message.id}" />
-                                          <button type="submit" class="check_btn view_btn">View</button>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </c:forEach>
-
+                          <c:forEach items="${bookings}" var="element">
+                            <c:if test="${element.status.equals('WAITING')}">
+                              <div class="reservation">
+                                <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
+                                <div class="bar">${element.checkIn}</div>
+                                <div class="bar">${element.checkOut}</div>
+                                <div class="bar">${element.bedsAmount}</div>
+                                <div class="bar">${element.roomClass}</div>
+                                <div class="bar">${element.status}</div>
+                                <div class="bar">${element.bookingTime}</div>
+                                <div class="bar delete_btn_bar">
+                                  <form action="booking-details" method="get">
+                                    <input type="hidden" name="booking-id" value="${element.id}" />
+                                    <button type="submit" class="check_btn take_action_btn">Take Action</button>
+                                  </form>
                                 </div>
-                         </c:when>
-                         --%>
-                      </c:choose>
+                              </div>
+                            </c:if>
+                          </c:forEach>
+
+                        </div>
+                      </c:when>
+
+                      <c:when test="${tool.equals('approvedBookings')}">
+                        <div class="reservations">
+
+                          <c:forEach items="${bookings}" var="element">
+                            <c:if test="${element.status.equals('APPROVED')}">
+                              <div class="reservation">
+                                <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
+                                <div class="bar">${element.checkIn}</div>
+                                <div class="bar">${element.checkOut}</div>
+                                <div class="bar">${element.bedsAmount}</div>
+                                <div class="bar">${element.roomClass}</div>
+                                <div class="bar">${element.status}</div>
+                                <div class="bar">${element.bookingTime}</div>
+                                <div class="bar delete_btn_bar">
+                                  <button class="check_btn disabled_btn approved_btn" disabled>APPROVED</button>
+                                </div>
+                              </div>
+                            </c:if>
+                          </c:forEach>
+
+                        </div>
+                      </c:when>
+
+                      <c:when test="${tool.equals('cancelledBookings')}">
+                        <div class="reservations">
+
+                          <c:forEach items="${bookings}" var="element">
+                            <c:if test="${element.status.equals('CANCELLED')}">
+                              <div class="reservation">
+                                <div class="bar">${element.user.firstName} ${element.user.lastName}</div>
+                                <div class="bar">${element.checkIn}</div>
+                                <div class="bar">${element.checkOut}</div>
+                                <div class="bar">${element.bedsAmount}</div>
+                                <div class="bar">${element.roomClass}</div>
+                                <div class="bar">${element.status}</div>
+                                <div class="bar">${element.bookingTime}</div>
+                                <div class="bar delete_btn_bar">
+                                  <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
+                                </div>
+                              </div>
+                            </c:if>
+                          </c:forEach>
+
+                        </div>
+                      </c:when>
+                      <%-- <c:when test="${tool.equals('newMessages')}">
+                        <div class="messages">
+
+                          <c:forEach items="${messages}" var="message">
+                            <div class="message">
+                              <div class="bar messageText">${message.sentAt}</div>
+                              <div class="bar messageText">${message.name}</div>
+                              <div class="bar messageText">${message.email}</div>
+                              <div class="bar messageText">${message.phoneNumber}</div>
+                              <div class="bar messageText">${message.text}</div>
+                              <div class="bar delete_btn_bar">
+                                <form action="view-message" method="get">
+                                  <input type="hidden" name="message-id" value="${message.id}" />
+                                  <button type="submit" class="check_btn view_btn">View</button>
+                                </form>
+                              </div>
+                            </div>
+                          </c:forEach>
+
+                        </div>
+                        </c:when>
+                        --%>
+                    </c:choose>
 
                   </div>
                 </div>

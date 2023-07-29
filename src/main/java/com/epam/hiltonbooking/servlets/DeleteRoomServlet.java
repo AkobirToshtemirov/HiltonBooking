@@ -32,7 +32,7 @@ public class DeleteRoomServlet extends HttpServlet {
             if (roomId.isPresent()) {
                 Optional<Room> roomOptional = roomService.getRoomById(Integer.valueOf(roomId.get()));
 
-                if(roomOptional.isPresent()) {
+                if (roomOptional.isPresent()) {
                     String deleteMessage;
                     if (roomOptional.get().isActive()) {
                         roomService.deleteById(Integer.valueOf(roomId.get()));

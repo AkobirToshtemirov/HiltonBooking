@@ -35,7 +35,7 @@ public class GenerateInvoiceServlet extends HttpServlet {
             try {
                 Optional<Booking> booking = bookingService.getBookingById(Integer.valueOf(bookingId.get()));
 
-                if(booking.isPresent()) {
+                if (booking.isPresent()) {
                     req.setAttribute("booking", booking.get());
                     int stayingDays = calculateStayingDays(booking.get().getCheckIn(), booking.get().getCheckOut());
                     req.setAttribute("stayingDays", stayingDays);

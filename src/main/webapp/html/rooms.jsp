@@ -82,7 +82,7 @@
 
 
 
-              <p style="color: red; font-size: 16px;" class="error-message">${deleteMessage}</p>
+                <p style="color: red; font-size: 16px;" class="error-message">${deleteMessage}</p>
 
                 <div class="rooms_main">
                   <div class="rooms_block">

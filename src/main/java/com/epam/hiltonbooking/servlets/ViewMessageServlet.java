@@ -35,7 +35,7 @@ public class ViewMessageServlet extends HttpServlet {
             try {
                 Optional<Message> messageOptional = messageService.getMessageById(Integer.parseInt(messageId.get()));
 
-                if(messageOptional.isPresent()) {
+                if (messageOptional.isPresent()) {
                     Message message = messageOptional.get();
 
                     req.setAttribute("message", message);
