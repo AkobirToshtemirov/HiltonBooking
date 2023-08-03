@@ -9,7 +9,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +22,6 @@ public class DeleteRoomServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
         Optional<String> roomId = Optional.ofNullable(req.getParameter("room-id"));
 
         RoomService roomService = ServiceFactory.getInstance().getRoomService();
@@ -40,7 +38,7 @@ public class DeleteRoomServlet extends HttpServlet {
                     } else {
                         deleteMessage = "Room is not deleted. Room is booked!";
                     }
-                    session.setAttribute("deleteMessage", deleteMessage);
+                    req.getSession().setAttribute("deleteMessage", deleteMessage);
                     resp.sendRedirect(req.getContextPath() + "/rooms");
                 } else {
                     resp.sendRedirect(req.getContextPath() + "/error");

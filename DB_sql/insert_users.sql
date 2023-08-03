@@ -3,7 +3,7 @@ VALUES
   ('John', 'Doe', 'john.doe@example.com', 'john_doe', 'password123', false, '2023-07-26 12:34:56'),
   ('Jane', 'Smith', 'jane.smith@example.com', 'jane_smith', 'password456', false, '2023-07-26 13:45:22'),
   ('Alice', 'Johnson', 'alice.johnson@example.com', 'alice_j', 'alice123', false, '2023-07-26 16:09:11'),
-  ('Admin', 'User', 'hilton.admin@example.com', 'admin', 'admin', true, '2023-07-18 10:22:30'),
+  ('Jacob', 'Williams', 'hilton.admin@example.com', 'admin', 'admin', true, '2023-07-18 10:22:30'),
   ('Bob', 'Williams', 'bob.williams@example.com', 'bob_w', 'bob456', false, '2023-07-26 17:21:35'),
   ('Eva', 'Davis', 'eva.davis@example.com', 'eva_d', 'eva789', false, '2023-07-26 18:33:01'),
   ('Michael', 'Taylor', 'michael.taylor@example.com', 'michael_t', 'michael234', false, '2023-07-26 19:45:22'),

@@ -40,6 +40,12 @@ public class RoomsServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
 
+            String deleteMessage = (String) session.getAttribute("deleteMessage");
+            if (deleteMessage != null && !deleteMessage.isEmpty()) {
+                req.setAttribute("infoMessage", deleteMessage);
+                session.removeAttribute("infoMessage"); // Remove the attribute from the session after displaying it
+            }
+
             RequestDispatcher dispatcher = req.getRequestDispatcher("/html/rooms.jsp");
             dispatcher.forward(req, resp);
         } else if (user != null) {

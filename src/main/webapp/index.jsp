@@ -174,6 +174,23 @@
 
   <jsp:include page="/html/footer.jsp" />
 
+  <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var infoMessage = urlParams.get("infoMessage");
+    if (infoMessage) {
+      var errorElement = document.querySelector(".error-message");
+      if (errorElement) {
+        errorElement.textContent = infoMessage;
+      }
+
+
+      var contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  </script>
+
   <script src="./js/script.js"></script>
 
 </body>

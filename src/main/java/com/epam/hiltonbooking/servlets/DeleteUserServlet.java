@@ -8,7 +8,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +20,6 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
         Optional<String> userId = Optional.ofNullable(req.getParameter("user-id"));
 
         UserService userService = ServiceFactory.getInstance().getUserService();
@@ -35,7 +33,7 @@ public class DeleteUserServlet extends HttpServlet {
                     infoMessage = "Successfully deleted!";
                     userService.deleteUserById(Integer.valueOf(userId.get()));
                 }
-                session.setAttribute("infoMessage", infoMessage);
+                req.getSession().setAttribute("infoMessage", infoMessage); // Use the session to store the infoMessage
                 resp.sendRedirect(req.getContextPath() + "/users");
             } else {
                 resp.sendRedirect(req.getContextPath() + "/error");

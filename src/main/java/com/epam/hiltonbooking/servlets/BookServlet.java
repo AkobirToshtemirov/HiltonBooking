@@ -87,6 +87,7 @@ public class BookServlet extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/error");
             }
         } catch (ServiceException | ParseException e) {
+            logger.error("Unable to delete user!");
             throw new RuntimeException(e);
         }
     }

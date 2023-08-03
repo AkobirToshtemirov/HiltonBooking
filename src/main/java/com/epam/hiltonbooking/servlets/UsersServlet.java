@@ -42,6 +42,11 @@ public class UsersServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
 
+            String infoMessage = (String) session.getAttribute("infoMessage");
+            if (infoMessage != null && !infoMessage.isEmpty()) {
+                req.setAttribute("infoMessage", infoMessage);
+                session.removeAttribute("infoMessage");
+            }
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/html/users.jsp");
             dispatcher.forward(req, resp);

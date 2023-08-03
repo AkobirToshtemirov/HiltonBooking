@@ -60,7 +60,7 @@
                               <input type="text" id="username_user" name="username-user" required>
                             </label>
                             <label for="password_user">
-                              <p>Pasword</p>
+                              <p>Password</p>
                               <input type="password" id="password_user" name="password-user" required>
                             </label>
                           </div>
@@ -75,7 +75,13 @@
                         </form>
                 </div>
 
-                <p style="color: red; font-size: 16px;" class="error-message">${infoMessage}</p>
+                <% String infoMessage=(String) request.getAttribute("infoMessage"); %>
+
+                    <% if (infoMessage !=null && !infoMessage.isEmpty()) { %>
+                      <p style="color: red; font-size: 16px;" class="error-message">
+                        <%= infoMessage %>
+                      </p>
+                      <% } %>
 
                 <div class="users_main">
                   <div class="users_block">

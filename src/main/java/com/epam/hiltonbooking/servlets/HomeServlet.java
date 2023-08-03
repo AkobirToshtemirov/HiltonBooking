@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,8 +36,8 @@ public class HomeServlet extends HttpServlet {
         MessageService messageService = ServiceFactory.getInstance().getMessageService();
 
         try {
-            String infoMessage = null;
-            boolean result = false;
+            String infoMessage;
+            boolean result;
             if (messangerName.isPresent() && messangerEmail.isPresent() && messangerPhone.isPresent() && messageText.isPresent()) {
                 result = messageService.addNewMessage(messangerName.get(), messangerEmail.get(), messangerPhone.get(), messageText.get());
                 if (result) {
@@ -45,7 +47,11 @@ public class HomeServlet extends HttpServlet {
                 }
                 req.setAttribute("infoMessage", infoMessage);
 
-                doGet(req, resp);
+                String redirectURL = req.getContextPath() + "/home?infoMessage=" + URLEncoder.encode(infoMessage, "UTF-8") + "#contact";
+                resp.setContentType("text/html");
+                PrintWriter out = resp.getWriter();
+                out.println("<html><head><script>window.location.href='" + redirectURL + "';</script></head><body></body></html>");
+
             } else {
                 resp.sendRedirect(req.getContextPath() + "/error");
             }
