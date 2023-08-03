@@ -1,4 +1,10 @@
-HiltonTashkent DB:
+--   HiltonTashkent DB:
+
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS bookings;
+DROP TABLE IF EXISTS rooms;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
