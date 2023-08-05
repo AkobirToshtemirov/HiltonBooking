@@ -73,55 +73,91 @@ public class BookingDetailServlet extends HttpServlet {
         String roomId = req.getParameter("room-id");
         String bookingId = req.getParameter("booking-id");
 
-        if ("APPROVE".equals(action)) {
-            if (roomId == null || roomId.isEmpty() || bookingId == null || bookingId.isEmpty()) {
-                resp.sendRedirect(req.getContextPath() + "/error");
-                return;
-            }
+        switch (action) {
+            case "APPROVE":
+                if (roomId == null || roomId.isEmpty() || bookingId == null || bookingId.isEmpty()) {
+                    resp.sendRedirect(req.getContextPath() + "/error");
+                    return;
+                }
 
-            try {
-                RoomService roomService = ServiceFactory.getInstance().getRoomService();
-                Optional<Room> roomOptional = roomService.getRoomById(Integer.parseInt(roomId));
+                try {
+                    RoomService roomService = ServiceFactory.getInstance().getRoomService();
+                    Optional<Room> roomOptional = roomService.getRoomById(Integer.parseInt(roomId));
 
-                if (roomOptional.isPresent()) {
-                    Room room = roomOptional.get();
+                    if (roomOptional.isPresent()) {
+                        Room room = roomOptional.get();
+                        roomService.setRoomStatus(room, false);
 
-                    roomService.setRoomInActiveById(room);
+                        BookingService bookingService = ServiceFactory.getInstance().getBookingService();
+                        Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId));
 
+                        if (bookingOptional.isPresent()) {
+                            Booking booking = bookingOptional.get();
+                            int stayingDays = calculateStayingDays(booking.getCheckIn(), booking.getCheckOut());
 
-                    BookingService bookingService = ServiceFactory.getInstance().getBookingService();
-                    Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId));
+                            BigDecimal totalCost = BigDecimal.valueOf(room.getRoomCost() * stayingDays);
 
-                    if (bookingOptional.isPresent()) {
-                        Booking booking = bookingOptional.get();
-                        int stayingDays = calculateStayingDays(booking.getCheckIn(), booking.getCheckOut());
-
-                        BigDecimal totalCost = BigDecimal.valueOf(room.getRoomCost() * stayingDays);
-
-                        bookingService.approveBooking(Integer.parseInt(bookingId), room, totalCost);
+                            bookingService.approveBooking(Integer.parseInt(bookingId), room, totalCost);
+                        } else {
+                            resp.sendRedirect(req.getContextPath() + "/error");
+                        }
                     } else {
                         resp.sendRedirect(req.getContextPath() + "/error");
                     }
-                } else {
-                    resp.sendRedirect(req.getContextPath() + "/error");
+
+                } catch (ServiceException e) {
+                    logger.error("Unable to approve booking");
+                    throw new RuntimeException(e);
                 }
 
-            } catch (ServiceException e) {
-                logger.error("Unable to approve booking");
-                throw new RuntimeException(e);
-            }
+                resp.sendRedirect(req.getContextPath() + "/reservations");
+                break;
+            case "CANCEL": {
+                BookingService bookingService = ServiceFactory.getInstance().getBookingService();
+                try {
+                    bookingService.cancelBooking(Integer.parseInt(bookingId));
+                } catch (ServiceException e) {
+                    logger.error("Unable to cancel booking");
+                    throw new RuntimeException(e);
+                }
 
-            resp.sendRedirect(req.getContextPath() + "/reservations");
-        } else if ("CANCEL".equals(action)) {
-            BookingService bookingService = ServiceFactory.getInstance().getBookingService();
-            try {
-                bookingService.cancelBooking(Integer.parseInt(bookingId));
-            } catch (ServiceException e) {
-                logger.error("Unable to cancel booking");
-                throw new RuntimeException(e);
+                resp.sendRedirect(req.getContextPath() + "/reservations");
+                break;
             }
+            case "CHECK IN": {
+                BookingService bookingService = ServiceFactory.getInstance().getBookingService();
+                try {
+                    bookingService.checkInBooking(Integer.parseInt(bookingId));
+                } catch (ServiceException e) {
+                    logger.error("Unable to check in booking");
+                    throw new RuntimeException(e);
+                }
 
-            resp.sendRedirect(req.getContextPath() + "/reservations");
+                resp.sendRedirect(req.getContextPath() + "/reservations");
+                break;
+            }
+            case "CHECK OUT": {
+                BookingService bookingService = ServiceFactory.getInstance().getBookingService();
+
+                try {
+                    Optional<Booking> optionalBooking = bookingService.getBookingById(Integer.valueOf(bookingId));
+                    if (optionalBooking.isPresent()) {
+                        Booking booking = optionalBooking.get();
+                        RoomService roomService = ServiceFactory.getInstance().getRoomService();
+
+                        Room room = booking.getRoom();
+                        roomService.setRoomStatus(room, true);
+
+                        bookingService.checkOutBooking(Integer.parseInt(bookingId));
+                    }
+                } catch (ServiceException e) {
+                    logger.error("Unable to check in booking");
+                    throw new RuntimeException(e);
+                }
+
+                resp.sendRedirect(req.getContextPath() + "/reservations");
+                break;
+            }
         }
     }
 

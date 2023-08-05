@@ -64,9 +64,28 @@
                                   <button type="submit" class="check_btn take_action_btn">Take Action</button>
                                 </form>
                               </c:when>
+
                               <c:when test="${element.status.equals('APPROVED')}">
-                                <button class="check_btn disabled_btn approved_btn" disabled>APPROVED</button>
+                                 <form action="booking-details" method="get">
+                                     <input type="hidden" name="booking-id" value="${element.id}" />
+                                     <button type="submit" class="check_btn take_action_btn">Check In</button>
+                                 </form>
+                             </c:when>
+
+                             <c:when test="${element.status.equals('CHECKED IN')}">
+                                <form action="booking-details" method="get">
+                                    <input type="hidden" name="booking-id" value="${element.id}" />
+                                    <button type="submit" class="check_btn take_action_btn">Check Out</button>
+                                </form>
+                             </c:when>
+
+                             <c:when test="${element.status.equals('CHECKED OUT')}">
+                                 <form action="booking-details" method="get">
+                                     <input type="hidden" name="booking-id" value="${element.id}" />
+                                     <button type="submit" class="check_btn take_action_btn">VIEW DETAILS</button>
+                                 </form>
                               </c:when>
+
                               <c:otherwise>
                                 <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>
                               </c:otherwise>

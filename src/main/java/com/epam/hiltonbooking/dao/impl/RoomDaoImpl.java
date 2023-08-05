@@ -25,7 +25,7 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
             "SELECT * FROM " + Table.ROOMS.getTableName() + " WHERE room_number = ?";
 
     private static final String SET_ROOM_INACTIVE_QUERY =
-            "UPDATE " + Table.ROOMS.getTableName() + " SET is_active = false WHERE room_id = ?";
+            "UPDATE " + Table.ROOMS.getTableName() + " SET is_active = ? WHERE room_id = ?";
 
 
     public RoomDaoImpl() {
@@ -60,8 +60,8 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
     }
 
     @Override
-    public void setRoomInActive(Room room) throws DaoException {
-        executeUpdateQuery(SET_ROOM_INACTIVE_QUERY, room.getId());
+    public void setRoomStatus(Room room, boolean status) throws DaoException {
+        executeUpdateQuery(SET_ROOM_INACTIVE_QUERY, status, room.getId());
     }
 
     @Override

@@ -40,33 +40,66 @@
                         <div class="bar">Beds amount: </div>
                         <div class="bar">Room class: </div>
                         <div class="bar">Room Number: </div>
-                        <!-- <div class="bar">Total cost: </div> -->
+                         <c:if test="${booking.status.equals('CHECKED IN') || booking.status.equals('CHECKED OUT')}">
+                          <div class="bar">Total cost: </div>
+                        </c:if>
                         <div class="bar">Booking time: </div>
                       </div>
 
                       <form action="booking-details" method="post">
                         <div class="booking_info_show">
-                          <div class="bar">${booking.user.firstName} ${booking.user.lastName}</div>
-                          <div class="bar">${booking.user.email}</div>
-                          <div class="bar">${booking.checkIn}</div>
-                          <div class="bar">${booking.checkOut}</div>
-                          <div class="bar">${booking.bedsAmount}</div>
-                          <div class="bar">${booking.roomClass}</div>
-                          <div class="bar">
-                            <select name="room-id" id="">
-                              <option value="" disabled selected>Select</option>
-                              <c:forEach items="${roomList}" var="room">
-                                <option value="${room.id}">${room.roomNumber}</option>
-                              </c:forEach>
-                            </select>
-                          </div>
-                          <!-- <div id="total-cost-bar" class="bar">0.00</div> -->
-                          <div class="bar">${booking.bookingTime}</div>
+                            <c:choose>
+                                <c:when test="${booking.status.equals('CHECKED IN') || booking.status.equals('CHECKED OUT')}">
+                                  <div class="bar">${booking.user.firstName} ${booking.user.lastName}</div>
+                                  <div class="bar">${booking.user.email}</div>
+                                  <div class="bar">${booking.checkIn}</div>
+                                  <div class="bar">${booking.checkOut}</div>
+                                  <div class="bar">${booking.bedsAmount}</div>
+                                  <div class="bar">${booking.roomClass}</div>
+                                  <div class="bar">${booking.room.roomNumber}</div>
+                                  <div id="total-cost-bar" class="bar">${booking.totalCost}</div>
+                                  <div class="bar">${booking.bookingTime}</div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="bar">${booking.user.firstName} ${booking.user.lastName}</div>
+                                      <div class="bar">${booking.user.email}</div>
+                                      <div class="bar">${booking.checkIn}</div>
+                                      <div class="bar">${booking.checkOut}</div>
+                                      <div class="bar">${booking.bedsAmount}</div>
+                                      <div class="bar">${booking.roomClass}</div>
+                                      <div class="bar">
+                                        <select name="room-id" id="">
+                                          <option value="" disabled selected>Select</option>
+                                          <c:forEach items="${roomList}" var="room">
+                                            <option value="${room.id}">${room.roomNumber}</option>
+                                          </c:forEach>
+                                        </select>
+                                      </div>
+                                      <!-- <div id="total-cost-bar" class="bar">0.00</div> -->
+                                      <div class="bar">${booking.bookingTime}</div>
+                                </c:otherwise>
+                            </c:choose>
+
                           <br>
                           <div class="booking_information_btns">
                             <input type="hidden" name="booking-id" value="${booking.id}">
-                            <input name="action" type="submit" value="APPROVE" class="check_btn approve_btn">
-                            <input name="action" type="submit" value="CANCEL" class="check_btn delete_btn">
+
+                            <c:choose>
+                                <c:when test="${booking.status.equals('WAITING')}">
+                                    <input name="action" type="submit" value="APPROVE" class="check_btn approve_btn">
+                                    <input name="action" type="submit" value="CANCEL" class="check_btn delete_btn">
+                                </c:when>
+                                <c:when test="${booking.status.equals('APPROVED')}">
+                                    <input name="action" type="submit" value="CHECK IN" class="check_btn approve_btn">
+                                </c:when>
+                                <c:when test="${booking.status.equals('CHECKED IN')}">
+                                    <input name="action" type="submit" value="CHECK OUT" class="check_btn approve_btn">
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="back_btn" href="messages">Back to Reservations</a>
+                                    <a class="back_btn" href="dashboard">Back to Dashboard</a>
+                                </c:otherwise>
+                            </c:choose>
                           </div>
                         </div>
 

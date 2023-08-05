@@ -23,4 +23,8 @@ public interface BookingService {
 
     void cancelBooking(Integer id) throws ServiceException;
 
+    void checkInBooking(Integer id) throws ServiceException;
+
+    void checkOutBooking(Integer id) throws ServiceException;
+
 }

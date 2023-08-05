@@ -12,5 +12,5 @@ public interface RoomDao extends Dao<Room> {
 
     Optional<Room> findByRoomNumber(int roomNumber) throws DaoException;
 
-    void setRoomInActive(Room room) throws DaoException;
+    void setRoomStatus(Room room, boolean status) throws DaoException;
 }

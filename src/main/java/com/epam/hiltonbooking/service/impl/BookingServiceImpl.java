@@ -81,7 +81,7 @@ public class BookingServiceImpl implements BookingService {
                     orElseThrow(() -> new ServiceException("Booking is not found by id! ID = " + id));
             String status = booking.getStatus();
             if (!status.equals("WAITING")) {
-                throw new ServiceException("Cannot approve th booking which is " + status);
+                throw new ServiceException("Cannot approve the booking which is " + status);
             }
             booking.setRoom(room);
             booking.setTotalCost(totalCost);
@@ -104,13 +104,55 @@ public class BookingServiceImpl implements BookingService {
             Booking booking = optional.get();
             String status = booking.getStatus();
             if (status.equals("CANCELLED")) {
-                throw new ServiceException("Cannot cancel th booking which is " + status);
+                throw new ServiceException("Cannot cancel the booking which is " + status);
             }
             booking.setRoom(null);
             booking.setStatus("CANCELLED");
             bookingDao.updateBooking(booking);
         } catch (DaoException e) {
             logger.error("Unable to cancel the booking!");
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void checkInBooking(Integer id) throws ServiceException {
+        try {
+            BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
+            Optional<Booking> optional = bookingDao.findById(id);
+            if (!optional.isPresent()) {
+                throw new ServiceException("Booking is not found by id! ID = " + id);
+            }
+            Booking booking = optional.get();
+            String status = booking.getStatus();
+            if (!status.equals("APPROVED")) {
+                throw new ServiceException("Cannot check in th booking which is " + status);
+            }
+            booking.setStatus("CHECKED IN");
+            bookingDao.updateBooking(booking);
+        } catch (DaoException e) {
+            logger.error("Unable to check in the booking!");
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void checkOutBooking(Integer id) throws ServiceException {
+        try {
+            BookingDao bookingDao = DaoFactory.getInstance().getBookingDao();
+            Optional<Booking> optional = bookingDao.findById(id);
+            if (!optional.isPresent()) {
+                throw new ServiceException("Booking is not found by id! ID = " + id);
+            }
+            Booking booking = optional.get();
+            String status = booking.getStatus();
+            if (!status.equals("CHECKED IN")) {
+                throw new ServiceException("Cannot check out th booking which is " + status);
+            }
+            booking.setStatus("CHECKED OUT");
+            bookingDao.updateBooking(booking);
+        } catch (DaoException e) {
+            logger.error("Unable to check out the booking!");
             throw new ServiceException(e.getMessage(), e);
         }
     }

@@ -57,10 +57,10 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void setRoomInActiveById(Room room) throws ServiceException {
+    public void setRoomStatus(Room room, boolean status) throws ServiceException {
         try {
             RoomDao roomDao = DaoFactory.getInstance().getRoomDao();
-            roomDao.setRoomInActive(room);
+            roomDao.setRoomStatus(room, status);
         } catch (DaoException e) {
             logger.error("Unable to set room is active or not!");
             throw new ServiceException(e.getMessage(), e);

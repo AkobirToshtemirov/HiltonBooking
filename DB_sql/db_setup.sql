@@ -30,7 +30,7 @@ CREATE TABLE bookings (
     booking_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     room_id INT,
-    status VARCHAR(20) NOT NULL CHECK (status IN ('WAITING', 'APPROVED', 'CANCELLED', 'CHECK IN', 'CHECK OUT')),
+    status VARCHAR(20) NOT NULL CHECK (status IN ('WAITING', 'APPROVED', 'CANCELLED', 'CHECKED IN', 'CHECKED OUT')),
     check_in DATE NOT NULL,
     check_out DATE NOT NULL,
     beds_amount SMALLINT NOT NULL,
