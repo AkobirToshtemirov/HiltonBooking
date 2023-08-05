@@ -1,9 +1,11 @@
 package com.epam.hiltonbooking.servlets;
 
 import com.epam.hiltonbooking.bean.Booking;
+import com.epam.hiltonbooking.bean.Message;
 import com.epam.hiltonbooking.bean.User;
 import com.epam.hiltonbooking.exceptions.ServiceException;
 import com.epam.hiltonbooking.service.api.BookingService;
+import com.epam.hiltonbooking.service.api.MessageService;
 import com.epam.hiltonbooking.service.api.ServiceFactory;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -42,7 +44,7 @@ public class ToolServlet extends HttpServlet {
                         req.setAttribute("bookings", sortList(bookings));
                     } catch (ServiceException e) {
                         logger.error("Unable to get bookings!");
-                        resp.sendRedirect(req.getContextPath() + "/error");
+//                        resp.sendRedirect(req.getContextPath() + "/error");
                         throw new RuntimeException(e);
                     }
                 } else if (action.equals("rooms")) {
@@ -52,8 +54,15 @@ public class ToolServlet extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/users");
                     return;
                 } else if (action.equals("newMessages")) {
-                    resp.sendRedirect(req.getContextPath() + "/messages");
-                    return;
+                    MessageService messageService = ServiceFactory.getInstance().getMessageService();
+                    try {
+                        List<Message> messages = messageService.getAllMessages();
+                        req.setAttribute("messages", sortMessagesInDesc(messages));
+                    } catch (ServiceException e) {
+                        logger.error("Unable to get messages!");
+//                        resp.sendRedirect(req.getContextPath() + "/error");
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 req.setAttribute("tool", action);
@@ -63,17 +72,18 @@ public class ToolServlet extends HttpServlet {
             } else {
                 resp.sendRedirect(req.getContextPath() + "/error");
             }
-        } else if (user != null) {
-            String lastURL = (String) session.getAttribute("lastURL");
-            resp.sendRedirect(lastURL);
         } else {
-            String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath);
+            resp.sendRedirect(req.getContextPath() + "/error");
         }
     }
 
     List<Booking> sortList(List<Booking> list) {
         list.sort(Comparator.comparing(Booking::getId).reversed());
         return list;
+    }
+
+    List<Message> sortMessagesInDesc(List<Message> messageList) {
+        messageList.sort(Comparator.comparing(Message::getId).reversed());
+        return messageList;
     }
 }

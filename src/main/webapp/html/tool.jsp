@@ -26,26 +26,65 @@
               <jsp:include page="dashboardHeader.jsp" />
 
               <div class="dashboard_tools">
-                <h2>Reservations</h2>
+              <c:choose>
+                <c:when test="${tool.equals('newBookings')}">
+                    <h2>New Reservations</h2>
+                </c:when>
+
+                 <c:when test="${tool.equals('approvedBookings')}">
+                    <h2>Approved Reservations</h2>
+                </c:when>
+
+                <c:when test="${tool.equals('cancelledBookings')}">
+                    <h2>Cancelled Reservations</h2>
+                </c:when>
+
+                <c:when test="${tool.equals('newMessages')}">
+                    <h2>New Messages</h2>
+                </c:when>
+              </c:choose>
 
                 <div class="reservations_main">
                   <div class="reservations_block">
 
-                    <div class="reservation_headline">
-                      <div class="bar">Client</div>
-                      <div class="bar">Check In</div>
-                      <div class="bar">Check Out</div>
-                      <c:if test="${tool.equals('approvedBookings')}">
-                         <div class="bar">Room No</div>
-                      </c:if>
-                      <div class="bar">No of beds</div>
-                      <div class="bar">Room class</div>
-                      <div class="bar">Status</div>
-                      <div class="bar">Booking Time</div>
-                      <div class="bar">
-                        <a class="check_btn" href=""></a>
-                      </div>
-                    </div>
+                    <c:choose>
+
+                        <c:when test="${tool.equals('newMessages')}">
+                           <div class="messages_headline">
+                             <div class="bar">Sent Time</div>
+                             <div class="bar">Name</div>
+                             <div class="bar">Email</div>
+                             <div class="bar">Phone #</div>
+                             <div class="bar">Message</div>
+                             <div class="bar"></div>
+                           </div>
+                        </c:when>
+
+                        <%--
+                        <c:when test="${tool.equals('newUsers')}">
+
+                        </c:when>
+                        --%>
+
+                        <c:when test="${tool.equals('newBookings') || tool.equals('approvedBookings') || tool.equals('cancelledBookings')}">
+
+                            <div class="reservation_headline">
+                                 <div class="bar">Client</div>
+                                 <div class="bar">Check In</div>
+                                 <div class="bar">Check Out</div>
+                                 <c:if test="${tool.equals('approvedBookings')}">
+                                    <div class="bar">Room No</div>
+                                 </c:if>
+                                 <div class="bar">No of beds</div>
+                                 <div class="bar">Room class</div>
+                                 <div class="bar">Status</div>
+                                 <div class="bar">Booking Time</div>
+                                 <div class="bar">
+                                   <a class="check_btn" href=""></a>
+                                 </div>
+                            </div>
+                        </c:when>
+                    </c:choose>
 
                     <c:choose>
 
@@ -121,28 +160,30 @@
 
                         </div>
                       </c:when>
-                      <%-- <c:when test="${tool.equals('newMessages')}">
+                      <c:when test="${tool.equals('newMessages')}">
                         <div class="messages">
 
                           <c:forEach items="${messages}" var="message">
-                            <div class="message">
-                              <div class="bar messageText">${message.sentAt}</div>
-                              <div class="bar messageText">${message.name}</div>
-                              <div class="bar messageText">${message.email}</div>
-                              <div class="bar messageText">${message.phoneNumber}</div>
-                              <div class="bar messageText">${message.text}</div>
-                              <div class="bar delete_btn_bar">
-                                <form action="view-message" method="get">
-                                  <input type="hidden" name="message-id" value="${message.id}" />
-                                  <button type="submit" class="check_btn view_btn">View</button>
-                                </form>
-                              </div>
-                            </div>
+                            <c:if test="${!message.isRead()}">
+                                <div class="message">
+                                  <div class="bar messageText">${message.sentAt}</div>
+                                  <div class="bar messageText">${message.name}</div>
+                                  <div class="bar messageText">${message.email}</div>
+                                  <div class="bar messageText">${message.phoneNumber}</div>
+                                  <div class="bar messageText">${message.text}</div>
+                                  <div class="bar delete_btn_bar">
+                                    <form action="view-message" method="post">
+                                      <input type="hidden" name="message-id" value="${message.id}" />
+                                      <button type="submit" class="check_btn view_btn">View</button>
+                                    </form>
+                                  </div>
+                                </div>
+                            </c:if>
                           </c:forEach>
 
                         </div>
                         </c:when>
-                        --%>
+
                     </c:choose>
 
                   </div>

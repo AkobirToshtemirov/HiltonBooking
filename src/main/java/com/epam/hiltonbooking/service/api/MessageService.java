@@ -12,4 +12,6 @@ public interface MessageService {
     List<Message> getAllMessages() throws ServiceException;
 
     Optional<Message> getMessageById(Integer id) throws ServiceException;
+
+    void setMessageRead(Message message) throws ServiceException;
 }

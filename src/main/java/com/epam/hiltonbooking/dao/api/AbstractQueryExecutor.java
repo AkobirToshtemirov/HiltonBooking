@@ -19,10 +19,10 @@ import java.util.Optional;
 public abstract class AbstractQueryExecutor<T extends Identifiable> {
     private static final Logger logger = LogManager.getLogger();
 
-    private final Mapper<T> rowMapper;
+    private final Mapper<T> mapper;
 
     public AbstractQueryExecutor(Mapper<T> mapper) {
-        this.rowMapper = mapper;
+        this.mapper = mapper;
     }
 
     protected List<T> executeQuery(String query, Object... params) throws DaoException {
@@ -93,7 +93,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
         List<T> entities = new ArrayList<>();
         try {
             while (resultSet.next()) {
-                T entity = rowMapper.map(resultSet);
+                T entity = mapper.map(resultSet);
                 entities.add(entity);
             }
         } catch (SQLException e) {
@@ -102,5 +102,4 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
         }
         return entities;
     }
-
 }

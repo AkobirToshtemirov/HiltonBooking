@@ -44,7 +44,8 @@
                         <div class="bar">Message:</div>
                         <div class="message_bar_info text_message">${message.text}</div>
 
-                        <a class="back_btn" href="messages">Back</a>
+                        <a class="back_btn" href="messages">Back to Messages</a>
+                        <a class="back_btn" href="dashboard">Back to Dashboard</a>
                       </div>
 
                     </div>

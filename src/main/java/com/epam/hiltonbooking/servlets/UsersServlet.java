@@ -50,12 +50,8 @@ public class UsersServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/html/users.jsp");
             dispatcher.forward(req, resp);
-        } else if (user != null) {
-            String lastURL = (String) session.getAttribute("lastURL");
-            resp.sendRedirect(lastURL);
         } else {
-            String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath);
+            resp.sendRedirect(req.getContextPath() + "/error");
         }
     }
 

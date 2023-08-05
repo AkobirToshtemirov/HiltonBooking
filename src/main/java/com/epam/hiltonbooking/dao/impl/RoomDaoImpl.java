@@ -24,7 +24,8 @@ public class RoomDaoImpl extends AbstractDao<Room> implements RoomDao {
     private static final String FIND_BY_ROOM_NUMBER_QUERY =
             "SELECT * FROM " + Table.ROOMS.getTableName() + " WHERE room_number = ?";
 
-    private static final String SET_ROOM_INACTIVE_QUERY = "UPDATE " + Table.ROOMS.getTableName() + " SET is_active = false WHERE room_id = ?";
+    private static final String SET_ROOM_INACTIVE_QUERY =
+            "UPDATE " + Table.ROOMS.getTableName() + " SET is_active = false WHERE room_id = ?";
 
 
     public RoomDaoImpl() {

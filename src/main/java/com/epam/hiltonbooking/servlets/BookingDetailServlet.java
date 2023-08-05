@@ -38,29 +38,32 @@ public class BookingDetailServlet extends HttpServlet {
             BookingService bookingService = ServiceFactory.getInstance().getBookingService();
 
             try {
-                Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId.get()));
-                Booking booking = bookingOptional.get();
+                if (bookingId.isPresent()) {
+                    Optional<Booking> bookingOptional = bookingService.getBookingById(Integer.parseInt(bookingId.get()));
+                    if (bookingOptional.isPresent()) {
+                        Booking booking = bookingOptional.get();
 
-                req.setAttribute("booking", booking);
+                        req.setAttribute("booking", booking);
 
-                RoomService roomService = ServiceFactory.getInstance().getRoomService();
-                List<Room> roomList = roomService.getSuitableRooms(booking.getBedsAmount(), booking.getRoomClass());
+                        RoomService roomService = ServiceFactory.getInstance().getRoomService();
+                        List<Room> roomList = roomService.getSuitableRooms(booking.getBedsAmount(), booking.getRoomClass());
 
-                req.setAttribute("roomList", roomList);
+                        req.setAttribute("roomList", roomList);
 
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/html/bookingDetails.jsp");
-                dispatcher.forward(req, resp);
-
+                        RequestDispatcher dispatcher = req.getRequestDispatcher("/html/bookingDetails.jsp");
+                        dispatcher.forward(req, resp);
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + "/error");
+                    }
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/error");
+                }
             } catch (ServiceException e) {
                 logger.error("Unable to get Booking by booking id!");
                 throw new RuntimeException(e);
             }
-        } else if (user != null) {
-            String lastURL = (String) session.getAttribute("lastURL");
-            resp.sendRedirect(lastURL);
         } else {
-            String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath);
+            resp.sendRedirect(req.getContextPath() + "/error");
         }
     }
 

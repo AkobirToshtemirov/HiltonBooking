@@ -17,7 +17,8 @@ public class MessageMapper implements Mapper<Message> {
         String email = resultSet.getString(Column.MESSANGER_EMAIL);
         String phoneNumber = resultSet.getString(Column.MESSANGER_PHONE_NUMBER);
         String text = resultSet.getString(Column.MESSAGE_TEXT);
+        boolean isRead = resultSet.getBoolean(Column.MESSAGE_IS_READ);
         Timestamp sentAt = resultSet.getTimestamp(Column.MESSAGE_SENT_AT);
-        return new Message(messageId, name, email, phoneNumber, text, sentAt);
+        return new Message(messageId, name, email, phoneNumber, text, isRead, sentAt);
     }
 }

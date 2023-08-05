@@ -10,17 +10,19 @@ public class Message implements Identifiable, Serializable {
     private String email;
     private String phoneNumber;
     private String text;
+    private boolean isRead;
     private Timestamp sentAt;
 
     public Message() {
     }
 
-    public Message(int messageId, String name, String email, String phoneNumber, String text, Timestamp sentAt) {
+    public Message(int messageId, String name, String email, String phoneNumber, String text, boolean isRead, Timestamp sentAt) {
         this.messageId = messageId;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.text = text;
+        this.isRead = isRead;
         this.sentAt = sentAt;
     }
 
@@ -63,6 +65,14 @@ public class Message implements Identifiable, Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
     @Override

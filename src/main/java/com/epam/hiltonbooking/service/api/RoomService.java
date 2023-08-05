@@ -12,10 +12,13 @@ public interface RoomService {
     List<Room> getAllRooms() throws ServiceException;
 
     Optional<Room> getRoomById(Integer id) throws ServiceException;
+
     List<Room> getSuitableRooms(int bedsAmount, String roomClass) throws ServiceException;
 
     void setRoomInActiveById(Room room) throws ServiceException;
+
     boolean isRoomAdded(int roomNumber) throws ServiceException;
+
     void deleteById(Integer id) throws ServiceException;
 
 }

@@ -56,6 +56,17 @@ public class MessageServiceImpl implements MessageService {
         }
     }
 
+    @Override
+    public void setMessageRead(Message message) throws ServiceException {
+        try {
+            MessageDao messageDao = DaoFactory.getInstance().getMessageDao();
+            messageDao.setMessageRead(message);
+        } catch (DaoException e) {
+            logger.error("Unable to set message read!");
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     private Message buildMessage(String name, String email, String phoneNumber, String text) {
         Message message = new Message();
         message.setName(name);

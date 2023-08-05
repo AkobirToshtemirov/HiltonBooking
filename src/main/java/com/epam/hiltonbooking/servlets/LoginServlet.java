@@ -73,31 +73,4 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String username = req.getParameter("username");
-//        String password = req.getParameter("password");
-//
-//        UserService userService = ServiceFactory.getInstance().getUserService();
-//
-//        try {
-//            boolean isValidUser = userService.validateUser(username, password);
-//
-//            if (isValidUser) {
-//                HttpSession session = req.getSession();
-//                session.setAttribute("username", username);
-//                session.setAttribute("password", password);
-//
-//                req.getRequestDispatcher("/html/book.jsp").forward(req, resp);
-//            } else {
-//                String errorMessage = "Invalid Credentials, please login again!";
-//                req.setAttribute("error", errorMessage);
-//                req.getRequestDispatcher("/html/login.jsp").forward(req, resp);
-//            }
-//        } catch (ServiceException e) {
-////            req.getRequestDispatcher("/html/error.jsp");
-//            e.printStackTrace();
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

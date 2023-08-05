@@ -32,11 +32,13 @@ public class BookServlet extends HttpServlet {
         String currentURL = req.getRequestURL().toString();
         session.setAttribute("lastURL", currentURL);
 
-        if (user != null) {
+        if (user != null && !user.isAdmin()) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/html/book.jsp");
             dispatcher.forward(req, resp);
-        } else {
+        } else if (user == null) {
             resp.sendRedirect("login");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/error");
         }
     }
 

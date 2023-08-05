@@ -30,7 +30,7 @@ CREATE TABLE bookings (
     booking_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     room_id INT,
-    status VARCHAR(20) NOT NULL CHECK (status IN ('WAITING', 'APPROVED', 'CANCELLED')),
+    status VARCHAR(20) NOT NULL CHECK (status IN ('WAITING', 'APPROVED', 'CANCELLED', 'CHECK IN', 'CHECK OUT')),
     check_in DATE NOT NULL,
     check_out DATE NOT NULL,
     beds_amount SMALLINT NOT NULL,
@@ -47,5 +47,6 @@ CREATE TABLE messages (
   phone_number VARCHAR(20) NOT NULL,
   text TEXT NOT NULL,
   email VARCHAR(50) NOT NULL,
+  is_read BOOLEAN NOT NULL DEFAULT false,
   sent_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

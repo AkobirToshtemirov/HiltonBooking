@@ -44,6 +44,7 @@ public final class Column {
     public static final String MESSANGER_EMAIL = "email";
     public static final String MESSANGER_PHONE_NUMBER = "phone_number";
     public static final String MESSAGE_TEXT = "text";
+    public static final String MESSAGE_IS_READ = "is_read";
     public static final String MESSAGE_SENT_AT = "sent_at";
 
 }

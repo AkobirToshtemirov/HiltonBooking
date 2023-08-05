@@ -17,6 +17,8 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
             "SELECT * FROM " + Table.MESSAGES.getTableName();
     private static final String GET_BOOKING_BY_ID_QUERY =
             "SELECT * FROM " + Table.MESSAGES.getTableName() + " WHERE message_id = ?";
+    private static final String SET_MESSAGE_READ_QUERY =
+            "UPDATE " + Table.MESSAGES.getTableName() + " SET is_read = true WHERE message_id = ?";
 
     public MessageDaoImpl() {
         super(MapperFactory.getInstance().getMessageMapper(), Table.MESSAGES.getTableName());
@@ -36,5 +38,10 @@ public class MessageDaoImpl extends AbstractDao<Message> implements MessageDao {
     @Override
     public Optional<Message> findById(Integer id) throws DaoException {
         return executeQueryForSingleResult(GET_BOOKING_BY_ID_QUERY, id);
+    }
+
+    @Override
+    public void setMessageRead(Message message) throws DaoException {
+        executeUpdateQuery(SET_MESSAGE_READ_QUERY, message.getId());
     }
 }

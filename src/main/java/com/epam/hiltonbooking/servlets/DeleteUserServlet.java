@@ -19,6 +19,11 @@ public class DeleteUserServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect(req.getContextPath() + "/error");
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Optional<String> userId = Optional.ofNullable(req.getParameter("user-id"));
 

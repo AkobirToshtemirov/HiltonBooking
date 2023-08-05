@@ -48,12 +48,8 @@ public class RoomsServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/html/rooms.jsp");
             dispatcher.forward(req, resp);
-        } else if (user != null) {
-            String lastURL = (String) session.getAttribute("lastURL");
-            resp.sendRedirect(lastURL);
         } else {
-            String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath);
+            resp.sendRedirect(req.getContextPath() + "/error");
         }
     }
 

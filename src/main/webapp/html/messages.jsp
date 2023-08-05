@@ -49,7 +49,7 @@
                           <div class="bar messageText">${message.phoneNumber}</div>
                           <div class="bar messageText">${message.text}</div>
                           <div class="bar delete_btn_bar">
-                            <form action="view-message" method="get">
+                            <form action="view-message" method="post">
                               <input type="hidden" name="message-id" value="${message.id}" />
                               <button type="submit" class="check_btn view_btn">View</button>
                             </form>
