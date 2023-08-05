@@ -667,7 +667,7 @@ select {
 }
 
 .check_btn {
-  width: 100px;
+  width: 120px;
   padding: 10px 0;
   text-decoration: none;
   color: #fff;
@@ -1004,6 +1004,7 @@ select {
 }
 
 .approve_btn {
+  width: 130px;
   border: 1px solid rgb(0, 208, 3);
   background-color: rgb(0, 208, 3);
   font-weight: 700;
@@ -1212,16 +1213,14 @@ select {
   cursor: not-allowed;
 }
 
-.approved_btn {
-  background-color: #7CFC00;
-}
-
 .cancelled_btn {
+  width: 130px;
   background-color: #DC143C;
 }
 
 
 .take_action_btn {
+  width: 130px;
   background-color: #1E90FF;
   font-size: 16px;
   font-weight: 700;
@@ -1318,4 +1317,13 @@ p {
   text-decoration: 2px underline;
   font-size: 20px;
   cursor: pointer;
+}
+
+.checked_btn {
+    background-color: #8A2BE2;
+    border-color: #8A2BE2;
+}
+
+.invoice_btn {
+    width: 120px;
 }

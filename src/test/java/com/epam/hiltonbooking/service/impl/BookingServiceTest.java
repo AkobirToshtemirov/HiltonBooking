@@ -117,4 +117,27 @@ public class BookingServiceTest {
         verify(bookingService, times(1)).cancelBooking(bookingId);
     }
 
+    @Test
+    public void testCheckInBooking() throws ServiceException {
+        // Given
+        Integer bookingId = 789;
+
+        // When - No need to use 'when' for void methods
+
+        // Then - Verify that the method was called once
+        bookingService.checkInBooking(bookingId);
+        verify(bookingService, times(1)).checkInBooking(bookingId);
+    }
+
+    @Test
+    public void testCheckOutBooking() throws ServiceException {
+        // Given
+        Integer bookingId = 789;
+
+        // When - No need to use 'when' for void methods
+
+        // Then - Verify that the method was called once
+        bookingService.checkOutBooking(bookingId);
+        verify(bookingService, times(1)).checkOutBooking(bookingId);
+    }
 }

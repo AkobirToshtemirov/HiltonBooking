@@ -37,7 +37,8 @@ public class ToolServlet extends HttpServlet {
             if (tool.isPresent()) {
                 String action = tool.get();
 
-                if (action.equals("newBookings") || action.equals("approvedBookings") || action.equals("cancelledBookings")) {
+                if (action.equals("newBookings") || action.equals("approvedBookings") || action.equals("cancelledBookings")
+                        || action.equals("checkedInBookings") || action.equals("checkedOutBookings")) {
                     BookingService bookingService = ServiceFactory.getInstance().getBookingService();
                     try {
                         List<Booking> bookings = bookingService.getAllBookings();
@@ -47,12 +48,6 @@ public class ToolServlet extends HttpServlet {
 //                        resp.sendRedirect(req.getContextPath() + "/error");
                         throw new RuntimeException(e);
                     }
-                } else if (action.equals("rooms")) {
-                    resp.sendRedirect(req.getContextPath() + "/rooms");
-                    return;
-                } else if (action.equals("users")) {
-                    resp.sendRedirect(req.getContextPath() + "/users");
-                    return;
                 } else if (action.equals("newMessages")) {
                     MessageService messageService = ServiceFactory.getInstance().getMessageService();
                     try {

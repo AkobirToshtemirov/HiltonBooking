@@ -40,7 +40,7 @@
                         <div class="bar">Beds amount: </div>
                         <div class="bar">Room class: </div>
                         <div class="bar">Room Number: </div>
-                         <c:if test="${booking.status.equals('CHECKED IN') || booking.status.equals('CHECKED OUT')}">
+                         <c:if test="${booking.status.equals('APPROVED') || booking.status.equals('CHECKED IN') || booking.status.equals('CHECKED OUT')}">
                           <div class="bar">Total cost: </div>
                         </c:if>
                         <div class="bar">Booking time: </div>
@@ -49,7 +49,7 @@
                       <form action="booking-details" method="post">
                         <div class="booking_info_show">
                             <c:choose>
-                                <c:when test="${booking.status.equals('CHECKED IN') || booking.status.equals('CHECKED OUT')}">
+                                <c:when test="${booking.status.equals('APPROVED') || booking.status.equals('CHECKED IN') || booking.status.equals('CHECKED OUT')}">
                                   <div class="bar">${booking.user.firstName} ${booking.user.lastName}</div>
                                   <div class="bar">${booking.user.email}</div>
                                   <div class="bar">${booking.checkIn}</div>
@@ -57,7 +57,7 @@
                                   <div class="bar">${booking.bedsAmount}</div>
                                   <div class="bar">${booking.roomClass}</div>
                                   <div class="bar">${booking.room.roomNumber}</div>
-                                  <div id="total-cost-bar" class="bar">${booking.totalCost}</div>
+                                  <div id="total-cost-bar" class="bar">${booking.totalCost} $</div>
                                   <div class="bar">${booking.bookingTime}</div>
                                 </c:when>
                                 <c:otherwise>
@@ -75,7 +75,6 @@
                                           </c:forEach>
                                         </select>
                                       </div>
-                                      <!-- <div id="total-cost-bar" class="bar">0.00</div> -->
                                       <div class="bar">${booking.bookingTime}</div>
                                 </c:otherwise>
                             </c:choose>
@@ -96,7 +95,7 @@
                                     <input name="action" type="submit" value="CHECK OUT" class="check_btn approve_btn">
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="back_btn" href="messages">Back to Reservations</a>
+                                    <a class="back_btn" href="reservations">Back to Reservations</a>
                                     <a class="back_btn" href="dashboard">Back to Dashboard</a>
                                 </c:otherwise>
                             </c:choose>
