@@ -667,7 +667,7 @@ select {
 }
 
 .check_btn {
-  width: 120px;
+  width: 130px;
   padding: 10px 0;
   text-decoration: none;
   color: #fff;
@@ -1322,8 +1322,4 @@ p {
 .checked_btn {
     background-color: #8A2BE2;
     border-color: #8A2BE2;
-}
-
-.invoice_btn {
-    width: 120px;
 }

@@ -29,10 +29,12 @@
               <input type="hidden" id="actionInput" name="action" value="" />
               <div class="tools">
                 <button class="tool_link" data-action="newBookings">New Bookings</button>
-                <button class="tool_link" data-action="approvedBookings">Approved Bookings <br/> (Check  In)</button>
-                <button class="tool_link" data-action="checkedInBookings">Checked In Bookings <br/> (Check  Out)</button>
+                <button class="tool_link" data-action="approvedBookings">Approved Bookings <br /> (Check In)</button>
+                <button class="tool_link" data-action="checkedInBookings">Checked In Bookings <br /> (Check
+                  Out)</button>
                 <button class="tool_link" data-action="newMessages">Unread Messages</button>
-                <button class="tool_link" data-action="checkedOutBookings">Checked Out Bookings <br/> (Closed Bookings)</button>
+                <button class="tool_link" data-action="checkedOutBookings">Checked Out Bookings <br /> (Closed
+                  Bookings)</button>
                 <button class="tool_link" data-action="cancelledBookings">Cancelled Bookings</button>
               </div>
               <form>

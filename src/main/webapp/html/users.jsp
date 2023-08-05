@@ -77,47 +77,47 @@
 
                 <% String infoMessage=(String) request.getAttribute("infoMessage"); %>
 
-                    <% if (infoMessage !=null && !infoMessage.isEmpty()) { %>
-                      <p style="color: red; font-size: 16px;" class="error-message">
-                        <%= infoMessage %>
-                      </p>
-                      <% } %>
+                  <% if (infoMessage !=null && !infoMessage.isEmpty()) { %>
+                    <p style="color: red; font-size: 16px;" class="error-message">
+                      <%= infoMessage %>
+                    </p>
+                    <% } %>
 
-                <div class="users_main">
-                  <div class="users_block">
-                    <div class="users_headline">
-                      <div class="bar">First Name</div>
-                      <div class="bar">Last Name</div>
-                      <div class="bar">Username</div>
-                      <div class="bar">Email</div>
-                      <div class="bar">Date of registration</div>
-                      <div class="bar"></div>
-                    </div>
+                      <div class="users_main">
+                        <div class="users_block">
+                          <div class="users_headline">
+                            <div class="bar">First Name</div>
+                            <div class="bar">Last Name</div>
+                            <div class="bar">Username</div>
+                            <div class="bar">Email</div>
+                            <div class="bar">Date of registration</div>
+                            <div class="bar"></div>
+                          </div>
 
-                    <c:forEach items="${userList}" var="user">
+                          <c:forEach items="${userList}" var="user">
 
-                    <c:if test="${!user.isAdmin()}">
+                            <c:if test="${!user.isAdmin()}">
 
-                      <div class="users">
-                        <div class="bar">${user.firstName}</div>
-                        <div class="bar">${user.lastName}</div>
-                        <div class="bar">${user.username}</div>
-                        <div class="bar">${user.email}</div>
-                        <div class="bar">${user.joinedTime}</div>
-                        <div class="bar delete_btn_bar">
-                          <form action="delete-user" method="post">
-                            <input type="hidden" name="user-id" value="${user.id}" />
-                            <button type="submit" class="check_btn delete_btn">Delete</button>
-                          </form>
+                              <div class="users">
+                                <div class="bar">${user.firstName}</div>
+                                <div class="bar">${user.lastName}</div>
+                                <div class="bar">${user.username}</div>
+                                <div class="bar">${user.email}</div>
+                                <div class="bar">${user.joinedTime}</div>
+                                <div class="bar delete_btn_bar">
+                                  <form action="delete-user" method="post">
+                                    <input type="hidden" name="user-id" value="${user.id}" />
+                                    <button type="submit" class="check_btn delete_btn">Delete</button>
+                                  </form>
+                                </div>
+                              </div>
+
+                            </c:if>
+
+                          </c:forEach>
+
                         </div>
                       </div>
-
-                    </c:if>
-
-                    </c:forEach>
-
-                  </div>
-                </div>
               </div>
             </div>
           </div>

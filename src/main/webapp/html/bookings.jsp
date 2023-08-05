@@ -54,14 +54,14 @@
                           <c:when test="${element.status.equals('APPROVED')}">
                             <form action="invoice" method="get">
                               <input type="hidden" name="booking-id" value="${element.id}" />
-                              <button type="submit" class="check_btn take_action_btn invoice_btn">Invoice</button>
+                              <button type="submit" class="check_btn take_action_btn">Invoice</button>
                             </form>
                           </c:when>
                           <c:when test="${element.status.equals('CHECKED IN')}">
-                              <button class="check_btn disabled_btn checked_btn" disabled>CHECKED IN</button>
-                           </c:when>
-                           <c:when test="${element.status.equals('CHECKED OUT')}">
-                             <button class="check_btn disabled_btn checked_btn" disabled>CHECKED OUT</button>
+                            <button class="check_btn disabled_btn checked_btn" disabled>CHECKED IN</button>
+                          </c:when>
+                          <c:when test="${element.status.equals('CHECKED OUT')}">
+                            <button class="check_btn disabled_btn checked_btn" disabled>CHECKED OUT</button>
                           </c:when>
                           <c:when test="${element.status.equals('CANCELLED')}">
                             <button class="check_btn disabled_btn cancelled_btn" disabled>CANCELLED</button>

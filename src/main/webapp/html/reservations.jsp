@@ -65,24 +65,25 @@
                               </c:when>
 
                               <c:when test="${element.status.equals('APPROVED')}">
-                                 <form action="booking-details" method="get">
-                                     <input type="hidden" name="booking-id" value="${element.id}" />
-                                     <button type="submit" class="check_btn take_action_btn checked_btn">Check In</button>
-                                 </form>
-                             </c:when>
-
-                             <c:when test="${element.status.equals('CHECKED IN')}">
                                 <form action="booking-details" method="get">
-                                    <input type="hidden" name="booking-id" value="${element.id}" />
-                                    <button type="submit" class="check_btn take_action_btn checked_btn">Check Out</button>
+                                  <input type="hidden" name="booking-id" value="${element.id}" />
+                                  <button type="submit" class="check_btn take_action_btn checked_btn">Check In</button>
                                 </form>
-                             </c:when>
+                              </c:when>
 
-                             <c:when test="${element.status.equals('CHECKED OUT')}">
-                                 <form action="booking-details" method="get">
-                                     <input type="hidden" name="booking-id" value="${element.id}" />
-                                     <button type="submit" class="check_btn take_action_btn checked_btn">View Details</button>
-                                 </form>
+                              <c:when test="${element.status.equals('CHECKED IN')}">
+                                <form action="booking-details" method="get">
+                                  <input type="hidden" name="booking-id" value="${element.id}" />
+                                  <button type="submit" class="check_btn take_action_btn checked_btn">Check Out</button>
+                                </form>
+                              </c:when>
+
+                              <c:when test="${element.status.equals('CHECKED OUT')}">
+                                <form action="booking-details" method="get">
+                                  <input type="hidden" name="booking-id" value="${element.id}" />
+                                  <button type="submit" class="check_btn take_action_btn checked_btn">View
+                                    Details</button>
+                                </form>
                               </c:when>
 
                               <c:otherwise>
