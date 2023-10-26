@@ -18,5 +18,6 @@ public class RoomMapper implements Mapper<Room> {
         boolean isActive = resultSet.getBoolean(Column.ROOM_IS_ACTIVE);
         double roomCost = resultSet.getDouble(Column.ROOM_COST);
         return new Room(roomId, roomNumber, roomClass, bedsAmount, isActive, roomCost);
+
     }
 }

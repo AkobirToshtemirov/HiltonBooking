@@ -95,5 +95,4 @@ public class UsersServlet extends HttpServlet {
         userList.sort(Comparator.comparing(User::getId).reversed());
         return userList;
     }
-
 }

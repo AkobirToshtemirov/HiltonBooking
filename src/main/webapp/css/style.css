@@ -1173,7 +1173,6 @@ select {
   height: 35px;
 }
 
-
 .add_room_form_main label input:focus {
   border-color: blue;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -1218,7 +1217,6 @@ select {
   background-color: #DC143C;
 }
 
-
 .take_action_btn {
   width: 130px;
   background-color: #1E90FF;
@@ -1246,7 +1244,6 @@ select {
 .bar {
   width: 100%;
 }
-
 
 .message .bar {
   white-space: nowrap;
