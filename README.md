@@ -1,5 +1,4 @@
 # HiltonBooking || HiltonTashkent
-HitonBooking - Epam Training Final Project.
 
 HitonBooking (HiltonTashkent) is a hotel booking project. User can book a room from Hilton hotel in Tashkent. Admin can manages the users and the rooms, reviews the received reservations, selects the most suitable of the available rooms, issues an invoice to the client
 
